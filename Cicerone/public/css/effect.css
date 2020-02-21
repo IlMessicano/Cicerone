@@ -1,214 +1,63 @@
-* {box-sizing: border-box}
 
-/* Set a style for all buttons */
-button {
-  background-color: transparent;
-  color: white;
 
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+.user_card {
+    height: 460px;
+    width: 400px;
+    margin-top: 76px;
+    background: #ffbf00;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
 }
-
-button:hover {
-  opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-.signupbtn{
-    background-color: green;
-}
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
-
-
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
-background-color: rgba(62, 66, 62, 0.9) ;
-
-  padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 10px solid #888;
-  padding: 100px;
-  width: 50%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-    width: 100%;
-  }
-}
-
-
-#test p {
-    margin-top: 25px;
-    font-size: 21px;
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    background: #60a3bc;
+    padding: 10px;
     text-align: center;
-
 }
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
+.brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
 }
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
+.form_container {
+    margin-top: 100px;
 }
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
+.login_btn {
+    width: 100%;
+    background: #c0392b !important;
+    color: white !important;
 }
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
 }
-
-.animate-left{
-  position:relative;
-  animation:animateleft 1s
+.login_container {
+    padding: 0 2rem;
 }
-@-webkit-keyframes animateleft{
-  from{
-    left:-300px;
-    opacity:0}
-  to{
-    left:0;opacity:1
-  }
-  }
-.animate-right{
-  position:relative;
-  animation:animateright 1s
+.input-group-text {
+    background: #c0392b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
 }
-
-@-webkit-keyframes animateright{
-  from{
-    right:-300px;
-    opacity:0
-  }
-  to{
-    right:0;
-    opacity:1
-    }
-  }
-
-    @-o-keyframes animateleft{
-      from{
-        left:-300px;
-        opacity:0}
-      to{
-        left:0;opacity:1
-      }
-      }
-    .animate-right{
-      position:relative;
-      animation:animateright 1s
-    }
-
-    @-o-keyframes animateright{
-        from{
-          right:-300px;
-          opacity:0
-        }
-           to{
-             right:0;
-             opacity:1
-            }
-        }
-
-        @-moz-keyframes animateleft{
-          from{
-            left:-300px;
-            opacity:0}
-          to{
-            left:0;opacity:1
-          }
-          }
-        .animate-right{
-          position:relative;
-          animation:animateright 1s
-        }
-
-        @-moz-keyframes animateright{
-            from{
-              right:-300px;
-              opacity:0
-            }
-               to{
-                 right:0;
-                 opacity:1
-                }
-            }
-
-
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #c0392b !important;
+}
