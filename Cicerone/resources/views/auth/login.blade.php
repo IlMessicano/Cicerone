@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css">
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
@@ -16,19 +17,31 @@
                     <form>
 
                         <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fas fa-email"></i></span>
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-email"></i></span>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <input type="text" name="" class="form-control input_user" value="" placeholder="E-Mail">
                         </div>
 
 
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <input type="password" name="" class="form-control input_pass" value="" placeholder="Password">
                         </div>
+
+
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customControlInline">

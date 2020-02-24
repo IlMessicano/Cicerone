@@ -25,19 +25,17 @@
         <!-- Styles -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/effect.css') }}" rel="stylesheet" type="text/css">
-
 
 
     </head>
 
-    <body style="height: auto; min-height:100%; position:relative">
+    <body style="height: auto; min-height:100%; position:relative; background-color: #f2e1e1">
         @include('inc.navbar')
         @include('inc.error')
         @yield('content')
     </body>
 
-    <footer class="shadow-sm" style="background-color:#ffbf00; position:absolute; width:100%; bottom:0">
+    <footer class="shadow-sm" style="background-color:#DAA520; position:absolute; width:100%; bottom:0">
         <div class="footer-copyright text-center py-3 text-dark font-weight-bold">© 2020 Copyright:
             <a href="" style="color:darkred "><u> cicerone.com</u></a>
         </div>

@@ -1,10 +1,8 @@
-
-
 .user_card {
     height: 460px;
     width: 400px;
-    margin-top: 76px;
-    background: #ffbf00;
+    margin-top: 70px;
+    background: #DAA520;
     position: relative;
     display: flex;
     justify-content: center;

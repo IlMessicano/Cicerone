@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:  #ffbf00;">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:  #DAA520;">
 <div class="container">
         <a class="navbar-brand" href="">
             <img src="" class="img-fluid" width="37" height="35">
