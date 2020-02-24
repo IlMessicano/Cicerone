@@ -1,6 +1,6 @@
-.user_card {
-    height: 460px;
-    width: 400px;
+.card {
+    height: 400px;
+    width: 500px;
     margin-top: 70px;
     background: #DAA520;
     position: relative;
