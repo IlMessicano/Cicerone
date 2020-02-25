@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Hash;
 
 class ProfileController extends Controller
 {
@@ -88,7 +89,10 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        return view('profile.edit')->with('user', $user);
+
     }
 
     /**
@@ -100,7 +104,47 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'cognome' => ['required', 'string', 'max:255'],
+            'sesso' => ['required', 'string', 'max:1'],
+            'dataNascita' => ['required', 'date','before:-18years'],
+            'nazionalita' => ['required', 'string', 'max:30'],
+            'telefono' => ['required', 'numeric'],
+
+
+        ]);
+
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->cognome = $request->input('cognome');
+        $user->sesso = $request->input('sesso');
+        $user->dataNascita = $request->input('dataNascita');
+        $user->telefono = $request->input('telefono');
+        $user->cittaResidenza = $request->input('cittaResidenza');
+        $user->nazioneResidenza = $request->input('nazioneResidenza');
+        $user->nazionalita = $request->input('nazionalita');
+        $user->biografia = $request->input('biografia');
+
+        if($request->filled('new_password')) {
+            $this->validate($request, [
+                'password' => 'required',
+                'new_password' => 'min:8|different:password',
+
+            ]);
+            if (Hash::check($request->password, $user->password)) {
+                $user->fill([
+                    'password' => Hash::make($request->new_password)
+                ])->save();
+                $request->session()->flash('success', 'Password cambiata');
+            } else {
+                $request->session()->flash('error', 'La vecchia password non corrisponde');
+            }
+        }
+
+        $user->save();
+        return view('profile.index')->with('user',$user);
     }
 
     /**
