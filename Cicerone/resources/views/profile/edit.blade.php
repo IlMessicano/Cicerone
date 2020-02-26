@@ -41,8 +41,8 @@
                 <div class="row">
 
                     <div class="col-md-6 mb-3">
-                        {{Form::label ('sesso', 'Sesso')}}
-                        {{Form::select('sesso', array('M' => 'Uomo', 'F' => 'Donna'), $user->sesso, ['class' => 'col-sm-6 custom-select custom-select-sm'])}}
+                        {{Form::label ('sesso', 'Sesso' , ['class' => 'w-100'])}}
+                        {{Form::select('sesso', array('M' => 'Uomo', 'F' => 'Donna'), $user->sesso, ['class' => 'col-sm-6 custom-select custom-select-sm w-100'])}}
                     </div>
 
                     <div class="col-md-6 mb-3">

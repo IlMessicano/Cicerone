@@ -30,10 +30,10 @@
 
                                 <label for="sesso" class="col-md-2 col-form-label text-md-left">{{ __('Sesso') }}</label>
                                 <div class="col-md-4">
-                                    <input class="form-control @error('sesso') is-invalid @enderror" list="sesso" name="sesso" value="{{ old('sesso') }}" required autocomplete="sesso">
+                                    <input class="form-control @error('sesso') is-invalid @enderror" list="sesso" name="sesso" placeholder="Sesso" value="{{ old('sesso') }}" required autocomplete="sesso">
                                     <datalist id="sesso">
-                                        <option value="M">
-                                        <option value="F">
+                                        <option value="M"> Uomo </option>
+                                        <option value="F"> Donna </option>
                                     </datalist>
                                 <!--<input id="sesso" placeholder="Sesso" type="text" class="form-control @error('sesso') is-invalid @enderror" name="sesso" value="{{ old('sesso') }}" required autocomplete="sesso" >-->
 
@@ -155,7 +155,7 @@
 
                                 <label for="biografia" class="col-md-2 col-form-label text-md-left">{{ __('Biografia') }}</label>
                                 <div class="col-md-4">
-                                    <input id="biografia" placeholder="Biografia" type="text" class="form-control @error('biografia') is-invalid @enderror" name="biografia" value="{{ old('biografia') }}"  autocomplete="biografia" >
+                                    <input id="biografia" placeholder="Biografia" type="text" class="form-control @error('biografia') is-invalid @enderror" name="biografia" value="{{ old('biografia') }}"  autocomplete="biografia" maxlength="255" >
 
                                     @error('biografia')
                                     <span class="invalid-feedback" role="alert">

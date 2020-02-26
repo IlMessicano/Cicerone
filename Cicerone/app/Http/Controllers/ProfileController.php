@@ -63,7 +63,7 @@ class ProfileController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if($user->imgProfilo != NULL)
+        if(!is_null($user->imgProfilo))
             Storage::delete('public/profileImg/' . $user->imgProfilo);
         $user->imgProfilo = $fileNameToStore;
         $user->save();
@@ -155,6 +155,11 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        Storage::delete('public/profileImg/' . $user->imgProfilo);
+
+        User::where('id',$id)->delete();
+        return redirect('/home')->with('success', "Account cancellato");
     }
 }
