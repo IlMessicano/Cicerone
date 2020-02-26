@@ -4,7 +4,7 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css">
     <div class="container">
         <div class="row justify-content-center m-4">
-            <div class="col-md-5">
+
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
@@ -75,7 +75,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 @endsection

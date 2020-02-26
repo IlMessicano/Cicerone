@@ -28,16 +28,44 @@
 
 
     </head>
+    
+    <body style="background-color: #f2e1e1">
 
-    <body style="height: auto; min-height:100%; position:relative; background-color: #f2e1e1">
-        @include('inc.navbar')
-        @include('inc.error')
-        @yield('content')
-    </body>
-
-    <footer class="shadow-sm" style="background-color:#DAA520; position:absolute; width:100%; bottom:0">
+    <div id="wrap">
+        <div id="main" class="clear-top">
+            @include('inc.navbar')
+            @include('inc.error')
+            @yield('content')
+        </div>
+    </div>
+    <footer class="footer shadow-sm" style="background-color:#DAA520;">
         <div class="footer-copyright text-center py-3 text-dark font-weight-bold">© 2020 Copyright:
             <a href="" style="color:darkred "><u> cicerone.com</u></a>
         </div>
     </footer>
+    </body>
+
+
 </html>
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    #wrap {
+        min-height: 100%;
+    }
+
+    #main {
+        overflow:auto;
+        padding-bottom:150px; /* this needs to be bigger than footer height*/
+    }
+
+    .footer {
+        position: relative;
+        margin-top: -100px; /* negative value of footer height */
+        height: 100px;
+        clear:both;
+        padding-top:20px;
+    }
+</style>
