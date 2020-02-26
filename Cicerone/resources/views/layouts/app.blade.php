@@ -28,7 +28,7 @@
 
 
     </head>
-    
+
     <body style="background-color: #f2e1e1">
 
     <div id="wrap">
@@ -40,7 +40,13 @@
     </div>
     <footer class="footer shadow-sm" style="background-color:#DAA520;">
         <div class="footer-copyright text-center py-3 text-dark font-weight-bold">© 2020 Copyright:
-            <a href="" style="color:darkred "><u> cicerone.com</u></a>
+            <a @if(Auth::user())
+                    href="{{route('home')}}"
+               @else
+                    href="{{route('welcome')}}"
+               @endif
+               style="color:darkred "><u> cicerone.com</u>
+            </a>
         </div>
     </footer>
     </body>

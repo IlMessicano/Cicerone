@@ -1,8 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:  #DAA520;">
 <div class="container">
-        <a class="navbar-brand" href="">
-            <img src="" class="img-fluid" width="37" height="35">
-                {{ config('app.name', 'Cicerone') }}
+        <a
+            class="navbar-brand"
+            @if(Auth::user())
+                href="{{route('home')}}"
+            @else
+                href="{{route('welcome')}}"
+            @endif >
+            <img src="" class="img-fluid" width="37" height="35"> {{ config('app.name', 'Cicerone') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
