@@ -25,7 +25,7 @@ class AddAttributesToUsers extends Migration
             $table->string('biografia')->nullable();;
             $table->float('saldo')->default(0.0);
             $table->integer('votiPos')->default(0);
-            $table->integer('VotiNeg')->default(0);
+            $table->integer('votiNeg')->default(0);
         });
     }
 

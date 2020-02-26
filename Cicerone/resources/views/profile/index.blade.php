@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <img src="/img/thumbsDown.png" width="30" height="30">
-                                Voti negativi: {{$user->VotiNeg}}
+                                Voti negativi: {{$user->votiNeg}}
                             </div>
                         </div>
                     </div>
