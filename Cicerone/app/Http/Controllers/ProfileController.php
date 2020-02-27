@@ -63,9 +63,9 @@ class ProfileController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if(!is_null($user->imgProfilo))
-            Storage::delete('public/profileImg/' . $user->imgProfilo);
-        $user->imgProfilo = $fileNameToStore;
+        if(!is_null($user->imgProfile))
+            Storage::delete('public/profileImg/' . $user->imgProfile);
+        $user->imgProfile = $fileNameToStore;
         $user->save();
         return view('profile.index')->with('success', 'Immagine caricata')->with('user',$user);
     }
@@ -118,14 +118,14 @@ class ProfileController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         $user->name = $request->input('name');
-        $user->cognome = $request->input('cognome');
-        $user->sesso = $request->input('sesso');
-        $user->dataNascita = $request->input('dataNascita');
-        $user->telefono = $request->input('telefono');
-        $user->cittaResidenza = $request->input('cittaResidenza');
-        $user->nazioneResidenza = $request->input('nazioneResidenza');
-        $user->nazionalita = $request->input('nazionalita');
-        $user->biografia = $request->input('biografia');
+        $user->surname = $request->input('cognome');
+        $user->sex = $request->input('sesso');
+        $user->birthDate = $request->input('dataNascita');
+        $user->phone = $request->input('telefono');
+        $user->residenceCity = $request->input('cittaResidenza');
+        $user->residenceNation = $request->input('nazioneResidenza');
+        $user->nationality = $request->input('nazionalita');
+        $user->biography = $request->input('biografia');
 
         if($request->filled('new_password')) {
             $this->validate($request, [
@@ -157,7 +157,7 @@ class ProfileController extends Controller
     {
         $id = auth()->user()->id;
         $user = User::find($id);
-        Storage::delete('public/profileImg/' . $user->imgProfilo);
+        Storage::delete('public/profileImg/' . $user->imgProfile);
 
         User::where('id',$id)->delete();
         return redirect('/home')->with('success', "Account cancellato");

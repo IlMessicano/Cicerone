@@ -14,18 +14,18 @@ class AddAttributesToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('cognome');
-            $table->date('dataNascita');
-            $table->char('sesso');
-            $table->string('nazionalita');
-            $table->string('cittaResidenza')->nullable();;
-            $table->string('nazioneResidenza')->nullable();;
-            $table->string('telefono');
-            $table->string('imgProfilo')->nullable();;
-            $table->string('biografia')->nullable();;
-            $table->float('saldo')->default(0.0);
-            $table->integer('votiPos')->default(0);
-            $table->integer('votiNeg')->default(0);
+            $table->string('surname');
+            $table->date('birthDate');
+            $table->char('sex');
+            $table->string('nationality');
+            $table->string('residenceCity')->nullable();;
+            $table->string('residenceNation')->nullable();;
+            $table->string('phone');
+            $table->string('imgProfile')->nullable();;
+            $table->string('biography')->nullable();;
+            $table->float('balance')->default(0.0);
+            $table->integer('upVote')->default(0);
+            $table->integer('downVote')->default(0);
         });
     }
 
@@ -37,18 +37,18 @@ class AddAttributesToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('cognome');
+            $table->dropColumn('surname');
             $table->dropColumn('dataNascita');
-            $table->dropColumn('sesso');
-            $table->dropColumn('nazionalita');
-            $table->dropColumn('cittaResidenza');
-            $table->dropColumn('nazioneResidenza');
-            $table->dropColumn('telefono');
-            $table->dropColumn('imgProfilo');
-            $table->dropColumn('biografia');
-            $table->dropColumn('saldo');
-            $table->dropColumn('votiPos');
-            $table->dropColumn('VotiNeg');
+            $table->dropColumn('birthDate');
+            $table->dropColumn('sex');
+            $table->dropColumn('nationality');
+            $table->dropColumn('residenceCity');
+            $table->dropColumn('residenceNation');
+            $table->dropColumn('imgProfile');
+            $table->dropColumn('biography');
+            $table->dropColumn('balance');
+            $table->dropColumn('upVote');
+            $table->dropColumn('downVote');
 
 
         });

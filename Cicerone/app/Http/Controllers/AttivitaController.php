@@ -62,12 +62,12 @@ class AttivitaController extends Controller
 
 
         $attivita = new Attivita;
-        $attivita->nomeAttivita = $request->input('nomeAttivita');
+        $attivita->activityName = $request->input('nomeAttivita');
         //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if(!is_null($attivita->imgAttivita))
+        if(!is_null($attivita->imgActivity))
             Storage::delete('public/profileImg/' . $attivita->imgAttivita);
-        $attivita->imgAttivita = $fileNameToStore;
-$attivita->descrizione = $request->input('descrizione');
+        $attivita->imgActivity = $fileNameToStore;
+$attivita->description = $request->input('descrizione');
 $attivita->cicerone = auth()->user()->id;
         $attivita->save();
         return view('home');

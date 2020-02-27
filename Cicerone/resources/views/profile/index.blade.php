@@ -14,7 +14,7 @@
 
                     </h4>
                     <div class="card p-2">
-                        <img src="/storage/profileImg/{{$user->imgProfilo}}"
+                        <img src="/storage/profileImg/{{$user->imgProfile}}"
                              class="rounded-circle my-5" id="profileImg">
                         {!! Form::open(['action'=>'ProfileController@store','method' => 'POST','enctype' =>
                         'multipart/form-data'])!!}
@@ -35,11 +35,11 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <img src="/img/thumbsUp.png" width="30" height="30">
-                                Voti positivi: {{$user->votiPos}}
+                                Voti positivi: {{$user->upVote}}
                             </div>
                             <div class="col-md-6 mb-3">
                                 <img src="/img/thumbsDown.png" width="30" height="30">
-                                Voti negativi: {{$user->votiNeg}}
+                                Voti negativi: {{$user->downVote}}
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="cognome">Cognome</label>
-                            <input type="text" class="form-control" id="cognome" placeholder="{{$user->cognome}}"
-                                   value="{{$user->cognome}}" disabled>
+                            <input type="text" class="form-control" id="cognome" placeholder="{{$user->surname}}"
+                                   value="{{$user->surname}}" disabled>
 
                         </div>
                     </div>
@@ -74,12 +74,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="sesso">Sesso</label>
-                            <input type="text" class="form-control" id="sesso" placeholder="{{$user->sesso}}" disabled>
+                            <input type="text" class="form-control" id="sesso" placeholder="{{$user->sex}}" disabled>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="dataNascita">Data di nascita</label>
-                            <input type="date" class="form-control" id="dataNascita" value="{{$user->dataNascita}}"
+                            <input type="date" class="form-control" id="dataNascita" value="{{$user->birthDate}}"
                                    disabled>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="nazionalita">Nazionalità</label>
                             <input type="text" class="form-control" id="nazionalita"
-                                   placeholder="{{$user->nazionalita}}"
+                                   placeholder="{{$user->nationality}}"
                                    disabled>
 
                         </div>
@@ -95,7 +95,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="cittaResidenza">Città di residenza</label>
                             <input type="text" class="form-control" id="cittaResidenza"
-                                   placeholder="{{$user->cittaResidenza}}" disabled>
+                                   placeholder="{{$user->residenceCity}}" disabled>
                         </div>
 
 
@@ -104,18 +104,18 @@
                         <div class="col-md-6 mb-3">
                             <label for="nazioneResidenza">Nazione di residenza</label>
                             <input type="text" class="form-control" id="nazioneResidenza"
-                                   placeholder="{{$user->nazioneResidenza}}" disabled>
+                                   placeholder="{{$user->residenceNation}}" disabled>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="telefono">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" placeholder="{{$user->telefono}}"
+                            <input type="text" class="form-control" id="telefono" placeholder="{{$user->phone}}"
                                    disabled>
 
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="biografia">Biografia</label>
-                        <textarea class="form-control" id="biografia" placeholder="{{$user->biografia}}"
+                        <textarea class="form-control" id="biografia" placeholder="{{$user->biography}}"
                                   disabled></textarea>
                     </div>
 
