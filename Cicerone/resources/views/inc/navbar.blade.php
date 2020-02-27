@@ -15,24 +15,23 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<!--
-
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">Porco dio</a>
+            @if(Auth::user())
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" style="color: darkred">Porca madonna</a>
+                    <a class="nav-link" href="#">Crea attività</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Le mie attività</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Globetrotter</a>
+                </li>
             </ul>
--->
-    @if(Auth::user())
-    <form class="form-inline ml-auto my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Cerca</button>
-    </form>
+
+
     @endif
 
 
@@ -57,7 +56,7 @@
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/profile">
-                    Modifica Profilo
+                    Visualizza Profilo
 
                 </a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

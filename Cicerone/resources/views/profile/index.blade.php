@@ -15,7 +15,7 @@
                     </h4>
                     <div class="card p-2">
                         <img src="/storage/profileImg/{{$user->imgProfilo}}"
-                             class="rounded-circle" id="profileImg">
+                             class="rounded-circle my-5" id="profileImg">
                         {!! Form::open(['action'=>'ProfileController@store','method' => 'POST','enctype' =>
                         'multipart/form-data'])!!}
                         {{ Form::file('img',['class' => 'input-group-text w-100']) }}
@@ -27,6 +27,11 @@
                     </div>
 
                     <div class="card p-2 my-2 text-center">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <small>Registrato da {{$user->created_at}}</small>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <img src="/img/thumbsUp.png" width="30" height="30">

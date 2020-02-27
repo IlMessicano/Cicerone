@@ -21,6 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('profile', 'ProfileController');
 
+Route::resource('/attivita', 'AttivitaController');
+
+Route::get('/profile', 'PagesController@profile')->name('profile');
+
 Route::get('/ChiSiamo', 'PagesController@whoAreWe')->name('whoAreWe');
 
 Route::get('/FAQ', 'PagesController@FAQ')->name('FAQ');
