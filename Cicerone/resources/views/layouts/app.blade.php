@@ -26,6 +26,8 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/basicStyle.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css">
+
 
 
     </head>

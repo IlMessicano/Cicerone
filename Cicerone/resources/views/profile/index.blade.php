@@ -10,17 +10,17 @@
 
                 <div class="col-md-5 order-md-1 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Immagine del profilo</span>
+                        <span class="text-center">Immagine del profilo</span>
 
                     </h4>
                     <div class="card p-2">
                         <img src="/storage/profileImg/{{$user->imgProfilo}}"
-                             class=" img-fluid rounded-circle m-3 img-thumbnail " height="50%">
+                             class="rounded-circle" id="profileImg">
                         {!! Form::open(['action'=>'ProfileController@store','method' => 'POST','enctype' =>
-                    'multipart/form-data'])!!}
+                        'multipart/form-data'])!!}
                         {{ Form::file('img',['class' => 'input-group-text w-100']) }}
                         <div class="text-center my-2">
-                            {{Form::submit('Upload',['class' => 'btn btn-primary w-100'])}}
+                            {{Form::submit('Carica Foto',['class' => 'btn btn-primary w-100'])}}
                         </div>
                         {!! Form::close()!!}
 
@@ -118,7 +118,7 @@
                     <hr class="mb-4">
                     <a class="btn btn-primary btn-lg btn-block" href="/profile/{{$user->id}}/edit">Aggiorna profilo</a>
                     <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
-                        Cancella profilo
+                        Elimina profilo
                     </button>
 
                 </div>
@@ -140,8 +140,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Ci dispiace vederti andare via, ma non possiamo fermarti. <br>
-                    Se vuoi cancellare il tuo account premi su Cancella.
+                    Ci dispiace vederti andare via, ma non possiamo fermarti! <br>
+                    Se vuoi cancellare il tuo account selezione Elimina.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
@@ -149,7 +149,7 @@
                 'class'
                 => 'pull-right'])!!}
                     {{Form::hidden('_method','DELETE')}}
-                    {{Form::submit('Cancella',['class' => 'btn btn-danger'])}}
+                    {{Form::submit('Elimina',['class' => 'btn btn-danger'])}}
                     {!!form::close()!!}
                 </div>
             </div>
