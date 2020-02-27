@@ -12,14 +12,14 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         {{Form::label ('nomeAttivita', 'Nome Attività')}}
-                        {{Form::text ('nomeAttivita', $attivita->nomeAttivita, ['class' => 'form-control', 'placeholder' => 'Nome Attività'])}}
+                        {{Form::text ('nomeAttivita', $attivita->nameActivity, ['class' => 'form-control', 'placeholder' => 'Nome Attività'])}}
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         {{Form::label ('descrizione', 'Descrizione')}}
-                        {{Form::text ('descrizione', $attivita->descrizione, ['class' => 'form-control', 'placeholder' => 'Descrizione'])}}
+                        {{Form::text ('descrizione', $attivita->description, ['class' => 'form-control', 'placeholder' => 'Descrizione'])}}
                     </div>
 
                 </div>

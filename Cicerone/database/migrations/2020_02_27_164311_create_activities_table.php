@@ -14,15 +14,15 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('activityName');
+            $table->bigIncrements('ActivityId');
+            $table->string('nameActivity');
             $table->string('imgActivity');
             $table->text('description');
-            $table->integer('cicerone');
+            $table->integer('user_id');
             $table->integer('upVote')->default(0);
             $table->integer('downVote')->default(0);
-            $table->float('coordLat')->default(0);
-            $table->float('coordLong')->default(0);
+            $table->float('latCoord')->default(0);
+            $table->float('longCoord')->default(0);
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Attivita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+
 class AttivitaController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class AttivitaController extends Controller
     public function index()
     {
         $attivita = new Attivita;
-        return view('attivita.index')->with('attivita',$attivita);
+        return view('attivita.index')->with('attivita', $attivita);
 
     }
 
@@ -28,13 +29,13 @@ class AttivitaController extends Controller
     public function create()
     {
         $attivita = new Attivita;
-        return view('attivita.index')->with('attivita',$attivita);
+        return view('attivita.index')->with('attivita', $attivita);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,13 +63,13 @@ class AttivitaController extends Controller
 
 
         $attivita = new Attivita;
-        $attivita->activityName = $request->input('nomeAttivita');
+        $attivita->nameActivity = $request->input('nomeAttivita');
         //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if(!is_null($attivita->imgActivity))
+        if (!is_null($attivita->imgActivity))
             Storage::delete('public/profileImg/' . $attivita->imgAttivita);
         $attivita->imgActivity = $fileNameToStore;
-$attivita->description = $request->input('descrizione');
-$attivita->cicerone = auth()->user()->id;
+        $attivita->description = $request->input('descrizione');
+        $attivita->user_id = auth()->user()->id;
         $attivita->save();
         return view('home');
     }
@@ -76,7 +77,7 @@ $attivita->cicerone = auth()->user()->id;
     /**
      * Display the specified resource.
      *
-     * @param  \App\Attivita  $attivita
+     * @param \App\Attivita $attivita
      * @return \Illuminate\Http\Response
      */
     public function show(Attivita $attivita)
@@ -87,7 +88,7 @@ $attivita->cicerone = auth()->user()->id;
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Attivita  $attivita
+     * @param \App\Attivita $attivita
      * @return \Illuminate\Http\Response
      */
     public function edit(Attivita $attivita)
@@ -98,8 +99,8 @@ $attivita->cicerone = auth()->user()->id;
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attivita  $attivita
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Attivita $attivita
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Attivita $attivita)
@@ -110,7 +111,7 @@ $attivita->cicerone = auth()->user()->id;
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Attivita  $attivita
+     * @param \App\Attivita $attivita
      * @return \Illuminate\Http\Response
      */
     public function destroy(Attivita $attivita)
