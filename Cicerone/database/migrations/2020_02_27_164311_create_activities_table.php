@@ -13,7 +13,7 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('activity', function (Blueprint $table) {
             $table->bigIncrements('ActivityId');
             $table->string('nameActivity');
             $table->string('imgActivity');

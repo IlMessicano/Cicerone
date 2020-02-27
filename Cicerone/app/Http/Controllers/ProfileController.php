@@ -119,11 +119,11 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->surname = $request->input('cognome');
-        $user->sex = $request->input('sesso');
+        $user->gender = $request->input('sesso');
         $user->birthDate = $request->input('dataNascita');
         $user->phone = $request->input('telefono');
         $user->residenceCity = $request->input('cittaResidenza');
-        $user->residenceNation = $request->input('nazioneResidenza');
+        $user->residenceCountry = $request->input('nazioneResidenza');
         $user->nationality = $request->input('nazionalita');
         $user->biography = $request->input('biografia');
 

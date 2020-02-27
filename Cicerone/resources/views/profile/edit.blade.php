@@ -42,7 +42,7 @@
 
                     <div class="col-md-6 mb-3">
                         {{Form::label ('sesso', 'Sesso' , ['class' => 'w-100'])}}
-                        {{Form::select('sesso', array('M' => 'Uomo', 'F' => 'Donna'), $user->sex, ['class' => 'col-sm-6 custom-select custom-select-sm w-100'])}}
+                        {{Form::select('sesso', array('M' => 'Uomo', 'F' => 'Donna'), $user->gender, ['class' => 'col-sm-6 custom-select custom-select-sm w-100'])}}
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -64,7 +64,7 @@
 
                     <div class="col-md-4 mb-3">
                         {{Form::label ('nazioneResidenza', 'Nazione di Residenza')}}
-                        {{Form::text ('nazioneResidenza', $user->residenceNation, ['class' => 'form-control', 'placeholder' => 'Nazione di Residenza'])}}
+                        {{Form::text ('nazioneResidenza', $user->residenceCountry, ['class' => 'form-control', 'placeholder' => 'Nazione di Residenza'])}}
                     </div>
                 </div>
                 <div class="row">

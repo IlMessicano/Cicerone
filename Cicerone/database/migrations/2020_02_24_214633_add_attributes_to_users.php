@@ -16,10 +16,10 @@ class AddAttributesToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname');
             $table->date('birthDate');
-            $table->char('sex');
+            $table->char('gender');
             $table->string('nationality');
             $table->string('residenceCity')->nullable();;
-            $table->string('residenceNation')->nullable();;
+            $table->string('residenceCountry')->nullable();;
             $table->string('phone');
             $table->string('imgProfile')->nullable();;
             $table->string('biography')->nullable();;

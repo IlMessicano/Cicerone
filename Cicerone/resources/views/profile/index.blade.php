@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="sesso">Sesso</label>
-                            <input type="text" class="form-control" id="sesso" placeholder="{{$user->sex}}" disabled>
+                            <input type="text" class="form-control" id="sesso" placeholder="{{$user->gender}}" disabled>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -104,7 +104,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="nazioneResidenza">Nazione di residenza</label>
                             <input type="text" class="form-control" id="nazioneResidenza"
-                                   placeholder="{{$user->residenceNation}}" disabled>
+                                   placeholder="{{$user->residenceCountry}}" disabled>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="telefono">Telefono</label>
