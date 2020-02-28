@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Attivita;
 
 class PagesController extends Controller
 {
@@ -21,4 +22,5 @@ class PagesController extends Controller
     {
         return view('FAQ');
     }
+
 }

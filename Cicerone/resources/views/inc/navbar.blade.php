@@ -18,10 +18,10 @@
             @if(Auth::user())
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Crea attività</a>
+                    <a class="nav-link" href="/attivita/create">Crea attività</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Le mie attività</a>
+                    <a class="nav-link" href="/mieattivita">Le mie attività</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Globetrotter</a>

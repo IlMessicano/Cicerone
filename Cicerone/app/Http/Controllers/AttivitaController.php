@@ -77,12 +77,13 @@ class AttivitaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Attivita $attivita
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Attivita $attivita)
+    public function show($ActivityId)
     {
-        //
+        $attivita = Attivita::find($ActivityId);
+        return view('attivita.show')->with('attivita',$attivita);
     }
 
     /**
@@ -117,5 +118,12 @@ class AttivitaController extends Controller
     public function destroy(Attivita $attivita)
     {
         //
+    }
+
+    public function myactivity()
+    {
+        $attivita = Attivita::all();
+        return view('attivita.myactivity')->with('attivita', $attivita);
+
     }
 }
