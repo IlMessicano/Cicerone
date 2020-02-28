@@ -29,12 +29,12 @@
                         @enderror
                     </div>
 
-                    <label for="sesso" class="col-md-2 col-form-label text-md-left">{{ __('Sesso') }}</label>
+                    <label for="gender" class="col-md-2 col-form-label text-md-left">{{ __('Sesso') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control @error('sesso') is-invalid @enderror" list="sesso"
-                               name="sesso" placeholder="Sesso" value="{{ old('sesso') }}" required
+                        <input class="form-control @error('gender') is-invalid @enderror" list="sesso"
+                               name="gender" placeholder="Sesso" value="{{ old('gender') }}" required
                                autocomplete="sesso">
-                        <datalist id="sesso">
+                        <datalist id="gender">
                             <option value="M"> Uomo</option>
                             <option value="F"> Donna</option>
                         </datalist>
@@ -48,11 +48,11 @@
                 </div>
 
                 <div class="form-group row col-md-12">
-                    <label for="name" class="col-md-2 col-form-label text-md-left">{{ __('Cognome') }}</label>
+                    <label for="surname" class="col-md-2 col-form-label text-md-left">{{ __('Cognome') }}</label>
                     <div class="col-md-4">
-                        <input id="cognome" placeholder="Cognome" type="text"
-                               class="form-control @error('cognome') is-invalid @enderror" name="cognome"
-                               value="{{ old('cognome') }}" required autocomplete="cognome">
+                        <input id="surname" placeholder="Cognome" type="text"
+                               class="form-control @error('cognome') is-invalid @enderror" name="surname"
+                               value="{{ old('surname') }}" required autocomplete="surname">
 
                         @error('cognome')
                         <span class="invalid-feedback" role="alert">
@@ -61,15 +61,15 @@
                         @enderror
                     </div>
 
-                    <label for="nazionalita"
-                           class="col-md-2 col-form-label text-md-left">{{ __('Nazionalitá') }}</label>
+                    <label for="nationality"
+                           class="col-md-2 col-form-label text-md-left">{{ __('Nationality') }}</label>
                     <div class="col-md-4">
-                        <input id="nazionalita" placeholder="Nazionalitá" type="text"
-                               class="form-control @error('nazionalita') is-invalid @enderror"
-                               name="nazionalita" value="{{ old('nazionalita') }}" required
-                               autocomplete="nazionalita">
+                        <input id="nationality" placeholder="Nazionalitá" type="text"
+                               class="form-control @error('nationality') is-invalid @enderror"
+                               name="nationality" value="{{ old('nationality') }}" required
+                               autocomplete="nationality">
 
-                        @error('nazionalita')
+                        @error('nationality')
                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -91,15 +91,15 @@
                         @enderror
                     </div>
 
-                    <label for="cittaresidenza"
+                    <label for="residenceCity"
                            class="col-md-2 col-form-label text-md-left">{{ __('Cittá di residenza') }}</label>
                     <div class="col-md-4">
-                        <input id="cittaresidenza" placeholder="Cittá di residenza" type="text"
-                               class="form-control @error('cittaresidenza') is-invalid @enderror"
-                               name="cittaresidenza" value="{{ old('cittaresidenza') }}"
-                               autocomplete="cittaresidenza">
+                        <input id="residenceCity" placeholder="Cittá di residenza" type="text"
+                               class="form-control @error('residenceCity') is-invalid @enderror"
+                               name="residenceCity" value="{{ old('residenceCity') }}"
+                               autocomplete="residenceCity">
 
-                        @error('cittaresidenza')
+                        @error('residenceCity')
                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -111,27 +111,27 @@
                     <label for="date"
                            class="col-md-2 col-form-label text-md-left">{{ __('Data di nascita') }}</label>
                     <div class="col-md-4">
-                        <input id="dataNascita" type="date"
-                               class="form-control @error('dataNascita') is-invalid @enderror"
-                               name="dataNascita" value="{{ old('dataNascita') }}" required autocomplete="date"
-                               ng-model="dataNascita">
+                        <input id="birthDate" type="date"
+                               class="form-control @error('birthDate') is-invalid @enderror"
+                               name="birthDate" value="{{ old('birthDate') }}" required autocomplete="date"
+                               ng-model="birthDate">
 
-                        @error('dataNascita')
+                        @error('birthDate')
                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                         @enderror
                     </div>
 
-                    <label for="nazionalitaresidenza"
+                    <label for="residenceCountry"
                            class="col-md-2 col-form-label text-md-left">{{ __('Nazionalitá di residenza') }}</label>
                     <div class="col-md-4">
-                        <input id="nazionalitaresidenza" placeholder="Nazionalitá di residenza" type="text"
-                               class="form-control @error('nazionalitaresidenza') is-invalid @enderror"
-                               name="nazionalitaresidenza" value="{{ old('nazionalitaresidenza') }}"
-                               autocomplete="nazionalitaresidenza">
+                        <input id="residenceCountry" placeholder="Nazionalitá di residenza" type="text"
+                               class="form-control @error('residenceCountry') is-invalid @enderror"
+                               name="residenceCountry" value="{{ old('residenceCountry') }}"
+                               autocomplete="residenceCountry">
 
-                        @error('nazionalitaresidenza')
+                        @error('residenceCountry')
                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -154,14 +154,14 @@
                         @enderror
                     </div>
 
-                    <label for="telefono"
+                    <label for="phone"
                            class="col-md-2 col-form-label text-md-left">{{ __('Telefono') }}</label>
                     <div class="col-md-4">
-                        <input id="telefono" placeholder="Telefono" type="text"
-                               class="form-control @error('telefono') is-invalid @enderror" name="telefono"
-                               value="{{ old('telefono') }}" required autocomplete="telefono">
+                        <input id="phone" placeholder="Telefono" type="text"
+                               class="form-control @error('phone') is-invalid @enderror" name="phone"
+                               value="{{ old('phone') }}" required autocomplete="phone">
 
-                        @error('telefono')
+                        @error('phone')
                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -184,12 +184,12 @@
                         @enderror
                     </div>
 
-                    <label for="biografia"
+                    <label for="biography"
                            class="col-md-2 col-form-label text-md-left">{{ __('Biografia') }}</label>
                     <div class="col-md-4">
-                        <input id="biografia" placeholder="Biografia" type="text"
-                               class="form-control @error('biografia') is-invalid @enderror" name="biografia"
-                               value="{{ old('biografia') }}" autocomplete="biografia" maxlength="255">
+                        <input id="biography" placeholder="Biografia" type="text"
+                               class="form-control @error('biography') is-invalid @enderror" name="biography"
+                               value="{{ old('biography') }}" autocomplete="biography" maxlength="255">
 
                         @error('biografia')
                         <span class="invalid-feedback" role="alert">

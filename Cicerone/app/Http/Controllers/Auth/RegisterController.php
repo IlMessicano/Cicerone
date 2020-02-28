@@ -51,12 +51,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'cognome' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'sesso' => ['required', 'string', 'max:1'],
-            'dataNascita' => ['required', 'date','before:-18years'],
-            'nazionalita' => ['required', 'string', 'max:30'],
-            'telefono' => ['required', 'numeric'],
+            'gender' => ['required', 'string', 'max:1'],
+            'birthDate' => ['required', 'date','before:-18years'],
+            'nationality' => ['required', 'string', 'max:30'],
+            'phone' => ['required', 'numeric'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,12 +71,12 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'cognome' => $data['cognome'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
-            'dataNascita' => $data['dataNascita'],
-            'sesso' => $data['sesso'],
-            'nazionalita' => $data['nazionalita'],
-            'telefono' => $data['telefono'],
+            'birthDate' => $data['birthDate'],
+            'gender' => $data['gender'],
+            'nationality' => $data['nationality'],
+            'phone' => $data['phone'],
 
             'password' => Hash::make($data['password']),
         ]);
