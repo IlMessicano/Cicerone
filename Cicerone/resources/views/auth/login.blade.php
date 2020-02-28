@@ -13,7 +13,7 @@
                             @csrf
 
                             <div class="form-group row col-md-15">
-                                <label for="email"
+                                <label for="email" id="loginEmailLabel"
                                        class="col-md-3 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                                 <div class="col-md-9">
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group row col-md-15">
-                                <label for="password"
+                                <label for="password" id="psswLoginLabel"
                                        class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-9">
@@ -52,7 +52,7 @@
                                         <input class="form-check-input" type="checkbox" name="remember"
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                        <label class="form-check-label" for="remember">
+                                        <label class="form-check-label" for="remember" id="rememberLabel">
                                             {{ __('Remember Me') }}
                                         </label>
                                     </div>
@@ -67,9 +67,16 @@
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('Password dimenticata?') }}
                                         </a>
                                     @endif
+
+                                    @if (Route::has('register'))
+                                        <a id="noAccountText" class="btn btn-link" href="{{route('register')}}">
+                                            {{__('Non hai un account?')}}
+                                        </a>
+                                    @endif
+
                                 </div>
                             </div>
                         </form>

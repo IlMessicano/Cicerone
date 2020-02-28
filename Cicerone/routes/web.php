@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('register', 'PagesController@register')->name('register');
+
 Route::resource('profile', 'ProfileController');
 
 Route::resource('/attivita', 'AttivitaController');

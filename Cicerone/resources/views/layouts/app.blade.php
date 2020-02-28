@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="height: 100%">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,9 +31,7 @@
 
 
     </head>
-
-    <body style="background-color: #f2e1e1">
-
+    <body>
     <div id="wrap">
 
         <div id="main" class="clear-top">
@@ -43,24 +41,24 @@
             @yield('content')
 
         </div>
-
     </div>
-
-    <footer class="footer shadow-sm" style="background-color:#DAA520;">
+    <footer class="footer shadow-sm">
 
         <div id="divTextFooter" class="footer-copyright text-center py-3 text-dark font-weight-bold">
 
-            <a href="{{route('whoAreWe')}}" style="color: black">Chi siamo</a> |
-            <a href="{{route('FAQ')}}" style="color: black">FAQ</a> |
-            © 2020 Copyright:
-            <a
+            <a class="btn btn-link" href="{{route('whoAreWe')}}">Chi siamo</a>
+            <a style="color: #506776">|</a>
+            <a class="btn btn-link" href="{{route('FAQ')}}">FAQ</a>
+            <a style="color: #506776">|</a>
+            <a style="color: #506776">© 2020 Copyright:</a>
+            <a style="color: #506776" class="btn btn-link"
                 @if(Auth::user())
                     href="{{route('home')}}"
                @else
                     href="{{route('welcome')}}"
                @endif
-
-                style="color:darkred "><u> cicerone.com</u>
+            >
+                cicerone.com
 
             </a>
 

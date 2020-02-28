@@ -23,4 +23,9 @@ class PagesController extends Controller
         return view('FAQ');
     }
 
+    public function register()
+    {
+        return view('auth/register');
+    }
+
 }
