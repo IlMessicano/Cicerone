@@ -51,37 +51,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         {{Form::label ('nazionalita', 'Nazionalità')}}
                         {{Form::text ('nazionalita', $user->nationality, ['class' => 'form-control', 'placeholder' => 'Nazionalità'])}}
 
                     </div>
-
-                    <div class="col-md-4 mb-3">
-                        {{Form::label ('cittaResidenza', 'Città di Residenza')}}
-                        {{Form::text ('cittaResidenza', $user->residenceCity, ['class' => 'form-control', 'placeholder' => 'Città di Residenza'])}}
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        {{Form::label ('nazioneResidenza', 'Nazione di Residenza')}}
-                        {{Form::text ('nazioneResidenza', $user->residenceCountry, ['class' => 'form-control', 'placeholder' => 'Nazione di Residenza'])}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         {{Form::label ('telefono', 'Telefono')}}
                         {{Form::text ('telefono', $user->phone, ['class' => 'form-control', 'placeholder' => 'Telefono'])}}
 
                     </div>
-
-
                 </div>
+
                 <div class="mb-3">
                     {{Form::label ('biografia', 'Biografia')}}
                     {{Form::textarea ('biografia', $user->biography, ['class' => 'form-control', 'placeholder' => 'Biografia','maxlength' => 255])}}
 
                 </div>
-
 
                 <hr class="mb-4">
                 <div class="text-right">

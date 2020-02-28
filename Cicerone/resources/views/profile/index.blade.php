@@ -93,20 +93,6 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="cittaResidenza">Città di residenza</label>
-                            <input type="text" class="form-control" id="cittaResidenza"
-                                   placeholder="{{$user->residenceCity}}" disabled>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="nazioneResidenza">Nazione di residenza</label>
-                            <input type="text" class="form-control" id="nazioneResidenza"
-                                   placeholder="{{$user->residenceCountry}}" disabled>
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <label for="telefono">Telefono</label>
                             <input type="text" class="form-control" id="telefono" placeholder="{{$user->phone}}"
                                    disabled>

@@ -18,8 +18,6 @@ class AddAttributesToUsers extends Migration
             $table->date('birthDate');
             $table->char('gender');
             $table->string('nationality');
-            $table->string('residenceCity')->nullable();;
-            $table->string('residenceCountry')->nullable();;
             $table->string('phone');
             $table->string('imgProfile')->nullable();;
             $table->string('biography')->nullable();;
@@ -42,8 +40,6 @@ class AddAttributesToUsers extends Migration
             $table->dropColumn('birthDate');
             $table->dropColumn('sex');
             $table->dropColumn('nationality');
-            $table->dropColumn('residenceCity');
-            $table->dropColumn('residenceNation');
             $table->dropColumn('imgProfile');
             $table->dropColumn('biography');
             $table->dropColumn('balance');
