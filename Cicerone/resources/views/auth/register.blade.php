@@ -386,6 +386,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row col-md-12">
+                            
                             <div class="col-md-6 mb-3">
                                 <label for="name">{{ __('Nome') }}</label>
 
@@ -726,7 +727,7 @@
                                         </span>
                                 @enderror
                             </div>
-                            
+
                         </div>
                         <div class="form-group row col-md-12">
                             <div class="col-md-12 mb-3">
