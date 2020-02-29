@@ -3,14 +3,14 @@
 @section('content')
 
 
-<div class="jumbotron w-100 bg-black" id="welcome">
+<div class="jumbotron-fluid" id="welcome">
     <div class="container">
         <section class="search-banner text-white py-1" id="search-banner">
             <div class="container">
                 <div class="row text-center pb-4">
                     <div class="col-md-12">
                         <h2 class="display-3">Benvenuto in Cicerone</h2><br><br>
-                        <h2>Trova le attività che renderanno il tuo viaggio unico!</h2>
+                        <h2>Trova le attività che renderanno unico il tuo viaggio!</h2>
                     </div>
                 </div>
                 <div class="row">
