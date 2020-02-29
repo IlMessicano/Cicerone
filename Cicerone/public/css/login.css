@@ -16,7 +16,7 @@
 }
 
 .card-header{
-    background: #FBB917;
+    background: #82CAFA;
     text-align: center;
     color: white;
 }
@@ -42,7 +42,7 @@
 }
 .login_btn {
     width: 100%;
-    background: #FBB917 !important;
+    background: #82CAFA !important;
     color: white !important;
     position: center;
 }

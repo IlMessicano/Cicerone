@@ -40,6 +40,7 @@
             @include('inc.navbar')
             @include('inc.error')
             @yield('content')
+            @yield('content2')
 
         </div>
     </div>
