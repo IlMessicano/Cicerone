@@ -12,15 +12,14 @@ html, body {
 
 #wrap {
     min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px;
 }
 
 #main {
     overflow:auto;
     padding-bottom:150px; /* this needs to be bigger than footer height*/
-}
-
-.flex{
-    max-width: 100%;
 }
 
 @keyframes text {
@@ -44,12 +43,10 @@ html, body {
 
 .footer {
     position: relative;
-    margin-top: -100px; /* negative value of footer height */
-    height: 100px;
+    margin: 0 auto -50px;
+    height: 70px;
     clear:both;
-    padding-top: 0px;
     background-color: #FDD017
-
 }
 
 #divTextFooter{
