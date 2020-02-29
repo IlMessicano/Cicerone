@@ -22,6 +22,16 @@ html, body {
     padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
+.responsive{
+    width: 100%;
+    height: auto;
+}
+
+#welcome{
+    background-image: url(/img/background-1920x1080.jpg);
+    background-size: 100% auto;"
+}
+
 @keyframes text {
     0% {
         color: black;

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="jumbotron w-100 bg-black" style="background-image: url(/img/background-2048x700.jpg); position:relative; width: 100%;">
+<div class="jumbotron w-100 bg-black" id="welcome">
     <div class="container">
         <section class="search-banner text-white py-1" id="search-banner">
             <div class="container">
@@ -101,5 +101,5 @@
             </div>
         </section>
     </div>
-    
+
 @endsection
