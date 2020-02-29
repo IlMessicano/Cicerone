@@ -19,13 +19,21 @@ html, body {
     padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
-#mainDiv {
-    width: 100%; height: 100%; top: 0; left: 0;
-    background: url(https://besthqwallpapers.com/Uploads/16-4-2018/48522/thumb2-travel-concepts-wooden-plane-seashells-summer-travel-blue-boards.jpg) no-repeat center top; position: fixed; z-index: -1;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+@keyframes text {
+    0% {
+        color: black;
+        margin-bottom: -40px;
+    }
+
+    30% {
+        letter-spacing: 25px;
+        margin-bottom: -40px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: -40px;
+    }
 }
 
  /* FOOTER */
