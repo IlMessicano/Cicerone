@@ -8,9 +8,9 @@
         <section class="search-banner text-white py-1" id="search-banner">
             <div class="container">
                 <div id="welcome" class="row text-center pb-4">
-                    <div class="container">
-                        <h2 class="display-2 ">Benvenuto in Cicerone</h2>
-                        <h3 class="display-4 ">Effettua una ricerca</h3>
+                    <div class="col-md-12">
+                        <h2 class="display-4">Benvenuto in Cicerone!</h2>
+                        <h3>Effettua una ricerca</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -64,5 +64,4 @@
         </section>
 
     </div>
-</div>
 @endsection
