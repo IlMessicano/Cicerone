@@ -29,7 +29,9 @@ html, body {
 
 #welcome{
     background-image: url(/img/background-1920x1080.jpg);
-    background-size: 100% auto;"
+    background-size: 100% auto;
+    background-repeat: inherit;
+    max-height: 1000px;
 }
 
 @keyframes text {

@@ -15,6 +15,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+        <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
 
 
 
@@ -28,6 +29,8 @@
         <link href="{{ asset('css/basicStyle.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/css/scroll-hint.css">
+
 
 
 
