@@ -8,7 +8,7 @@
         <section class="search-banner text-white py-1" id="search-banner">
             <div class="container">
                 <div class="row text-center pb-4">
-                    <div class="col-md-12">
+                    <div class="col-xl-12" id="welcomeText">
                         <h2 class="display-3" style="padding-top: 50px;">Benvenuto in Cicerone</h2><br><br>
                         <h2 style="">Trova le attività che renderanno unico il tuo viaggio!</h2>
                     </div>
@@ -117,7 +117,7 @@
 
 <div>
 
-    <div>
+    <div class="container-sm">
         <section">
             <h1 class="display-4" style="text-align: center; padding-top: 50px; padding-bottom: 50px">
                 Scegli tra le diverse tipologie di attività, create da Ciceroni provenienti da tutto il mondo
@@ -125,6 +125,31 @@
         </section>
     </div>
 
+<div class="container-md pre-scrollable">
+
+        <div class="card mb-3">
+            <a href="">
+            <img class="card-img-top" src="/img/Natura-894x270.jpg" alt="Card image cap" v-text="coa">
+            </a>
+        </div>
+
+        <div class="card mb-3">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Divertimento</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+    <div class="card mb-3">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Cultura</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
 
         <div class="card mb-3">
             <img class="card-img-top" src="..." alt="Card image cap">
@@ -134,22 +159,9 @@
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
-        <div class="card mb-3">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Divertimento</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    <div class="card mb-3">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Divertimento</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
+
+</div>
+
 
     <!--
     <div class="card bg-dark text-white">

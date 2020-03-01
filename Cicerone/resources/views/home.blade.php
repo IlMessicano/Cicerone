@@ -2,8 +2,7 @@
 
 @section('content')
     <div
-        style="background-image:url('/img/background.jpg'); background-repeat: no-repeat; background-size: cover;"
-        class="jumbotron w-100 bg-black">
+        class="jumbotron w-100 bg-black" id="welcome">
         <div class="container">
 
 

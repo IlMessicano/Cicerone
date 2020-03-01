@@ -1,0 +1,262 @@
+/* ------------------------------------- */
+/* ----------- iPhones ----------- */
+/* ------------------------------------- */
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 667px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 414px)
+    and (max-device-width: 736px)
+    and (-webkit-min-device-pixel-ratio: 3) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 3) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ------------------------------------- */
+/* ----------- iPads ----------- */
+/* ------------------------------------- */
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- iPad Pro 10.5" ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 834px)
+    and (max-device-width: 1112px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+    and (min-device-width: 1024px)
+    and (max-device-width: 1366px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ------------------------------------- */
+/* ----------- Galaxy Phones ----------- */
+/* ------------------------------------- */
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+    and (device-width: 320px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 3) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 4) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ------------------------------------- */
+/* ----------- Galaxy Tablets ----------- */
+/* ------------------------------------- */
+
+/* ----------- Galaxy Tab 2 ----------- */
+
+/* Portrait and Landscape */
+@media
+(min-device-width: 800px)
+    and (max-device-width: 1280px) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- Galaxy Tab S ----------- */
+
+/* Portrait and Landscape */
+@media
+(min-device-width: 800px)
+    and (max-device-width: 1280px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ------------------------------------- */
+/* ----------- Google Pixel ----------- */
+/* ------------------------------------- */
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait and Landscape */
+@media screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 3) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ----------- Google Pixel XL ----------- */
+
+/* Portrait and Landscape */
+@media screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 4) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
+/* ------------------------------------- */
+/* ----------- HTC Phones ----------- */
+/* ------------------------------------- */
+
+/* ----------- HTC One ----------- */
+
+@media screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-device-pixel-ratio: 3) {
+
+    #welcome{
+        background-image: none;
+    }
+    #welcomeText{
+        color: dimgrey;
+    }
+}
+
