@@ -24,6 +24,14 @@
                         </div>
                         {!! Form::close()!!}
 
+
+                        {!!Form::open(['action' =>['ProfileController@destroyImg', $user->id],'method' => 'POST',
+                  'class'
+                  => 'pull-right'])!!}
+                        {{Form::hidden('_method','DELETE')}}
+                        {{Form::submit('Elimina foto',['class' => 'btn btn-danger w-100'])}}
+                        {!!form::close()!!}
+
                     </div>
 
                     <div class="card p-2 my-2 text-center">
@@ -107,7 +115,7 @@
 
 
                     <hr class="mb-4">
-                    <a class="btn btn-primary btn-lg btn-block" href="/profile/{{$user->id}}/edit">Aggiorna profilo</a>
+                    <a class="btn btn-primary btn-lg btn-block" href="/profile/{{$user->id}}/edit">Modifica profilo</a>
                     <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
                         Elimina profilo
                     </button>

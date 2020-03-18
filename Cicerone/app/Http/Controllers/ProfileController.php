@@ -67,7 +67,9 @@ class ProfileController extends Controller
             Storage::delete('public/profileImg/' . $user->imgProfile);
         $user->imgProfile = $fileNameToStore;
         $user->save();
-        return view('profile.index')->with('success', 'Immagine caricata')->with('user',$user);
+        $request->session()->flash('success', 'Upload riuscito');
+
+        return view('profile.index')->with('user',$user);
     }
 
     /**
@@ -122,8 +124,6 @@ class ProfileController extends Controller
         $user->gender = $request->input('sesso');
         $user->birthDate = $request->input('dataNascita');
         $user->phone = $request->input('telefono');
-        $user->residenceCity = $request->input('cittaResidenza');
-        $user->residenceCountry = $request->input('nazioneResidenza');
         $user->nationality = $request->input('nazionalita');
         $user->biography = $request->input('biografia');
 
@@ -131,13 +131,19 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'password' => 'required',
                 'new_password' => 'min:8|different:password',
+                'confirm_new_password' => 'min:8|required',
 
             ]);
             if (Hash::check($request->password, $user->password)) {
-                $user->fill([
-                    'password' => Hash::make($request->new_password)
-                ])->save();
-                $request->session()->flash('success', 'Password cambiata');
+                if($request->new_password == $request->confirm_new_password) {
+                    $user->fill([
+                        'password' => Hash::make($request->new_password)
+                    ])->save();
+                    $request->session()->flash('success', 'Password cambiata');
+                }
+                else{
+                    $request->session()->flash('error', 'Le password non corrispondono');
+                }
             } else {
                 $request->session()->flash('error', 'La vecchia password non corrisponde');
             }
@@ -145,6 +151,23 @@ class ProfileController extends Controller
 
         $user->save();
         return view('profile.index')->with('user',$user);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function destroyImg($id)
+    {
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        Storage::delete('public/profileImg/' . $user->imgProfile);
+
+
+        return redirect('/profile')->with('success', "Immagine cancellata");
     }
 
     /**
@@ -162,4 +185,6 @@ class ProfileController extends Controller
         User::where('id',$id)->delete();
         return redirect('/home')->with('success', "Account cancellato");
     }
+
+
 }

@@ -33,4 +33,6 @@ Route::get('/ChiSiamo', 'PagesController@whoAreWe')->name('whoAreWe');
 
 Route::get('/FAQ', 'PagesController@FAQ')->name('FAQ');
 
+Route::delete('/profile/{profile}/destroyimg', 'ProfileController@destroyImg');
+
 
