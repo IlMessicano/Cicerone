@@ -54,11 +54,11 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'gender' => ['required', 'string', 'max:1'],
-            'birthDate' => ['required', 'date','before:-18years'],
+            'birthDate' => ['required', 'date','before:-18years','before:now','after:-125 years'],
             'nationality' => ['required', 'string', 'max:30'],
-            'phone' => ['required'],
+            'phone' => ['required','unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-
+            'prefix' => ['required'],
         ]);
     }
 
@@ -77,8 +77,7 @@ class RegisterController extends Controller
             'birthDate' => $data['birthDate'],
             'gender' => $data['gender'],
             'nationality' => $data['nationality'],
-            'phone' => $data['prefix'+'phone'],
-
+            'phone' => $data['prefix'].''.$data['phone'],
             'password' => Hash::make($data['password']),
         ]);
     }
