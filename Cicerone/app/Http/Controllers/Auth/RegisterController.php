@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -59,6 +60,8 @@ class RegisterController extends Controller
             'phone' => ['required','unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'prefix' => ['required'],
+            'imgProfile' => ['mimes:jpeg,png,jpg,gif,svg|max:6000'],
+            'biography' => ['nullable','string','max:256'],
         ]);
     }
 
@@ -70,15 +73,50 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'birthDate' => $data['birthDate'],
-            'gender' => $data['gender'],
-            'nationality' => $data['nationality'],
-            'phone' => $data['prefix'].''.$data['phone'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        $request = request();
+        if ($request->hasFile('imgProfile')) {
+            $profileImage = $request->file('imgProfile');
+            $filenameWithExt = $request->file('imgProfile')->getClientOriginalName();
+            //Prendo il nome del file senza estensione
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //Prendo solo l'estensione
+            $extension = $request->file('imgProfile')->getClientOriginalExtension();
+
+            //Creo il nome del file con il timestamp
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+            $upload_path = 'public/profileImg/';
+            $path = $request->file('imgProfile')->storeAs('public/profileImg', $fileNameToStore);
+            $success = $profileImage->move($upload_path, $fileNameToStore);
+
+            return User::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'birthDate' => $data['birthDate'],
+                'gender' => $data['gender'],
+                'nationality' => $data['nationality'],
+                'phone' => $data['prefix'] . '' . $data['phone'],
+                'password' => Hash::make($data['password']),
+                'imgProfile' => $fileNameToStore,
+                'biography' => $data['biography'],
+            ]);
+        }
+        else{
+            return User::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'birthDate' => $data['birthDate'],
+                'gender' => $data['gender'],
+                'nationality' => $data['nationality'],
+                'phone' => $data['prefix'] . '' . $data['phone'],
+                'password' => Hash::make($data['password']),
+                'biography' => $data['biography'],
+            ]);
+
+        }
     }
 }

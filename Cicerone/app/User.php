@@ -17,7 +17,7 @@ implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password', 'gender' , 'birthDate', 'nationality', 'phone'
+        'name', 'surname', 'email', 'password', 'gender' , 'birthDate', 'nationality', 'phone' , 'imgProfile', 'biography',
     ];
 
     /**
