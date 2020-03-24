@@ -40,7 +40,7 @@ implements MustVerifyEmail
 
 
     public function activity(){
-        return $this->hasMany('App\Attivita');
+        return $this->hasMany('App\Attivita','user_id','id');
     }
 
 }

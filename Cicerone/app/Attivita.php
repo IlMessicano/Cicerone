@@ -11,7 +11,7 @@ class Attivita extends Model
     protected $primaryKey = 'ActivityId';
 
     public function user(){
-        return $this->belongsToMany('App\User');
+        return $this->hasOne('App\User','id','user_id');
     }
 
 }

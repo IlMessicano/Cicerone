@@ -13,14 +13,13 @@ class CreateSpokenLanguageTable extends Migration
      */
     public function up()
     {
-        Schema::create('spoken_language', function (Blueprint $table) {
-            $table->char('Language',2);
-            $table->unsignedBigInteger('User');
-        });
 
-        Schema::table('spoken_language', function($table) {
+        Schema::create('spoken_language', function (Blueprint $table) {
+            $table->string('Language');
+            $table->unsignedBigInteger('User');
             $table->foreign('Language')->references('languageAbbrevation')->on('language');
             $table->foreign('User')->references('id')->on('users');
+
         });
     }
 

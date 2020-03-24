@@ -36,9 +36,8 @@ class AddAttributesToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('surname');
-            $table->dropColumn('dataNascita');
             $table->dropColumn('birthDate');
-            $table->dropColumn('sex');
+            $table->dropColumn('gender');
             $table->dropColumn('nationality');
             $table->dropColumn('imgProfile');
             $table->dropColumn('biography');
