@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Language;
+
 use App\SpokenLanguage;
 use Hash;
 
@@ -36,7 +37,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -65,30 +66,30 @@ class ProfileController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if(!is_null($user->imgProfile))
+        if (!is_null($user->imgProfile))
             Storage::delete('public/profileImg/' . $user->imgProfile);
         $user->imgProfile = $fileNameToStore;
         $user->save();
         $request->session()->flash('success', 'Upload riuscito');
 
-        return view('profile.index')->with('user',$user);
+        return view('profile.index')->with('user', $user);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -102,8 +103,8 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -112,9 +113,11 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'cognome' => ['required', 'string', 'max:255'],
             'sesso' => ['required', 'string', 'max:1'],
-            'dataNascita' => ['required', 'date','before:-18years'],
+            'dataNascita' => ['required', 'date', 'before:-18years'],
             'nazionalita' => ['required', 'string', 'max:30'],
             'telefono' => ['required', 'numeric'],
+            'languages' => ['required', 'array', 'min:1'],
+            'languages.*' => ['required', 'min:1'],
 
 
         ]);
@@ -129,7 +132,45 @@ class ProfileController extends Controller
         $user->nationality = $request->input('nazionalita');
         $user->biography = $request->input('biografia');
 
-        if($request->filled('new_password')) {
+        $old_languages = SpokenLanguage::where('User', $user->id)->pluck('Language');
+        //echo $old_languages;
+        $new_languages = $request->input('languages');
+        //$new_languages = implode(',', $new_languages);
+
+             foreach($new_languages as $new_lang){
+                 $equal = false;
+                   foreach($old_languages as $old_lang){
+                       $equal = false;
+                       if($new_lang == $old_lang){
+                           $equal = true;
+
+                       }
+                       if($equal == false){
+                           SpokenLanguage::create([
+                               'User' => $user->id,
+                               'Language' => $new_lang,
+                           ]);
+                       }
+
+                   }
+               }
+
+
+
+
+        //Serve per quando svuoto la tabella in programmazione, per inserire la prima lingua (CASO CHE NON SUCCEDERà mai a sito concluso dato che è richiesta almeno una lingua in fase di registrazione)
+        /*
+        foreach($new_languages as $new_lang) {
+            SpokenLanguage::create([
+                'User' => $user->id,
+                'Language' => $new_lang,
+            ]);
+        }
+*/
+
+
+
+        if ($request->filled('new_password')) {
             $this->validate($request, [
                 'password' => 'required',
                 'new_password' => 'min:8|different:password',
@@ -137,13 +178,12 @@ class ProfileController extends Controller
 
             ]);
             if (Hash::check($request->password, $user->password)) {
-                if($request->new_password == $request->confirm_new_password) {
+                if ($request->new_password == $request->confirm_new_password) {
                     $user->fill([
                         'password' => Hash::make($request->new_password)
                     ])->save();
                     $request->session()->flash('success', 'Password cambiata');
-                }
-                else{
+                } else {
                     $request->session()->flash('error', 'Le password non corrispondono');
                 }
             } else {
@@ -152,13 +192,13 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return view('profile.index')->with('user',$user);
+        return view('profile.index')->with('user', $user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -175,7 +215,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -184,7 +224,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         Storage::delete('public/profileImg/' . $user->imgProfile);
 
-        User::where('id',$id)->delete();
+        User::where('id', $id)->delete();
         return redirect('/home')->with('success', "Account cancellato");
     }
 

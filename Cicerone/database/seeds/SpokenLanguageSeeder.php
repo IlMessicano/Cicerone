@@ -18,7 +18,7 @@ class SpokenLanguageSeeder extends Seeder
             ['User' => 4, 'Language' => 'IT'],
             ['User' => 1, 'Language' => 'EN'],
             ['User' => 2, 'Language' => 'IT'],
-            ['User' => 2, 'Language' => 'FR'],
+            ['User' => 2, 'Language' => 'EN'],
             ['User' => 4, 'Language' => 'EN'],
         ]);
     }
