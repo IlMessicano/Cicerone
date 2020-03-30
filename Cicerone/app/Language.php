@@ -10,9 +10,4 @@ class Language extends Model
 
     protected $primaryKey = 'languageAbbrevation';
 
-
-    public function user(){
-        return $this->belongsToMany('App\User', 'language', 'spoken_language', 'Language');
-    }
-
 }

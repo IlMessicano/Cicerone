@@ -107,11 +107,21 @@
 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="lingue_parlate">Lingue parlate</label>
+                            <input type="text" class="form-control" id="lingue_parlate" placeholder="@foreach($user->languages as $lang){{$lang->Language}},@endforeach" disabled>
+                        </div>
+
+
+                    </div>
                     <div class="mb-3">
                         <label for="biografia">Biografia</label>
                         <textarea class="form-control" id="biografia" placeholder="{{$user->biography}}"
                                   disabled></textarea>
                     </div>
+
+
 
 
                     <hr class="mb-4">

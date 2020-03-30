@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Language;
+use App\SpokenLanguage;
 use Hash;
 
 class ProfileController extends Controller

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\SpokenLanguage;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +63,7 @@ class RegisterController extends Controller
             'prefix' => ['required'],
             'imgProfile' => ['mimes:jpeg,png,jpg,gif,svg|max:6000'],
             'biography' => ['nullable','string','max:256'],
+            'languages' => ['required'],
         ]);
     }
 
@@ -91,7 +93,7 @@ class RegisterController extends Controller
             $path = $request->file('imgProfile')->storeAs('public/profileImg', $fileNameToStore);
             $success = $profileImage->move($upload_path, $fileNameToStore);
 
-            return User::create([
+            $user = User::create([
                 'name' => $data['name'],
                 'surname' => $data['surname'],
                 'email' => $data['email'],
@@ -103,9 +105,17 @@ class RegisterController extends Controller
                 'imgProfile' => $fileNameToStore,
                 'biography' => $data['biography'],
             ]);
+
+            SpokenLanguage::create([
+                'User' => $user->id,
+                'Language' => $data['languages'],
+            ]);
+
+
+            return $user;
         }
         else{
-            return User::create([
+            $user =  User::create([
                 'name' => $data['name'],
                 'surname' => $data['surname'],
                 'email' => $data['email'],
@@ -116,6 +126,13 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
                 'biography' => $data['biography'],
             ]);
+
+            SpokenLanguage::create([
+                'User' => $user->id,
+                'Language' => $data['languages'],
+            ]);
+
+            return $user;
 
         }
     }
