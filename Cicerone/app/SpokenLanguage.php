@@ -9,6 +9,11 @@ class SpokenLanguage extends Model
 
     public $table = "spoken_language";
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'User', 'Language',
+    ];
 
     public function users(){
         return $this->hasMany('App\User','id','User');

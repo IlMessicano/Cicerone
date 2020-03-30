@@ -630,7 +630,7 @@
 
                             <select id="languages" placeholder="Lingue parlate"
                                     class="form-control @error('languages') is-invalid @enderror"
-                                    name="languages" value="{{ old('languages') }}" required
+                                    name="languages[]" value="{{ old('languages') }}" required
                                     autocomplete="languages" multiple>
                                 <option value="" disabled>-- Seleziona nazionalità --</option>
                                 <option value="AF">Afrikanns</option>

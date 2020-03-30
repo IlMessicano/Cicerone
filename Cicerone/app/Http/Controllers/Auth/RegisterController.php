@@ -63,7 +63,8 @@ class RegisterController extends Controller
             'prefix' => ['required'],
             'imgProfile' => ['mimes:jpeg,png,jpg,gif,svg|max:6000'],
             'biography' => ['nullable','string','max:256'],
-            'languages' => ['required'],
+            'languages' => ['required','array','min:1'],
+            'languages.*' => ['required','min:1'],
         ]);
     }
 
@@ -106,10 +107,13 @@ class RegisterController extends Controller
                 'biography' => $data['biography'],
             ]);
 
-            SpokenLanguage::create([
-                'User' => $user->id,
-                'Language' => $data['languages'],
-            ]);
+            foreach ($data['languages'] as $langs) {
+                    SpokenLanguage::create([
+                        'User' => $user->id,
+                        'Language' => $langs,
+                    ]);
+                }
+
 
 
             return $user;
@@ -127,10 +131,12 @@ class RegisterController extends Controller
                 'biography' => $data['biography'],
             ]);
 
-            SpokenLanguage::create([
-                'User' => $user->id,
-                'Language' => $data['languages'],
-            ]);
+                foreach ($data['languages'] as $langs) {
+                    SpokenLanguage::create([
+                        'User' => $user->id,
+                        'Language' => $langs,
+                    ]);
+                }
 
             return $user;
 
