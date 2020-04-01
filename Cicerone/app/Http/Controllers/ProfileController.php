@@ -83,7 +83,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-
+        $user = User::find($id);
+        return view('profile.index')->with('user', $user);
     }
 
     /**
@@ -132,42 +133,15 @@ class ProfileController extends Controller
         $user->nationality = $request->input('nazionalita');
         $user->biography = $request->input('biografia');
 
-        $old_languages = SpokenLanguage::where('User', $user->id)->pluck('Language');
-        //echo $old_languages;
+
         $new_languages = $request->input('languages');
-        //$new_languages = implode(',', $new_languages);
-
-             foreach($new_languages as $new_lang){
-                 $equal = false;
-                   foreach($old_languages as $old_lang){
-                       $equal = false;
-                       if($new_lang == $old_lang){
-                           $equal = true;
-
-                       }
-                       if($equal == false){
-                           SpokenLanguage::create([
-                               'User' => $user->id,
-                               'Language' => $new_lang,
-                           ]);
-                       }
-
-                   }
-               }
-
-
-
-
-        //Serve per quando svuoto la tabella in programmazione, per inserire la prima lingua (CASO CHE NON SUCCEDERà mai a sito concluso dato che è richiesta almeno una lingua in fase di registrazione)
-        /*
-        foreach($new_languages as $new_lang) {
+        SpokenLanguage::where('User', $user->id)->delete();
+        foreach ($new_languages as $new_lang) {
             SpokenLanguage::create([
                 'User' => $user->id,
                 'Language' => $new_lang,
             ]);
         }
-*/
-
 
 
         if ($request->filled('new_password')) {
@@ -192,7 +166,8 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return view('profile.index')->with('user', $user);
+        //return view('profile.index')->with('user', $user);
+        return redirect()->route('profile');
     }
 
     /**
