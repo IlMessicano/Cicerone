@@ -32,7 +32,7 @@
     </style>
 
 
-    <H1>Simple Map</H1>
+    <H1>Mappa:</H1>
     <div id="map" class="map"></div>
     <script>
         var map = new ol.Map({
@@ -60,6 +60,12 @@
             keepOpen: true
         });
         map.addControl(geocoder);
+        var geocoderSource = geocoder.getSource();
+
+        geocoder.on('addresschosen', function (evt) {
+            geocoderSource.clear();
+            geocoderSource.addFeature(evt.feature); // add only the last one
+        });
 
         //Listen when an address is chosen
         geocoder.on('addresschosen', function (evt) {
