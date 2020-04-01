@@ -92,9 +92,18 @@
             };
             layers.Streets.addTo(map);
 
-
+/*
             map.on('click', function(e) {
                 alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+            });
+
+            map.on("contextmenu", function (event) {
+                console.log("Coordinates: " + event.latlng.toString());
+                L.marker(event.latlng).addTo(map);
+            });
+*/
+            map.on("moveend", function () {
+                console.log(map.getCenter().toString());
             });
 
 
@@ -474,6 +483,7 @@
 
                     return radioHtml;
                 },
+
             });
 
             L.Control.MaterialGeocoderControl = L.mapbox.GeocoderControl.extend({
@@ -498,12 +508,13 @@
                     input.setAttribute('placeholder', 'Search...');
 
                     //L.DomUtil.addClass(results, 'show-results');
-                     //this._map.on('click', this._closeResults, this);
+                    // this._map.on('click', this._closeResults, this);
 
                     clearSearchButton.type = "button";
                     L.DomEvent.addListener(clearSearchButton, 'click', this._clearSearch, this);
 
                     L.DomEvent.addListener(form, 'submit', this._geocode, this);
+
                     L.DomEvent.addListener(input, 'keyup', this._autocomplete, this);
                     L.DomEvent.disableClickPropagation(container);
 
@@ -538,6 +549,7 @@
                         message.innerHTML = 'No results found.';
                     } else {
                         L.mapbox.GeocoderControl.prototype._displayResults.apply(this, [features]);
+
                     }
                 },
             });
@@ -560,6 +572,9 @@
 
             // Search location (geocode) control
             var materialGeocodeControl =  new L.Control.MaterialGeocoderControl('mapbox.places', {position: 'topleft', autoComplete: true}).addTo(map);
+
+
+
 
         </script>
 
