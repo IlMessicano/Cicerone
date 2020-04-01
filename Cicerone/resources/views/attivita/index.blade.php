@@ -52,7 +52,7 @@
         //Instantiate with some options and add the Control
         var geocoder = new Geocoder('nominatim', {
             provider: 'osm',
-            lang: 'ita',
+            lang: 'it',
             placeholder: 'Cerca ...',
             limit: 5,
             debug: false,

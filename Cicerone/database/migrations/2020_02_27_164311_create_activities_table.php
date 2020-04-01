@@ -24,6 +24,12 @@ class CreateActivitiesTable extends Migration
             $table->integer('downVote')->default(0);
             $table->float('latCoord')->default(0);
             $table->float('longCoord')->default(0);
+            $table->string('Country');
+            $table->string('State');
+            $table->string('Road');
+            $table->string('City');
+            $table->string('postCode');
+
             $table->timestamps();
         });
     }
