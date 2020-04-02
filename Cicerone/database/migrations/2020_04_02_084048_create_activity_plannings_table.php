@@ -15,8 +15,8 @@ class CreateActivityPlanningsTable extends Migration
     {
         Schema::create('activity_plannings', function (Blueprint $table) {
             $table->bigIncrements('planningId');
-            $table->date('startDate')->nullable();
-            $table->date('stopDate')->nullable();
+            $table->dateTime('startDate')->nullable();
+            $table->dateTime('stopDate')->nullable();
             $table->integer('maxPartecipants')->nullable();
             $table->integer('numPartecipants')->default(0);
             $table->float('cost')->default(0);

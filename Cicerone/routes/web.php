@@ -25,7 +25,9 @@ Route::resource('profile', 'ProfileController');
 
 Route::resource('activityplannings', 'ActivityPlanningsController');
 
+Route::get('/activityplannings/create/{activitum}','ActivityPlanningsController@create');
 
+Route::get('/activityplannings/{activitum}','ActivityPlanningsController@controlplan');
 
 
 Route::resource('/attivita', 'AttivitaController');

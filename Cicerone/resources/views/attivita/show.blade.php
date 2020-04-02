@@ -80,8 +80,7 @@
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <label for="state">Stato:</label><br>
-                                    <label class="">{{$attivita->City}}</label>
+
                                 </div>
 
 

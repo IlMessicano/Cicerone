@@ -6,9 +6,9 @@
 
         <div class="shadow p-4 m-4 bg-white">
             <h1 class="display-4">Attività</h1>
-            @if(count($attivita)>0)
-                @foreach($attivita as $act)
-                    @if($act->user_id == auth()->user()->id)
+            @if(count($plans)>0)
+                @foreach($plans as $plan)
+
 
                         <div class="card bg-light text-dark m-3">
                             <div class="card-body">
@@ -22,9 +22,7 @@
                                     </div>
                                 </div>
                                 <a class="btn btn-primary btn-lg btn-block"
-                                   href="activityplannings/{{$act->ActivityId}}">Gestisci pianificazioni</a>
-                                <a class="btn btn-primary btn-lg btn-block"
-                                   href="activityplannings/{{$act->planning->planningId}}/edit">EDIT pianificazioni</a>
+                                   href="activityplannings/{{$act->planning->planningId}}/edit">Gestisci pianificazioni</a>
                                 <a class="btn btn-primary btn-lg btn-block"
                                    href="activityplannings/create/{{$act->ActivityId}}">Crea una nuova pianificazioni</a>
                             </div>
@@ -32,7 +30,7 @@
 
 
 
-                    @endif
+
                 @endforeach
             @else
                 <div class="card bg-light text-dark m-3">

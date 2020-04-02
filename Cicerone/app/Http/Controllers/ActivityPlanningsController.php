@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\activity_plannings;
 use Illuminate\Http\Request;
-
+use View;
 class ActivityPlanningsController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class ActivityPlanningsController extends Controller
      */
     public function index()
     {
-        //
+        $plan = activity_plannings::all();
+        return view('plannings.index')->with('plan',$plan);
     }
 
     /**
@@ -22,9 +23,14 @@ class ActivityPlanningsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $activityID = $request->route('activitum');
+
+        activity_plannings::create([
+            'activity_id' => $activityID,
+        ]);
+        return redirect('mieattivita');
     }
 
     /**
@@ -49,18 +55,10 @@ class ActivityPlanningsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\activity_plannings  $activity_plannings
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request,activity_plannings $activity_plannings)
+    public function edit(Request $request, $id)
     {
-        $idPlan = $request->route('activityplanning');
-        $plan = activity_plannings::find($idPlan);
-        //return $plan;
-        return view('plannings.create')->with('plan',$plan);
+        $plan = activity_plannings::find($id);
+        return view('plannings.edit')->with('plan',$plan);
     }
     /**
      * Update the specified resource in storage.
@@ -71,7 +69,13 @@ class ActivityPlanningsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $idPlan = $request->route('activityplanning');
+        $plan = activity_plannings::find($id);
+        $plan->startDate = $request->input('start');
+        $plan->stopDate = $request->input('stop');
+        $plan->cost = $request->input('cost');
+        $plan->maxPartecipants = $request->input('maxpart');
+        $plan->save();
+        return redirect('/mieattivita')->with('Success','Pianificazione salvata');
     }
 
     /**
@@ -84,4 +88,6 @@ class ActivityPlanningsController extends Controller
     {
         //
     }
+
+
 }
