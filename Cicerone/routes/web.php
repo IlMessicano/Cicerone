@@ -23,6 +23,11 @@ Route::get('register', 'PagesController@register')->name('register');
 
 Route::resource('profile', 'ProfileController');
 
+Route::resource('activityplannings', 'ActivityPlanningsController');
+
+
+
+
 Route::resource('/attivita', 'AttivitaController');
 
 Route::get('/profile', 'PagesController@profile')->name('profile');

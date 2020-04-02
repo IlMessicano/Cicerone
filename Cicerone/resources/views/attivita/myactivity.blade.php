@@ -21,21 +21,23 @@
                                         <img src="/img/thumbsUp.png" height="150">
                                     </div>
                                 </div>
+                                <a class="btn btn-primary btn-lg btn-block"
+                                   href="activityplannings/{{$act->planning->planningId}}/edit">Pianificazione</a>
                             </div>
                         </div>
 
 
 
-        @endif
-        @endforeach
-        @else
-            <div class="card bg-light text-dark m-3">
-                <div class="card-body text-center">
-                    <h4>No activity found</h4>
+                    @endif
+                @endforeach
+            @else
+                <div class="card bg-light text-dark m-3">
+                    <div class="card-body text-center">
+                        <h4>No activity found</h4>
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
 
-    </div>
+        </div>
     </div>
 @endsection

@@ -14,7 +14,7 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activity', function (Blueprint $table) {
-            $table->bigIncrements('ActivityId');
+            $table->bigIncrements('ActivityId')->primary();
             $table->string('nameActivity');
             $table->string('imgActivity');
             $table->text('description');
@@ -22,8 +22,8 @@ class CreateActivitiesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('upVote')->default(0);
             $table->integer('downVote')->default(0);
-            $table->float('latCoord')->default(0);
-            $table->float('longCoord')->default(0);
+            $table->string('latCoord');
+            $table->string('longCoord');
             $table->string('Country');
             $table->string('State');
             $table->string('Road');

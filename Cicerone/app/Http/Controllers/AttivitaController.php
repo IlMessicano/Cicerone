@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\activity_plannings;
 use App\Attivita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AttivitaController extends Controller
 {
@@ -42,6 +44,13 @@ class AttivitaController extends Controller
     {
         $this->validate($request, [
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6000',
+            'Country' => 'required',
+            'State' => 'required',
+            'Road' => 'required',
+            'City' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+            'postCode' => 'required',
         ]);
 
 
@@ -58,7 +67,7 @@ class AttivitaController extends Controller
             //Creo il nome del file con il timestamp
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             //Upload
-            $path = $request->file('img')->storeAs('public/profileImg', $fileNameToStore);
+            $path = $request->file('img')->storeAs('public/activityImg', $fileNameToStore);
         }
 
 
@@ -69,9 +78,20 @@ class AttivitaController extends Controller
             Storage::delete('public/profileImg/' . $attivita->imgAttivita);
         $attivita->imgActivity = $fileNameToStore;
         $attivita->description = $request->input('descrizione');
+        $attivita->Country = $request->input('Country');
+        $attivita->State = $request->input('State');
+        $attivita->Road = $request->input('Road');
+        $attivita->City = $request->input('City');
+        $attivita->postCode = $request->input('postCode');
+        $attivita->latCoord = $request->input('lat');
+        $attivita->longCoord = $request->input('long');
+
         $attivita->user_id = auth()->user()->id;
         $attivita->save();
-        return view('home');
+        activity_plannings::create([
+            'activity_id' => $attivita->ActivityId,
+        ]);
+        return redirect()->route('home');
     }
 
     /**
@@ -89,35 +109,94 @@ class AttivitaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Attivita $attivita
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return Response
      */
-    public function edit(Attivita $attivita)
+    public function edit($id)
     {
-        //
+        $attivita = Attivita::find($id);
+        return view('attivita.edit')->with('attivita',$attivita);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Attivita $attivita
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attivita $attivita)
+    public function update(Request $request, $id)
     {
-        //
+
+
+        $this->validate($request, [
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:6000',
+            'Country' => 'required',
+            'State' => 'required',
+            'Road' => 'required',
+            'City' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+            'postCode' => 'required',
+        ]);
+
+        $attivita = Attivita::find($id);
+
+
+        //Upload del file
+        if ($request->hasFile('img')) {
+            //Acquisisco il nome del file
+            $filenameWithExt = $request->file('img')->getClientOriginalName();
+            //Prendo il nome del file senza estensione
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            //Prendo solo l'estensione
+            $extension = $request->file('img')->getClientOriginalExtension();
+
+            //Creo il nome del file con il timestamp
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            //Upload
+            $path = $request->file('img')->storeAs('public/activityImg', $fileNameToStore);
+
+            //Se avevo caricato un immagine, la elimino per caricare la nuova
+            if (!is_null($attivita->imgActivity))
+                Storage::delete('public/profileImg/' . $attivita->imgActivity);
+            $attivita->imgActivity = $fileNameToStore;
+        }
+
+
+
+        $attivita->nameActivity = $request->input('nomeAttivita');
+
+        $attivita->description = $request->input('descrizione');
+        $attivita->Country = $request->input('Country');
+        $attivita->State = $request->input('State');
+        $attivita->Road = $request->input('Road');
+        $attivita->City = $request->input('City');
+        $attivita->postCode = $request->input('postCode');
+        $attivita->latCoord = $request->input('lat');
+        $attivita->longCoord = $request->input('long');
+
+        $attivita->user_id = auth()->user()->id;
+        $attivita->save();
+        return redirect()->route('attivita.show', $id)->withSuccess('S-a modificat cu success!');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Attivita $attivita
+     * @param int $ActivityId
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attivita $attivita)
+    public function destroy($ActivityId)
     {
-        //
+        $attivita = User::find($ActivityId);
+        Storage::delete('public/activityImg/' . $attivita->imgActivity);
+
+        Attivita::where('ActivityId', $ActivityId)->delete();
+        return redirect('/home')->with('success', "Attività cancellata");
     }
 
     /**

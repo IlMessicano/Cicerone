@@ -70,10 +70,17 @@
         //Listen when an address is chosen
         geocoder.on('addresschosen', function (evt) {
             console.info(evt);
-            window.setTimeout(function () {
-                alert(evt.coordinate);
+            document.getElementById("Country").value=evt.address.details.country;
+            document.getElementById("State").value=evt.address.details.state;
+            document.getElementById("Road").value=evt.address.details.road;
+            document.getElementById("City").value=evt.address.details.city;
+            document.getElementById("postCode").value=evt.address.details.postcode;
+            document.getElementById("lat").value=evt.coordinate[1];
+            document.getElementById("long").value=evt.coordinate[0];
+
+                /*alert(evt.coordinate);
                 alert(evt.address.details.name);
-            }, 3000);
+*/
         });
     </script>
 
@@ -83,6 +90,7 @@
 
         <div class="shadow p-4 m-4 bg-white">
             <br>
+
             <div class="col-md-12 order-md-2">
                 <h4 class="mb-3">Creazione attività</h4>
                 {!! Form::open(['action'=>'AttivitaController@store','method' => 'POST','enctype' =>
@@ -104,11 +112,22 @@
 
                 </div>
                 <div class="row">
+                    <div class="col-md-12 mb-3">
                     {{ Form::file('img',['class' => 'input-group-text w-100']) }}
+                    </div>
                 </div>
+                {{Form::text ('Country', $attivita->Country, ['id'=>'Country','style' => 'display:none'])}}
+                {{Form::text ('State', $attivita->State, ['id'=>'State','style' => 'display:none'])}}
+                {{Form::text ('Road', $attivita->Road, ['id'=>'Road','style' => 'display:none'])}}
+                {{Form::text ('City', $attivita->City, ['id'=>'City','style' => 'display:none'])}}
+                {{Form::text ('postCode', $attivita->postCode, ['id'=>'postCode','style' => 'display:none'])}}
+                {{Form::text ('lat', $attivita->latCoord, ['id'=>'lat','style' => 'display:none'])}}
+                {{Form::text ('long', $attivita->longCoord, ['id'=>'long','style' => 'display:none'])}}
 
 
-                {{Form::submit('Crea',['class' => 'btn btn-primary'])}}
+                <div class="col-md  text-right">
+                    {{Form::submit('Crea',['class' => ' my-4 btn btn-primary'])}}
+                </div>
 
             </div>
         </div>
@@ -117,6 +136,10 @@
 
 
     </div>
+
+
+
+
 
 
 
