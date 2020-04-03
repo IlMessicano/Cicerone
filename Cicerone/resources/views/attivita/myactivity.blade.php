@@ -6,6 +6,7 @@
 
         <div class="shadow p-4 m-4 bg-white">
             <h1 class="display-4">Attività</h1>
+
             @if(count($attivita)>0)
                 @foreach($attivita as $act)
                     @if($act->user_id == auth()->user()->id)
@@ -22,9 +23,8 @@
                                     </div>
                                 </div>
                                 <a class="btn btn-primary btn-lg btn-block"
-                                   href="activityplannings/{{$act->ActivityId}}">Gestisci pianificazioni</a>
-                                <a class="btn btn-primary btn-lg btn-block"
-                                   href="activityplannings/{{$act->planning->planningId}}/edit">EDIT pianificazioni</a>
+                                   href="attivita/{{$act->ActivityId}}/showplans">Gestisci pianificazioni</a>
+
                                 <a class="btn btn-primary btn-lg btn-block"
                                    href="activityplannings/create/{{$act->ActivityId}}">Crea una nuova pianificazioni</a>
                             </div>

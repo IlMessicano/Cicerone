@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\activity_plannings;
+use App\Attivita;
 use Illuminate\Http\Request;
 use View;
 class ActivityPlanningsController extends Controller
@@ -14,8 +15,7 @@ class ActivityPlanningsController extends Controller
      */
     public function index()
     {
-        $plan = activity_plannings::all();
-        return view('plannings.index')->with('plan',$plan);
+
     }
 
     /**
@@ -74,20 +74,34 @@ class ActivityPlanningsController extends Controller
         $plan->stopDate = $request->input('stop');
         $plan->cost = $request->input('cost');
         $plan->maxPartecipants = $request->input('maxpart');
+        $plan->notes = $request->input('note');
         $plan->save();
         return redirect('/mieattivita')->with('Success','Pianificazione salvata');
     }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\activity_plannings  $activity_plannings
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(activity_plannings $activity_plannings)
+    public function destroy($id)
     {
-        //
+        activity_plannings::where('planningId', $id)->delete();
+        return redirect('/mieattivita')->with('success', "Pianificazione cancellata");
     }
 
+    /**
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function controlplans(Request $request, $id)
+    {
+        $act_id = $request->route('activitum');
+        $plans = activity_plannings::all();
+        $attivita = Attivita::find($act_id);
 
+        return view('plannings.index')->with('plans', $plans)->with('attivita',$attivita);
+    }
 }

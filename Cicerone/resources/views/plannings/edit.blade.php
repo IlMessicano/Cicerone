@@ -53,6 +53,13 @@
                         {{Form::label ('cost', 'Costo')}}
                         {{Form::number ('cost', $plan->cost, ['class' => 'form-control', 'required'=>'required'])}}
                     </div>
+
+                    <div class="form-group row col-md-12">
+                        <div class="col-md-12 mb-3">
+                    {{Form::label ('note', 'Note')}}
+                    {{Form::textarea ('note', $plan->notes, ['class' => 'form-control', 'placeholder' => 'Note','maxlength' => 255])}}
+                        </div>
+                    </div>
                 </div>
                 {{Form::hidden('_method','PUT')}}
 

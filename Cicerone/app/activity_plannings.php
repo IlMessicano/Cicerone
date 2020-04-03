@@ -17,6 +17,7 @@ class activity_plannings extends Model
     ];
 
     public function activity(){
+
         return $this->hasOne('App\Attivita','ActivityId','activity_id');
     }
 }

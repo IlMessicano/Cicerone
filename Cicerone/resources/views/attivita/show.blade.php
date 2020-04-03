@@ -89,114 +89,161 @@
                         </div>
                     </div>
 
-                        <div class="card mb-4">
-
-                            <a class="btn btn-primary" href="">Prenota questa attività</a>
-
-                        </div>
+                    <div class="card mb-4">
 
 
-                    </div>
+                        @foreach($attivita->planning as $plan)
 
-
-                    <div class="col-md-4 mb-4">
-                        <div class="card mb-4 text-center">
-
-                            <div class="card-header">Dettagli Cicerone
-                            </div>
-
-                            <img src="/storage/profileImg/{{$attivita->user->imgProfile}}"
-                                 class="rounded-circle my-5" id="profileImg">
-                            <div class="card-body">
-
-
-                                <label class="grey-text">{{$attivita->user->name}}  {{$attivita->user->surname}}</label>
-
-
-                                <br>
-
-
-                                <label class="grey-text">Voti positivi: {{$attivita->user->upVote}} Voti
-                                    negativi: {{$attivita->user->downVote}}</label>
-
-
-                                <div class="text-center mt-4">
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                        <div class="card mb-4 ">
-                            @if(Auth::guest())
-                                <div class="card-header">Non hai ancora effettuato l'accesso.<br> Accedi per prenotare
-                                    questa
-                                    attività.
-                                </div>
+                            <div class="card bg-light text-dark m-3">
                                 <div class="card-body">
-                                    <form>
-                                        <label for="email" class="grey-text">E-mail</label>
-                                        <input type="email" id="email" class="form-control">
-                                        <br>
-                                        <label for="password" class="grey-text">Password</label>
-                                        <input type="text" id="password" class="form-control">
-                                        <div class="text-center mt-4">
-                                            <button class="btn btn-info btn-md" type="submit">Sign up
-                                            </button>
+                                    <div class="form-group row col-md-12 text-center">
+
+                                        <div class="col-md-3 mb-1">
+                                            <label for="state">Data inizio:</label><br>
+                                            <label class="">
+                                                @if(is_null($plan->startDate))
+                                                    Non definita
+                                                @else
+                                                    {{$plan->startDate}}
+                                                @endif
+                                            </label>
+
+
                                         </div>
-                                    </form>
-                                </div>
-                            @endif
 
-                            @if(Auth::user()->id == $attivita->user_id)
-                                <div class="card-header">Pannello di controllo attività
-                                </div>
-                                <div class="card-body">
-                                    <a class="btn btn-primary btn-lg btn-block"
-                                       href="/attivita/{{$attivita->ActivityId}}/edit">Modifica attività</a>
-                                    <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
-                                            data-target="#exampleModal">
-                                        Elimina attività
-                                    </button>
-                                </div>
-                            @endif
+                                        <div class="col-md-3 mb-1">
+                                            <label for="state">Data fine:</label><br>
+                                            <label class="">
+                                                @if(is_null($plan->startDate))
+                                                    Non definita
+                                                @else
+                                                    {{$plan->startDate}}
+                                                @endif
+                                            </label>
 
-
-                        </div>
-
-
-                        <div class="card mb-4">
-
-                            <div class="card-header">Attività simili in {{$attivita->City}}</div>
-
-
-                            <div class="card-body">
-
-                                <ul class="list-unstyled">
-                                    <li class="media">
-                                        <img class="d-flex mr-3"
-                                             src="/img/thumbsDown.png"
-                                             alt="Generic placeholder image" height="100">
-                                        <div class="media-body">
-                                            <a href="">
-                                                <h5 class="mt-0 mb-1 font-weight-bold">TITOLO</h5>
-                                            </a>
-                                            Descrizione
                                         </div>
-                                    </li>
 
-                                </ul>
+                                        <div class="col-md-3 mb-1">
+                                            <label for="state">Note:</label><br>
+                                            <label class="">
+                                                @if(is_null($plan->notes))
+                                                    Nessuna nota presente
+                                                @else
+                                                    {{$plan->notes}}
+                                                @endif
+                                            </label>
 
+                                        </div>
+                                        <div class="col-md-3 mb-1">
+                                            <a class="btn btn-primary" href="">Prenota questa attività</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-
+                        @endforeach
                     </div>
 
 
                 </div>
+
+
+                <div class="col-md-4 mb-4">
+                    <div class="card mb-4 text-center">
+
+                        <div class="card-header">Dettagli Cicerone
+                        </div>
+
+                        <img src="/storage/profileImg/{{$attivita->user->imgProfile}}"
+                             class="rounded-circle my-5" id="profileImg">
+                        <div class="card-body">
+
+
+                            <label class="grey-text">{{$attivita->user->name}}  {{$attivita->user->surname}}</label>
+
+                            <br>
+
+                            <label class="grey-text">Voti positivi: {{$attivita->user->upVote}} Voti
+                                negativi: {{$attivita->user->downVote}}</label>
+
+
+                            <div class="text-center mt-4">
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="card mb-4 ">
+                        @if(Auth::guest())
+                            <div class="card-header">Non hai ancora effettuato l'accesso.<br> Accedi per prenotare
+                                questa
+                                attività.
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <label for="email" class="grey-text">E-mail</label>
+                                    <input type="email" id="email" class="form-control">
+                                    <br>
+                                    <label for="password" class="grey-text">Password</label>
+                                    <input type="text" id="password" class="form-control">
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-info btn-md" type="submit">Sign up
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+
+                        @if(Auth::user()->id == $attivita->user_id)
+                            <div class="card-header">Pannello di controllo attività
+                            </div>
+                            <div class="card-body">
+                                <a class="btn btn-primary btn-lg btn-block"
+                                   href="/attivita/{{$attivita->ActivityId}}/edit">Modifica attività</a>
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    Elimina attività
+                                </button>
+                            </div>
+                        @endif
+
+
+                    </div>
+
+
+                    <div class="card mb-4">
+
+                        <div class="card-header">Attività simili in {{$attivita->City}}</div>
+
+
+                        <div class="card-body">
+
+                            <ul class="list-unstyled">
+                                <li class="media">
+                                    <img class="d-flex mr-3"
+                                         src="/img/thumbsDown.png"
+                                         alt="Generic placeholder image" height="100">
+                                    <div class="media-body">
+                                        <a href="">
+                                            <h5 class="mt-0 mb-1 font-weight-bold">TITOLO</h5>
+                                        </a>
+                                        Descrizione
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
 
         </section>
