@@ -44,14 +44,14 @@
                 <div class="form-group row col-md-12">
                     <div class="col-md-6 mb-3">
                         {{Form::label ('maxpart', 'Numero massimo partecipanti')}}
-                        {{Form::number ('maxpart', $plan->maxPartecipants, ['class' => 'form-control', 'required'=>'required'])}}
+                        {{Form::number ('maxpart', $plan->maxPartecipants, ['class' => 'form-control', 'min' => '1' ,'required'=>'required'])}}
 
                     </div>
 
 
                     <div class="col-md-6 mb-3">
                         {{Form::label ('cost', 'Costo')}}
-                        {{Form::number ('cost', $plan->cost, ['class' => 'form-control', 'required'=>'required'])}}
+                        {{Form::number ('cost', $plan->cost, ['class' => 'form-control', 'min' => '0' , 'required'=>'required'])}}
                     </div>
 
                     <div class="form-group row col-md-12">

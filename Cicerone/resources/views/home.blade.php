@@ -14,6 +14,8 @@
                             <h3>Effettua una ricerca</h3>
                         </div>
                     </div>
+                    {!! Form::open(['action'=>['AttivitaController@search'],'method' => 'POST'])!!}
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -22,8 +24,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group ">
-                                                <input type="text" class="form-control"
-                                                       placeholder="Mammata, sierda, porco dio">
+
+                                                {{Form::text ('paese','', ['class' => 'form-control', 'placeholder' => 'Cerca...'])}}
                                             </div>
                                         </div>
 
@@ -32,7 +34,9 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="font-weight-light text-dark">Da</label>
-                                            <input type="date" class="form-control" id="from" onchange="prendidata()">
+                                            {{Form::date ('start', '', ['class' => 'form-control', 'id' => 'from', 'onchange'=>'prendidata()'])}}
+
+
                                             <script>
                                                 var today = new Date();
                                                 var dd = today.getDate();
@@ -51,7 +55,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="font-weight-light text-dark">A</label>
-                                            <input type="date" class="form-control" id="to">
+                                            {{Form::date ('stop', '', ['class' => 'form-control', 'id' => 'to', 'onchange'=>'prendidata()'])}}
+
                                             <script>
                                                 function prendidata() {
 
@@ -90,9 +95,13 @@
 
                                     </div>
                                     <div class="col-md  text-right">
-                                        <button type="button" class="btn btn-warning  pl-5 pr-5">Vai</button>
+                                        {{Form::hidden('_method','PUT')}}
+                                        {{Form::submit('Vai',['class' => 'btn btn-warning  pl-5 pr-5'])}}
                                     </div>
 
+
+
+                        {!! Form::close()!!}
 
                                 </div>
 

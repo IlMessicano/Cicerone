@@ -211,4 +211,16 @@ class AttivitaController extends Controller
         return view('attivita.myactivity')->with('attivita', $attivita);
 
     }
+
+    public function search(Request $request)
+    {
+        $paese = $request->input('paese');
+        $start = $request->input('start');
+        $stop = $request->input('stop');
+        $costo = $request->input('costo');
+        $attivita = Attivita::where('City',$paese);
+        return $attivita;
+        return view('attivita.search')->with('attivita', $attivita);
+
+    }
 }

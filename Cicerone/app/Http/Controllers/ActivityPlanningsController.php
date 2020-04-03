@@ -30,7 +30,7 @@ class ActivityPlanningsController extends Controller
         activity_plannings::create([
             'activity_id' => $activityID,
         ]);
-        return redirect('mieattivita');
+        return redirect('mieattivita')->with('Success','Pianificazione creata');
     }
 
     /**
@@ -86,8 +86,10 @@ class ActivityPlanningsController extends Controller
      */
     public function destroy($id)
     {
-        activity_plannings::where('planningId', $id)->delete();
-        return redirect('/mieattivita')->with('success', "Pianificazione cancellata");
+        $plan = activity_plannings::find($id);
+        $act_id = $plan->activity_id;
+        $plan->delete();
+        return redirect('/attivita/'.$act_id.'/showplans')->with('success', "Pianificazione cancellata");
     }
 
     /**
