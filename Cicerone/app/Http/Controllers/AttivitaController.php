@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class AttivitaController extends Controller
 {
@@ -214,12 +215,26 @@ class AttivitaController extends Controller
 
     public function search(Request $request)
     {
+        $this->validate($request, [
+            'paese' => 'required',
+
+        ]);
         $paese = $request->input('paese');
-        $start = $request->input('start');
-        $stop = $request->input('stop');
+        $start = $request->input('start'). " 00:00";
+
+        $stop = $request->input('stop') ;
         $costo = $request->input('costo');
-        $attivita = Attivita::where('City',$paese);
-        return $attivita;
+        if(is_null($costo))
+            $costo = 0;
+        $attivita = DB::table('Activity')
+            ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
+            ->where('City','=',$paese)
+            ->whereDate('startDate', '>=', $start)
+            ->whereDate('stopDate', '<=', $stop)
+            ->where('Cost','<=',$costo)
+            ->get();
+
+
         return view('attivita.search')->with('attivita', $attivita);
 
     }

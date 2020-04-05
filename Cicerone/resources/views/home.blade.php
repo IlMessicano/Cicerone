@@ -25,7 +25,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group ">
 
-                                                {{Form::text ('paese','', ['class' => 'form-control', 'placeholder' => 'Cerca...'])}}
+                                                {{Form::text ('paese','', ['class' => 'form-control', 'placeholder' => 'Cerca...','required' => 'required'])}}
                                             </div>
                                         </div>
 
@@ -34,7 +34,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="font-weight-light text-dark">Da</label>
-                                            {{Form::date ('start', '', ['class' => 'form-control', 'id' => 'from', 'onchange'=>'prendidata()'])}}
+                                            {{Form::date ('start', '', ['class' => 'form-control', 'id' => 'from', 'onchange'=>'prendidata()','required' => 'required', 'max' => '2050-01-01'])}}
 
 
                                             <script>
@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="font-weight-light text-dark">A</label>
-                                            {{Form::date ('stop', '', ['class' => 'form-control', 'id' => 'to', 'onchange'=>'prendidata()'])}}
+                                            {{Form::date ('stop', '', ['class' => 'form-control', 'id' => 'to','required' => 'required', 'max' => '2050-01-01'])}}
 
                                             <script>
                                                 function prendidata() {
@@ -81,14 +81,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 mt-3">
-                                            <label class="font-weight-light text-dark">Costo</label>
+                                            <label class="font-weight-light text-dark">Costo massimo</label>
                                             <div class="form-group ">
 
-                                                <select id="" class="form-control">
-                                                    <option selected>0$ - 15$</option>
-                                                    <option>15$ - 30$</option>
-                                                    <option>30$ - 50$</option>
-                                                </select>
+                                                {{Form::number ('costo', '', ['class' => 'form-control', 'placeholder' => '0' ,'min' => '0'])}}
                                             </div>
                                         </div>
 

@@ -6,8 +6,11 @@
 
         <div class="shadow p-4 m-4 bg-white">
             <h1 class="display-4">Pianificazioni per {{$attivita->nameActivity}} </h1>
+            <a class="btn btn-primary btn-lg btn-block"
+               href="http://127.0.0.1:8000/activityplannings/create/{{$attivita->ActivityId}}">Crea una nuova pianificazione</a>
             @if(count($plans)>0)
                 @foreach($plans as $plan)
+                    @if($plan->activity_id == $attivita->ActivityId)
 
 
                     <div class="card bg-light text-dark m-3">
@@ -107,9 +110,7 @@
                         </div>
                     </div>
 
-
-
-
+                    @endif
                 @endforeach
             @else
                 <div class="card bg-light text-dark m-3">

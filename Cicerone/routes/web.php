@@ -29,7 +29,7 @@ Route::get('/activityplannings/create/{activitum}','ActivityPlanningsController@
 
 Route::get('attivita/{activitum}/showplans','ActivityPlanningsController@controlplans');
 
-Route::get('/attivita/searching','AttivitaController@search');
+Route::put('/attivita/searching','AttivitaController@search')->name('searching');
 
 
 Route::resource('/attivita', 'AttivitaController');
