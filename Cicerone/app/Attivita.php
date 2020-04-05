@@ -17,7 +17,14 @@ class Attivita extends Model
 
     public function planning(){
         return $this->hasMany('App\activity_plannings','activity_id','ActivityId');
-        //return $this->hasOne('App\activity_plannings','activity_id','ActivityId');
     }
+
+
+    public function evaluations(){
+
+        return $this->hasMany('App\Evaluations','Activity','ActivityId');
+    }
+
+
 
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use DB;
+Use App\Evaluations;
 
 class AttivitaController extends Controller
 {

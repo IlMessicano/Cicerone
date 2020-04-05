@@ -20,4 +20,9 @@ class activity_plannings extends Model
 
         return $this->hasOne('App\Attivita','ActivityId','activity_id');
     }
+
+
+    public function enrollements(){
+        return $this->hasMany('App\Activity_Enrollments','planningId','PlanningId');
+    }
 }

@@ -142,9 +142,105 @@
                             </div>
 
                         @endforeach
+
+
+                        <style>
+                            .rating {
+                                float: left;
+                            }
+
+                            /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+                              follow these rules. Every browser that supports :checked also supports :not(), so
+                              it doesn’t make the test unnecessarily selective */
+                            .rating:not(:checked) > input {
+                                position: absolute;
+                                top: -9999px;
+                                clip: rect(0, 0, 0, 0);
+                            }
+
+                            .rating:not(:checked) > label {
+                                float: right;
+                                width: 1em;
+                                /* padding:0 .1em; */
+                                overflow: hidden;
+                                white-space: nowrap;
+                                cursor: pointer;
+                                font-size: 300%;
+                                /* line-height:1.2; */
+                                color: #ddd;
+                            }
+
+                            .rating:not(:checked) > label:before {
+                                content: '★ ';
+                            }
+
+                            .rating > input:checked ~ label {
+                                color: dodgerblue;
+
+                            }
+
+                            .rating:not(:checked) > label:hover,
+                            .rating:not(:checked) > label:hover ~ label {
+                                color: dodgerblue;
+
+                            }
+
+                            .rating > input:checked + label:hover,
+                            .rating > input:checked + label:hover ~ label,
+                            .rating > input:checked ~ label:hover,
+                            .rating > input:checked ~ label:hover ~ label,
+                            .rating > label:hover ~ input:checked ~ label {
+                                color: dodgerblue;
+
+                            }
+
+                            .rating > label:active {
+                                position: relative;
+                                top: 2px;
+                                left: 2px;
+                            }
+                        </style>
+
+
                     </div>
 
+                    <div class="card mb-4">
+                        <div class="form-group row col-md-12">
+                            <div class="col-md-12 my-3">
+                                {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
+                    'class'
+                    => 'pull-right'])!!}
 
+                                <div class="row">
+                                    <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
+                                    <div class="rating mt-2">
+
+                                        {{Form::radio('rating', '5', false,['id' => 'star5'])}}<label for="star5"
+                                                                                                      title="Meh">5</label>
+                                        {{Form::radio('rating', '4', false,['id' => 'star4'])}}<label for="star4"
+                                                                                                      title="Kinda bad">4</label>
+                                        {{Form::radio('rating', '3', false,['id' => 'star3'])}}<label for="star3"
+                                                                                                      title="Kinda bad">3</label>
+                                        {{Form::radio('rating', '2', false,['id' => 'star2'])}}<label for="star2"
+                                                                                                      title="Sucks big tim">2</label>
+                                        {{Form::radio('rating', '1', false,['id' => 'star1'])}}<label for="star1"
+                                                                                                      title="Sucks big time">1</label>
+
+                                    </div>
+                                </div>
+
+
+                                <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
+                                {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
+
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12 text-right">
+                            {{Form::hidden('_method','PUT')}}
+                            {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
+                            {!!form::close()!!}
+                        </div>
+                    </div>
                 </div>
 
 
@@ -208,11 +304,33 @@
                                     Elimina attività
                                 </button>
                             </div>
+
                         @endif
-
-
                     </div>
 
+
+                    <div class="card mb-4 ">
+                        <div class="card-header">Commenti
+                        </div>
+                        <div class="card-body">
+                            @if(count($attivita->evaluations) > 0)
+                                @foreach($attivita->evaluations as $eval)
+
+                                    Recensione scritta da:<br> {{$eval->user->name}} {{$eval->user->surname}} <br>
+
+                                    Stelle: {{$eval->vote}}  <br>
+
+                                    Descrizione:<br> {{$eval->comment}}
+                                    <hr class="featurette-divider">
+                                @endforeach
+                            @else
+                                <div class="text-center">
+                                    Nessuna descrizione per questa attività
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
 
                     <div class="card mb-4">
 

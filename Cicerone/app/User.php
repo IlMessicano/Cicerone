@@ -47,4 +47,8 @@ implements MustVerifyEmail
         return $this->hasMany('App\SpokenLanguage','User','id');
     }
 
+    public function evaluations(){
+        return $this->hasMany('App\Evaluations','User','id');
+    }
+
 }
