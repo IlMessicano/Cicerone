@@ -210,7 +210,8 @@ class AttivitaController extends Controller
     public function myactivity()
     {
         $attivita = Attivita::all();
-        return view('attivita.myactivity')->with('attivita', $attivita);
+        $user = User::find(Auth::user()->id);
+        return view('attivita.myactivity')->with('attivita', $attivita)->with('user',$user);
 
     }
 

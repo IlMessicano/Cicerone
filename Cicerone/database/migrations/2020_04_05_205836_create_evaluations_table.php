@@ -16,9 +16,9 @@ class CreateEvaluationsTable extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('User');
-            $table->foreign('User')->references('id')->on('users');
+            $table->foreign('User')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('Activity');
-            $table->foreign('Activity')->references('ActivityId')->on('activity');
+            $table->foreign('Activity')->references('ActivityId')->on('activity')->onDelete('cascade');
             $table->date('evaluationDate');
             $table->string('comment')->nullable();
             $table->integer('vote');

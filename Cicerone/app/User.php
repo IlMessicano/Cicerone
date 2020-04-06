@@ -50,7 +50,9 @@ implements MustVerifyEmail
     public function evaluations(){
         return $this->hasMany('App\Evaluations','User','id');
     }
-
+    public function enrollments(){
+        return $this->hasMany('App\Activity_Enrollments','User','id');
+    }
 
 
 }

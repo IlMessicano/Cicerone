@@ -22,7 +22,7 @@ class CreateActivityPlanningsTable extends Migration
             $table->float('cost')->default(0);
             $table->string('notes')->nullable();
             $table->unsignedBigInteger('activity_id');
-            $table->foreign('activity_id')->references('ActivityId')->on('activity');
+            $table->foreign('activity_id')->references('ActivityId')->on('activity')->onDelete('cascade');;
 
         });
     }

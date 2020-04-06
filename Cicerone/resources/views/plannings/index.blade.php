@@ -33,10 +33,10 @@
                                 <div class="col-md-3 mb-1">
                                     <label for="state">Data fine:</label><br>
                                     <label class="">
-                                        @if(is_null($plan->startDate))
+                                        @if(is_null($plan->stopDate))
                                             Non definita
                                         @else
-                                            {{$plan->startDate}}
+                                            {{$plan->stopDate}}
                                         @endif
                                     </label>
 

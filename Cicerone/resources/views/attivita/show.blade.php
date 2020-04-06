@@ -152,24 +152,16 @@
                                                                 {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
                                                                 {!!form::close()!!}
 
-                                                              @endif
+                                                            @endif
 
-
-                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
-    'class'
-    => 'pull-right'])!!}
-                                                                {{Form::hidden('_method','PUT')}}
-                                                                {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
-                                                                {!!form::close()!!}
-
+                                                            @if($enroll->PlanningId !== '')
+                                                                <h1>porco dio</h1>
+                                                            @endif
 
 
                                                         @endforeach
                                                     @endif
 
-
-
-                                                @endif
 
                                                     {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
 'class'
@@ -177,6 +169,8 @@
                                                     {{Form::hidden('_method','PUT')}}
                                                     {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
                                                     {!!form::close()!!}
+                                                @endif
+
 
                                             </div>
                                         </div>
@@ -184,9 +178,6 @@
                                 </div>
                             @endif
                         @endforeach
-
-
-
 
 
                     </div>
@@ -204,9 +195,11 @@
 
 
                                         {{Form::radio('rating', '1', false,['id' => 'like'])}}<label for="like"
-                                                                                                     title="Sucks big time"><img class="w-25 h-25" src="/img/thumbsUp.png"></label>
+                                                                                                     title="Sucks big time"><img
+                                                class="w-25 h-25" src="/img/thumbsUp.png"></label>
                                         {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label for="dislike"
-                                                                                                      title="Sucks big tim"><img class="w-25 h-25" src="/img/thumbsDown.png"></label>
+                                                                                                         title="Sucks big tim"><img
+                                                class="w-25 h-25" src="/img/thumbsDown.png"></label>
 
 
                                     </div>
@@ -303,9 +296,9 @@
 
                                     Valutazione: @if($eval->vote == 1)
                                         <img class="w-25 h-25" src="/img/thumbsUp.png">
-                                        @else
+                                    @else
                                         <img class="w-25 h-25" src="/img/thumbsDown.png">
-                                        @endif<br>
+                                    @endif<br>
 
                                     Descrizione:<br> {{$eval->comment}}
                                     <hr class="featurette-divider">
