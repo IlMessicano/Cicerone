@@ -105,6 +105,7 @@ class ActivityEnrollmentsController extends Controller
     public function destroy(Activity_Enrollments $activity_Enrollments, $id)
     {
         $enroll = Activity_Enrollments::find($id);
+
         $activity_id = $enroll->plan->activity_id;
         $costo = $enroll->plan->cost;
         $user = User::find($enroll->User);
