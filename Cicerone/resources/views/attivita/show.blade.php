@@ -171,7 +171,12 @@
 
                                                 @endif
 
-
+                                                    {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
+'class'
+=> 'pull-right'])!!}
+                                                    {{Form::hidden('_method','PUT')}}
+                                                    {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
+                                                    {!!form::close()!!}
 
                                             </div>
                                         </div>

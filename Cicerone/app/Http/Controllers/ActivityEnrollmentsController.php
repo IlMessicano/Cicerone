@@ -109,6 +109,7 @@ class ActivityEnrollmentsController extends Controller
         $costo = $enroll->plan->cost;
         $user = User::find($enroll->User);
         $user->balance = $user->balance + $costo;
+        $user->save();
         $enroll->delete();
         return redirect('/attivita/' . $activity_id)->with('success', 'Prenotazione cancellata e rimborso effettuato');
 
