@@ -67,10 +67,10 @@
                                 <div class="col-md-3 mb-1">
                                     <label for="state">Costo:</label><br>
                                     <label class="">
-                                        @if(is_null($plan->Cost))
+                                        @if(is_null($plan->cost))
                                             Non definito
                                         @else
-                                            {{$plan->Cost}}
+                                            {{$plan->cost}}
                                         @endif</label>
 
 

@@ -51,7 +51,7 @@
 
                     <div class="col-md-6 mb-3">
                         {{Form::label ('cost', 'Costo')}}
-                        {{Form::number ('cost', $plan->cost, ['class' => 'form-control', 'min' => '0' , 'required'=>'required'])}}
+                        {{Form::number ('cost', $plan->cost, ['class' => 'form-control', 'min' => '0' , 'required'=>'required','step' => '0.01'])}}
                     </div>
 
                     <div class="form-group row col-md-12">
