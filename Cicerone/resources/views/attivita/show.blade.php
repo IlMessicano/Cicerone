@@ -93,113 +93,91 @@
 
 
                         @foreach($attivita->planning as $plan)
+                            @if(!is_null($plan->startDate))
+                                <div class="card bg-light text-dark m-3">
+                                    <div class="card-body">
+                                        <div class="form-group row col-md-12 text-center">
 
-                            <div class="card bg-light text-dark m-3">
-                                <div class="card-body">
-                                    <div class="form-group row col-md-12 text-center">
-
-                                        <div class="col-md-3 mb-1">
-                                            <label for="state">Data inizio:</label><br>
-                                            <label class="">
-                                                @if(is_null($plan->startDate))
-                                                    Non definita
-                                                @else
+                                            <div class="col-md-3 mb-1">
+                                                <label for="state">Data inizio:</label><br>
+                                                <label class="">
                                                     {{$plan->startDate}}
-                                                @endif
-                                            </label>
+
+                                                </label>
 
 
-                                        </div>
+                                            </div>
 
-                                        <div class="col-md-3 mb-1">
-                                            <label for="state">Data fine:</label><br>
-                                            <label class="">
-                                                @if(is_null($plan->startDate))
-                                                    Non definita
-                                                @else
+                                            <div class="col-md-3 mb-1">
+                                                <label for="state">Data fine:</label><br>
+                                                <label class="">
                                                     {{$plan->startDate}}
+
+                                                </label>
+
+                                            </div>
+
+                                            <div class="col-md-3 mb-1">
+                                                <label for="state">Note:</label><br>
+                                                <label class="">
+                                                    @if(is_null($plan->notes))
+                                                        Nessuna nota presente
+                                                    @else
+                                                        {{$plan->notes}}
+                                                    @endif
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="col-md-3 mb-1">
+                                                <label for="costo">Costo:</label><br>
+                                                <label class="">
+
+                                                    {{$plan->cost}}
+
+                                                </label>
+                                            </div>
+
+                                            <div class="col text-right">
+                                                @if(Auth::user()->id != $attivita->user_id )
+                                                    @if(count($plan->enrollments)>= 0)
+
+                                                        @foreach($plan->enrollments as $enroll)
+                                                            @if(($enroll->User == Auth::user()->id && $enroll->PlanningId == $plan->planningId))
+                                                                <button class="btn btn-primary disabled ">Attività già
+                                                                    prenotata
+                                                                </button>
+
+
+                                                              @endif
+
+
+                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
+    'class'
+    => 'pull-right'])!!}
+                                                                {{Form::hidden('_method','PUT')}}
+                                                                {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
+                                                                {!!form::close()!!}
+
+
+
+                                                        @endforeach
+                                                    @endif
+
+
+
                                                 @endif
-                                            </label>
 
-                                        </div>
-
-                                        <div class="col-md-3 mb-1">
-                                            <label for="state">Note:</label><br>
-                                            <label class="">
-                                                @if(is_null($plan->notes))
-                                                    Nessuna nota presente
-                                                @else
-                                                    {{$plan->notes}}
-                                                @endif
-                                            </label>
-
-                                        </div>
-                                        <div class="col-md-3 mb-1">
-                                            <a class="btn btn-primary" href="">Prenota questa attività</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            @endif
                         @endforeach
 
 
-                        <style>
-                            .rating {
-                                float: left;
-                            }
 
-                            /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
-                              follow these rules. Every browser that supports :checked also supports :not(), so
-                              it doesn’t make the test unnecessarily selective */
-                            .rating:not(:checked) > input {
-                                position: absolute;
-                                top: -9999px;
-                                clip: rect(0, 0, 0, 0);
-                            }
-
-                            .rating:not(:checked) > label {
-                                float: right;
-                                width: 1em;
-                                /* padding:0 .1em; */
-                                overflow: hidden;
-                                white-space: nowrap;
-                                cursor: pointer;
-                                font-size: 300%;
-                                /* line-height:1.2; */
-                                color: #ddd;
-                            }
-
-                            .rating:not(:checked) > label:before {
-                                content: '★ ';
-                            }
-
-                            .rating > input:checked ~ label {
-                                color: dodgerblue;
-
-                            }
-
-                            .rating:not(:checked) > label:hover,
-                            .rating:not(:checked) > label:hover ~ label {
-                                color: dodgerblue;
-
-                            }
-
-                            .rating > input:checked + label:hover,
-                            .rating > input:checked + label:hover ~ label,
-                            .rating > input:checked ~ label:hover,
-                            .rating > input:checked ~ label:hover ~ label,
-                            .rating > label:hover ~ input:checked ~ label {
-                                color: dodgerblue;
-
-                            }
-
-                            .rating > label:active {
-                                position: relative;
-                                top: 2px;
-                                left: 2px;
-                            }
-                        </style>
 
 
                     </div>
@@ -211,20 +189,16 @@
                     'class'
                     => 'pull-right'])!!}
 
-                                <div class="row">
+                                <div class="row text-center">
                                     <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
-                                    <div class="rating mt-2">
+                                    <div class="m-2">
 
-                                        {{Form::radio('rating', '5', false,['id' => 'star5'])}}<label for="star5"
-                                                                                                      title="Meh">5</label>
-                                        {{Form::radio('rating', '4', false,['id' => 'star4'])}}<label for="star4"
-                                                                                                      title="Kinda bad">4</label>
-                                        {{Form::radio('rating', '3', false,['id' => 'star3'])}}<label for="star3"
-                                                                                                      title="Kinda bad">3</label>
-                                        {{Form::radio('rating', '2', false,['id' => 'star2'])}}<label for="star2"
-                                                                                                      title="Sucks big tim">2</label>
-                                        {{Form::radio('rating', '1', false,['id' => 'star1'])}}<label for="star1"
-                                                                                                      title="Sucks big time">1</label>
+
+                                        {{Form::radio('rating', '1', false,['id' => 'like'])}}<label for="like"
+                                                                                                     title="Sucks big time"><img class="w-25 h-25" src="/img/thumbsUp.png"></label>
+                                        {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label for="dislike"
+                                                                                                      title="Sucks big tim"><img class="w-25 h-25" src="/img/thumbsDown.png"></label>
+
 
                                     </div>
                                 </div>

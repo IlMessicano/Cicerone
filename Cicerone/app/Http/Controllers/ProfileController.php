@@ -203,5 +203,21 @@ class ProfileController extends Controller
         return redirect('/home')->with('success', "Account cancellato");
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function charge($id)
+    {
+
+        $user = User::find($id);
+        $user->balance = $user->balance + 100;
+        $user->save();
+        return redirect('/profile')->with('success', "Saldo ricaricato");
+
+    }
+
 
 }

@@ -22,7 +22,7 @@ class activity_plannings extends Model
     }
 
 
-    public function enrollements(){
-        return $this->hasMany('App\Activity_Enrollments','planningId','PlanningId');
+    public function enrollments(){
+        return $this->hasMany('App\Activity_Enrollments','PlanningId','planningId');
     }
 }

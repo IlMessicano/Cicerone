@@ -27,12 +27,15 @@ Route::resource('activityplannings', 'ActivityPlanningsController');
 
 Route::resource('evaluations', 'EvaluationsController');
 
+Route::resource('enrollments', 'ActivityEnrollmentsController');
+
 Route::get('/activityplannings/create/{activitum}','ActivityPlanningsController@create');
 
 Route::get('attivita/{activitum}/showplans','ActivityPlanningsController@controlplans');
 
 Route::put('/attivita/searching','AttivitaController@search')->name('searching');
 
+Route::put('/profile/{id}/charge','ProfileController@charge')->name('charging');
 
 Route::resource('/attivita', 'AttivitaController');
 

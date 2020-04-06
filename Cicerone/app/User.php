@@ -51,4 +51,6 @@ implements MustVerifyEmail
         return $this->hasMany('App\Evaluations','User','id');
     }
 
+
+
 }

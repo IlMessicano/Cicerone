@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Activity_Enrollments;
+use App\activity_plannings;
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
+use Carbon;
 
 class ActivityEnrollmentsController extends Controller
 {
@@ -30,7 +34,7 @@ class ActivityEnrollmentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +45,7 @@ class ActivityEnrollmentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Activity_Enrollments  $activity_Enrollments
+     * @param \App\Activity_Enrollments $activity_Enrollments
      * @return \Illuminate\Http\Response
      */
     public function show(Activity_Enrollments $activity_Enrollments)
@@ -52,7 +56,7 @@ class ActivityEnrollmentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Activity_Enrollments  $activity_Enrollments
+     * @param \App\Activity_Enrollments $activity_Enrollments
      * @return \Illuminate\Http\Response
      */
     public function edit(Activity_Enrollments $activity_Enrollments)
@@ -63,22 +67,38 @@ class ActivityEnrollmentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Activity_Enrollments  $activity_Enrollments
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Activity_Enrollments $activity_Enrollments
+     * @param int $planId
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity_Enrollments $activity_Enrollments)
+    public function update(Request $request, Activity_Enrollments $activity_Enrollments, $planId)
     {
-        /*Activity_Enrollments::create([
-             'activity_id' => $activityID,
-         ]);*/
+        $plan = activity_plannings::find($planId);
+$user = User::find(Auth::user()->id);
+        if ($user->balance >= $plan->cost) {
+            $user->balance =   $user->balance - $plan->cost;
+            Activity_Enrollments::create([
+                'PlanningId' => $plan->planningId,
+                'User' => Auth::user()->id,
+                'enrollmentDate' => Carbon\Carbon::now(),
+            ]);
+            $user->save();
+
+            return redirect('/attivita/' . $plan->activity_id)->with('success', 'Attività prenotata');
+
+
+        } else {
+            return redirect('/attivita/' . $plan->activity_id)->with('error', 'Saldo insufficiente per prenotare questa attività');
+        }
+
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Activity_Enrollments  $activity_Enrollments
+     * @param \App\Activity_Enrollments $activity_Enrollments
      * @return \Illuminate\Http\Response
      */
     public function destroy(Activity_Enrollments $activity_Enrollments)

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Evaluations;
 use Illuminate\Http\Request;
+use App\Attivita;
+use App\User;
 use Auth;
 use Carbon;
 
@@ -72,6 +74,18 @@ class EvaluationsController extends Controller
      */
     public function update(Request $request, Evaluations $evaluations,$id)
     {
+        $attivita = Attivita::find($id);
+        $user = User::find($attivita->user_id);
+        if($request->input('rating') == -1) {
+            $attivita->downVote = $attivita->downVote - (-1);
+            $user->downVote = $user->downVote - (-1);
+        }
+        else{
+            $user->upVote = $user->upVote + 1;
+            $attivita->upVote = $attivita->upVote + 1;
+        }
+        $user->save();
+        $attivita->save();
 
          Evaluations::create([
              'vote' => $request->input('rating'),
@@ -82,7 +96,7 @@ class EvaluationsController extends Controller
              'evaluationDate' => Carbon\Carbon::now(),
         ]);
 
-        return view('home')->with('Success','Attività votata');
+        return redirect('attivita/'.$attivita->ActivityId)->with('Success','Attività votata');
 
 
     }
