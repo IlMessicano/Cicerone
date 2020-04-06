@@ -75,7 +75,7 @@ class ActivityEnrollmentsController extends Controller
     public function update(Request $request, Activity_Enrollments $activity_Enrollments, $planId)
     {
         $plan = activity_plannings::find($planId);
-$user = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         if ($user->balance >= $plan->cost) {
             $user->balance =   $user->balance - $plan->cost;
             Activity_Enrollments::create([
@@ -100,9 +100,17 @@ $user = User::find(Auth::user()->id);
      *
      * @param \App\Activity_Enrollments $activity_Enrollments
      * @return \Illuminate\Http\Response
+     * @param int $id
      */
-    public function destroy(Activity_Enrollments $activity_Enrollments)
+    public function destroy(Activity_Enrollments $activity_Enrollments, $id)
     {
-        //
+        $enroll = Activity_Enrollments::find($id);
+        $activity_id = $enroll->plan->activity_id;
+        $costo = $enroll->plan->cost;
+        $user = User::find($enroll->User);
+        $user->balance = $user->balance + $costo;
+        $enroll->delete();
+        return redirect('/attivita/' . $activity_id)->with('success', 'Prenotazione cancellata e rimborso effettuato');
+
     }
 }

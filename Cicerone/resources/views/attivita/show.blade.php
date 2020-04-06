@@ -145,10 +145,12 @@
 
                                                         @foreach($plan->enrollments as $enroll)
                                                             @if(($enroll->User == Auth::user()->id && $enroll->PlanningId == $plan->planningId))
-                                                                <button class="btn btn-primary disabled ">Attività già
-                                                                    prenotata
-                                                                </button>
-
+                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll->id],'method' => 'POST',
+'class'
+=> 'pull-right'])!!}
+                                                                {{Form::hidden('_method','DELETE')}}
+                                                                {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
+                                                                {!!form::close()!!}
 
                                                               @endif
 
@@ -168,6 +170,8 @@
 
 
                                                 @endif
+
+
 
                                             </div>
                                         </div>
@@ -292,7 +296,11 @@
 
                                     Recensione scritta da:<br> {{$eval->user->name}} {{$eval->user->surname}} <br>
 
-                                    Stelle: {{$eval->vote}}  <br>
+                                    Valutazione: @if($eval->vote == 1)
+                                        <img class="w-25 h-25" src="/img/thumbsUp.png">
+                                        @else
+                                        <img class="w-25 h-25" src="/img/thumbsDown.png">
+                                        @endif<br>
 
                                     Descrizione:<br> {{$eval->comment}}
                                     <hr class="featurette-divider">
