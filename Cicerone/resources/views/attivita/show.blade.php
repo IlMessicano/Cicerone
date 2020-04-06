@@ -143,9 +143,13 @@
                                                 @if(Auth::user()->id != $attivita->user_id )
 
                                                     @forelse($plan->enrollments as $enroll)
-                                                        @if($enroll->PlanningId == $plan->planningId)
 
-                                                            @if($enroll->User != Auth::user()->id)
+                                                  
+
+
+                                                    @if($enroll->PlanningId == $plan->planningId)
+
+                                                            @if($enroll->User != Auth::user()->id )
                                                                 {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
 'class'
 => 'pull-right'])!!}
