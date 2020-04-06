@@ -18,7 +18,7 @@ class CreateSpokenLanguageTable extends Migration
             $table->string('Language');
             $table->unsignedBigInteger('User');
             $table->foreign('Language')->references('languageAbbrevation')->on('language');
-            $table->foreign('User')->references('id')->on('users');
+            $table->foreign('User')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

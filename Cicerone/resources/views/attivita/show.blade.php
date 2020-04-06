@@ -141,10 +141,22 @@
 
                                             <div class="col text-right">
                                                 @if(Auth::user()->id != $attivita->user_id )
-                                                    @if(count($plan->enrollments)>= 0)
 
-                                                        @foreach($plan->enrollments as $enroll)
-                                                            @if(($enroll->User == Auth::user()->id && $enroll->PlanningId == $plan->planningId))
+                                                    @forelse($plan->enrollments as $enroll)
+                                                        @if($enroll->PlanningId == $plan->planningId)
+
+                                                            @if($enroll->User != Auth::user()->id)
+                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
+'class'
+=> 'pull-right'])!!}
+                                                                {{Form::hidden('_method','PUT')}}
+                                                                {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
+                                                                {!!form::close()!!}
+
+
+                                                            @else
+
+
                                                                 {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll->id],'method' => 'POST',
 'class'
 => 'pull-right'])!!}
@@ -152,23 +164,16 @@
                                                                 {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
                                                                 {!!form::close()!!}
 
+
                                                             @endif
+                                                        @endif
 
-                                                            @if($enroll->PlanningId !== '')
-                                                                <h1>porco dio</h1>
-                                                            @endif
-
-
-                                                        @endforeach
-                                                    @endif
+                                                    @empty
 
 
-                                                    {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST',
-'class'
-=> 'pull-right'])!!}
-                                                    {{Form::hidden('_method','PUT')}}
-                                                    {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
-                                                    {!!form::close()!!}
+                                                    @endforelse
+
+
                                                 @endif
 
 
