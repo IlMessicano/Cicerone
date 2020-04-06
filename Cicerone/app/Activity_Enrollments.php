@@ -8,9 +8,8 @@ class Activity_Enrollments extends Model
 {
     public $table='activity__enrollments';
 
-    /*protected $primaryKey =[
-        'PlanningId', 'User',
-    ];*/
+    protected $primaryKey ="id";
+
 
     protected $fillable = [
         'PlanningId', 'User', 'enrollmentDate',
