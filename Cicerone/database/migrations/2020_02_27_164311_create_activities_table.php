@@ -19,7 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->string('imgActivity');
             $table->text('description');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('upVote')->default(0);
             $table->integer('downVote')->default(0);
             $table->string('latCoord');

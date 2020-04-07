@@ -94,61 +94,63 @@
 
                         @foreach($attivita->planning as $plan)
                             @if(!is_null($plan->startDate))
-                                <div class="card bg-light text-dark m-3">
-                                    <div class="card-body">
-                                        <div class="form-group row col-md-12 text-center">
+                                @if($plan->stopDate > Carbon\Carbon::now())
+                                    <div class="card bg-light text-dark m-3">
+                                        <div class="card-body">
+                                            <div class="form-group row col-md-12 text-center">
 
-                                            <div class="col-md-3 mb-1">
-                                                <label for="state">Data inizio:</label><br>
-                                                <label class="">
-                                                    {{$plan->startDate}}
+                                                <div class="col-md-3 mb-1">
+                                                    <label for="state">Data inizio:</label><br>
+                                                    <label class="">
+                                                        {{$plan->startDate}}
 
-                                                </label>
-
-
-                                            </div>
-
-                                            <div class="col-md-3 mb-1">
-                                                <label for="state">Data fine:</label><br>
-                                                <label class="">
-                                                    {{$plan->startDate}}
-
-                                                </label>
-
-                                            </div>
-
-                                            <div class="col-md-3 mb-1">
-                                                <label for="state">Note:</label><br>
-                                                <label class="">
-                                                    @if(is_null($plan->notes))
-                                                        Nessuna nota presente
-                                                    @else
-                                                        {{$plan->notes}}
-                                                    @endif
-                                                </label>
-
-                                            </div>
+                                                    </label>
 
 
-                                            <div class="col-md-3 mb-1">
-                                                <label for="costo">Costo:</label><br>
-                                                <label class="">
+                                                </div>
 
-                                                    {{$plan->cost}}
+                                                <div class="col-md-3 mb-1">
+                                                    <label for="state">Data fine:</label><br>
+                                                    <label class="">
+                                                        {{$plan->stopDate}}
 
-                                                </label>
-                                            </div>
+                                                    </label>
 
-                                            <div class="col text-right">
+                                                </div>
 
-                                                @php
-                                                    $found = false;
-                                                @endphp
+                                                <div class="col-md-3 mb-1">
+                                                    <label for="state">Note:</label><br>
+                                                    <label class="">
+                                                        @if(is_null($plan->notes))
+                                                            Nessuna nota presente
+                                                        @else
+                                                            {{$plan->notes}}
+                                                        @endif
+                                                    </label>
+
+                                                </div>
 
 
-                                                @if(Auth::user()->id != $attivita->user_id )
+                                                <div class="col-md-3 mb-1">
+                                                    <label for="costo">Costo:</label><br>
+                                                    <label class="">
 
-                                                    <div class="invisible">{{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->value('id') }}</div>
+                                                        {{$plan->cost}}
+
+                                                    </label>
+                                                </div>
+
+                                                <div class="col text-right">
+
+                                                    @php
+                                                        $found = false;
+                                                    @endphp
+
+
+                                                    @if(Auth::user()->id != $attivita->user_id )
+
+                                                        <div
+                                                            class="invisible">{{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->value('id') }}</div>
                                                         @if((\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->exists()))
 
                                                             {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll],'method' => 'POST','class'=> 'pull-right'])!!}
@@ -157,62 +159,122 @@
                                                             {!!form::close()!!}
 
                                                         @else
+
                                                             {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST','class'  => 'pull-right'])!!}
                                                             {{Form::hidden('_method','PUT')}}
-                                                            {{Form::submit('Prenota questa attività',['class' => 'btn btn-primary'])}}
+                                                            <button type="button" class="btn btn-primary "
+                                                                    data-toggle="modal"
+                                                                    data-target="#alertPrenotazione">
+                                                                Prenota questa attività
+                                                            </button>
+
+
+                                                            <div class="modal fade" id="alertPrenotazione" tabindex="-1"
+                                                                 role="dialog" aria-labelledby="exampleModalLabel"
+                                                                 aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLabel">Attenzione!</h5>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Stai per prenotare questa attività. Ciò comporta che ti sarà addebitato il costo dell'attività. Premi conferma per continuare.
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            {{Form::submit('Conferma',['class' => 'btn btn-primary' ])}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             {!!form::close()!!}
+
                                                         @endif
 
 
 
-                                                @endif
+                                                    @endif
 
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             @endif
                         @endforeach
 
 
                     </div>
 
-                    <div class="card mb-4">
-                        <div class="form-group row col-md-12">
-                            <div class="col-md-12 my-3">
-                                {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
-                    'class'
-                    => 'pull-right'])!!}
-
-                                <div class="row text-center">
-                                    <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
-                                    <div class="m-2">
-
-
-                                        {{Form::radio('rating', '1', false,['id' => 'like'])}}<label for="like"
-                                                                                                     title="Sucks big time"><img
-                                                class="w-25 h-25" src="/img/thumbsUp.png"></label>
-                                        {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label for="dislike"
-                                                                                                         title="Sucks big tim"><img
-                                                class="w-25 h-25" src="/img/thumbsDown.png"></label>
+                    @php
+                        $found = false;
+                    @endphp
+                    <div class="invisible">
+                        PLAN: {{$plan= \App\activity_plannings::where('activity_id',$attivita->ActivityId)->where('stopDate','<',Carbon\Carbon::now())->pluck('planningId')}}</div>
+                    @foreach($plan as $p)
+                        <div class="invisible">
+                            ENROLL: {{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$p)->first() }}</div>
+                        @if(!is_null($enroll))
+                            @php
+                                $found = true;
+                            @endphp
+                        @endif
+                    @endforeach
+                    <div class="invisible">
+                        EVALUATION: {{$evaluation =\App\Evaluations::where('User',Auth::user()->id)->where('Activity',$attivita->ActivityId)->get() }}</div>
 
 
+                    @if(($found == true) && ($evaluation == '[]'))
+
+
+                        <div class="card mb-4">
+                            <div class="form-group row col-md-12">
+                                <div class="col-md-12 my-3">
+                                    {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
+                        'class'
+                        => 'pull-right'])!!}
+
+                                    <div class="row text-center">
+                                        <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
+                                        <div class="m-2">
+
+
+                                            {{Form::radio('rating', '1', false,['id' => 'like',"required" => 'required'])}}
+                                            <label for="like"
+                                                   title="Sucks big time"><img
+                                                    class="w-25 h-25" src="/img/thumbsUp.png"></label>
+                                            {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label
+                                                for="dislike"
+                                                title="Sucks big tim"><img
+                                                    class="w-25 h-25" src="/img/thumbsDown.png"></label>
+
+
+                                        </div>
                                     </div>
+
+
+                                    <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
+                                    {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
+
                                 </div>
-
-
-                                <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
-                                {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
-
+                            </div>
+                            <div class="form-group row col-md-12 text-right">
+                                {{Form::hidden('_method','PUT')}}
+                                {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
+                                {!!form::close()!!}
                             </div>
                         </div>
-                        <div class="form-group row col-md-12 text-right">
-                            {{Form::hidden('_method','PUT')}}
-                            {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
-                            {!!form::close()!!}
-                        </div>
-                    </div>
+                    @elseif($found==false)
+
+
+                    @endif
                 </div>
 
 
@@ -377,4 +439,9 @@
             </div>
         </div>
     </div>
+
+
+
+
+
 @endsection

@@ -16,9 +16,9 @@ class CreateActivityEnrollmentsTable extends Migration
         Schema::create('activity__enrollments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('User');
-            $table->foreign('User')->references('id')->on('users');
+            $table->foreign('User')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('PlanningId');
-            $table->foreign('PlanningId')->references('planningId')->on('activity_plannings');
+            $table->foreign('PlanningId')->references('planningId')->on('activity_plannings')->onDelete('cascade');
             $table->date('enrollmentDate');
         });
     }

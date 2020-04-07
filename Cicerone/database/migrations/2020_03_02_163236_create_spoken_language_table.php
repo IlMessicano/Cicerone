@@ -17,7 +17,7 @@ class CreateSpokenLanguageTable extends Migration
         Schema::create('spoken_language', function (Blueprint $table) {
             $table->string('Language');
             $table->unsignedBigInteger('User');
-            $table->foreign('Language')->references('languageAbbrevation')->on('language');
+            $table->foreign('Language')->references('languageAbbrevation')->on('language')->onDelete('cascade');
             $table->foreign('User')->references('id')->on('users')->onDelete('cascade');
 
         });

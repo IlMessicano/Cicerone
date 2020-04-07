@@ -74,6 +74,12 @@ class EvaluationsController extends Controller
      */
     public function update(Request $request, Evaluations $evaluations,$id)
     {
+
+        $this->validate($request, [
+            'rating' => 'required',
+        ]);
+
+
         $attivita = Attivita::find($id);
         $user = User::find($attivita->user_id);
         if($request->input('rating') == -1) {

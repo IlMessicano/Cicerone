@@ -74,6 +74,7 @@ class ActivityEnrollmentsController extends Controller
      */
     public function update(Request $request, Activity_Enrollments $activity_Enrollments, $planId)
     {
+
         $plan = activity_plannings::find($planId);
         $user = User::find(Auth::user()->id);
         if($plan->numPartecipants < $plan->maxPartecipants) {
@@ -114,7 +115,7 @@ class ActivityEnrollmentsController extends Controller
 
         $activity_id = $enroll->plan->activity_id;
         $costo = $enroll->plan->cost;
-     
+
         $enroll->plan->numPartecipants = $enroll->plan->numPartecipants - 1;
         $enroll->plan->save();
         $user = User::find($enroll->User);
