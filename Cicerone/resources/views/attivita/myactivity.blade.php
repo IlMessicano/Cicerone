@@ -121,10 +121,6 @@
                         </div>
                     </div>
 
-
-
-
-
                 @endforeach
             @else
                 <div class="h4 text-center m-4">
