@@ -133,5 +133,6 @@
 
             @endif
         </div>
+    </div>
 
 @endsection

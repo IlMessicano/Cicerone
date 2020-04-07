@@ -628,7 +628,7 @@
                                    class="col-md-2 col-form-label text-md-left">{{ __('Lingue parlate') }}</label>
 
 
-                            <select id="languages" placeholder="Lingue parlate"
+                            <select id="languages" placeholder="Seleziona le lingue da te conosciute"
                                     class="form-control @error('languages') is-invalid @enderror"
                                     name="languages[]" value="{{ old('languages') }}" required
                                     autocomplete="languages" multiple>
@@ -706,6 +706,9 @@
                                 <option value="XH">Xhosa</option>
                             </select>
 
+                            <script>
+                                
+                            </script>
 
                             @error('nationality')
                             <span class="invalid-feedback" role="alert">

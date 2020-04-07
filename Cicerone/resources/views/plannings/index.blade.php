@@ -8,10 +8,10 @@
             <h1 class="display-4">Pianificazioni per {{$attivita->nameActivity}} </h1>
             <a class="btn btn-primary btn-lg btn-block"
                href="http://127.0.0.1:8000/activityplannings/create/{{$attivita->ActivityId}}">Crea una nuova pianificazione</a>
+
             @if(count($plans)>0)
                 @foreach($plans as $plan)
                     @if($plan->activity_id == $attivita->ActivityId)
-
 
                     <div class="card bg-light text-dark m-3">
                         <div class="card-body">
@@ -103,6 +103,34 @@
                                             data-target="#exampleModal">
                                         Elimina
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler cancellare questa pianificazione?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ATTENZIONE! L'operazione sarà irreversibile <br>
+                                                    Se vuoi cancellare questa pianificazione clicca su Elimina.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                    {!!Form::open(['action' =>['ActivityPlanningsController@destroy', $plan->planningId],'method' => 'POST',
+                                                'class'
+                                                => 'pull-right'])!!}
+                                                    {{Form::hidden('_method','DELETE')}}
+                                                    {{Form::submit('Elimina',['class' => 'btn btn-danger'])}}
+                                                    {!!form::close()!!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -123,43 +151,4 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler cancellare questa pianificazione?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ATTENZIONE! L'operazione sarà irreversibile <br>
-                    Se vuoi cancellare questa pianificazione clicca su Elimina.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    {!!Form::open(['action' =>['ActivityPlanningsController@destroy', $plan->planningId],'method' => 'POST',
-                'class'
-                => 'pull-right'])!!}
-                    {{Form::hidden('_method','DELETE')}}
-                    {{Form::submit('Elimina',['class' => 'btn btn-danger'])}}
-                    {!!form::close()!!}
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
