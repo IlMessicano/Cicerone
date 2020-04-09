@@ -22,9 +22,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/mieattivita">Le mie attività</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Globetrotter</a>
-                </li>
+
             </ul>
 
 

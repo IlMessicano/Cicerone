@@ -95,10 +95,14 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $id = auth()->user()->id;
-        $user = User::find($id);
-        return view('profile.edit')->with('user', $user);
-
+        if(Auth::user()->id == $id) {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            return view('profile.edit')->with('user', $user);
+        }
+        else{
+            return redirect('home')->withErrors('Non puoi modificare il profilo degli altri utenti');
+        }
     }
 
     /**

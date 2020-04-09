@@ -12,7 +12,7 @@
                     <div class="col-md-6 mb-3">
                         {{Form::label ('start', 'Data inizio')}}
 
-                        <input class="form-control" type="datetime-local" name="start" value="{{$plan->startDate}}" required>
+                        <input class="form-control" type="datetime-local" name="start" id="start" value="{{$plan->startDate}}"   required>
 
                     </div>
 
@@ -20,23 +20,25 @@
                     <div class="col-md-6 mb-3">
                         {{Form::label ('stop', 'Data fine')}}
 
-                        <input class="form-control" type="datetime-local" name="stop" value="{{$plan->stopDate}}" required>
+                        <input class="form-control" type="datetime-local" id="stop" name="stop" value="{{$plan->stopDate}}" required>
 
                         <script>
-                            var today = new Date();
-                            var dd = today.getDate();
-                            var mm = today.getMonth() + 1; //January is 0!
-                            var yyyy = today.getFullYear();
-                            if (dd < 10) {
-                                dd = '0' + dd
-                            }
-                            if (mm < 10) {
-                                mm = '0' + mm
-                            }
 
-                            today = yyyy + '-' + mm + '-' + dd;
-                            document.getElementById("start").setAttribute("min", today);
-                            document.getElementById("stop").setAttribute("min", today);
+                                var today = new Date();
+                                var dd = today.getDate();
+                                var mm = today.getMonth() + 1; //January is 0!
+                                var yyyy = today.getFullYear();
+                                if (dd < 10) {
+                                    dd = '0' + dd
+                                }
+                                if (mm < 10) {
+                                    mm = '0' + mm
+                                }
+
+                                today = yyyy + '-' + mm + '-' + dd + " 00:00";
+                                document.getElementById("start").setAttribute("min", today);
+                                document.getElementById("stop").setAttribute("min", today);
+                           
                         </script>
                     </div>
                 </div>

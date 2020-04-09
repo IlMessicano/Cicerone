@@ -69,13 +69,13 @@ class ActivityEnrollmentsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Activity_Enrollments $activity_Enrollments
-     * @param int $planId
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity_Enrollments $activity_Enrollments, $planId)
+    public function update(Request $request, Activity_Enrollments $activity_Enrollments, $id)
     {
 
-        $plan = activity_plannings::find($planId);
+        $plan = activity_plannings::find($id);
         $user = User::find(Auth::user()->id);
         if($plan->numPartecipants < $plan->maxPartecipants) {
             if ($user->balance >= $plan->cost) {

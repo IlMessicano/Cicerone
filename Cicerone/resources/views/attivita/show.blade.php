@@ -27,15 +27,13 @@
                             <hr class="featurette-divider">
                             <blockquote class="blockquote text-center">
                                 <div class="row">
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <p class="mb-0">Voti positivi: {{$attivita->upVote}}</p>
                                     </div>
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <p class="mb-0">Voti negativi: {{$attivita->downVote}}</p>
                                     </div>
-                                    <div class="col-md-4 mb-2">
-                                        <p class="mb-0">Costo: </p>
-                                    </div>
+
                                 </div>
                             </blockquote>
                             <hr class="featurette-divider">
@@ -146,60 +144,71 @@
                                                         $found = false;
                                                     @endphp
 
+                                                    @auth
+                                                        @if(Auth::user()->id != $attivita->user_id )
 
-                                                    @if(Auth::user()->id != $attivita->user_id )
+                                                            <div
+                                                                class="invisible">{{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->value('id') }}</div>
+                                                            @if((\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->exists()))
 
-                                                        <div
-                                                            class="invisible">{{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->value('id') }}</div>
-                                                        @if((\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$plan->planningId)->exists()))
+                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll],'method' => 'POST','class'=> 'pull-right'])!!}
+                                                                {{Form::hidden('_method','DELETE')}}
+                                                                {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
+                                                                {!!form::close()!!}
 
-                                                            {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll],'method' => 'POST','class'=> 'pull-right'])!!}
-                                                            {{Form::hidden('_method','DELETE')}}
-                                                            {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
-                                                            {!!form::close()!!}
-
-                                                        @else
-
-                                                            {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST','class'  => 'pull-right'])!!}
-                                                            {{Form::hidden('_method','PUT')}}
-                                                            <button type="button" class="btn btn-primary "
-                                                                    data-toggle="modal"
-                                                                    data-target="#alertPrenotazione">
-                                                                Prenota questa attività
-                                                            </button>
+                                                            @else
 
 
-                                                            <div class="modal fade" id="alertPrenotazione" tabindex="-1"
-                                                                 role="dialog" aria-labelledby="exampleModalLabel"
-                                                                 aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title"
-                                                                                id="exampleModalLabel">Attenzione!</h5>
-                                                                            <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Stai per prenotare questa attività. Ciò comporta che ti sarà addebitato il costo dell'attività. Premi conferma per continuare.
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            {{Form::submit('Conferma',['class' => 'btn btn-primary' ])}}
+
+
+
+                                                                <button type="button" class="btn btn-primary "
+                                                                        data-toggle="modal"
+                                                                        data-target="#alertPrenotazione{{$plan->planningId}}">
+                                                                    Prenota questa attività
+                                                                </button>
+
+
+                                                                <div class="modal fade"
+                                                                     id="alertPrenotazione{{$plan->planningId}}"
+                                                                     tabindex="-1"
+                                                                     role="dialog" aria-labelledby="exampleModalLabel"
+                                                                     aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title"
+                                                                                    id="exampleModalLabel">
+                                                                                    Attenzione!</h5>
+                                                                                <button type="button" class="close"
+                                                                                        data-dismiss="modal"
+                                                                                        aria-label="Close">
+                                                                                    <span
+                                                                                        aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Stai per prenotare questa attività. Ciò
+                                                                                comporta che ti sarà addebitato il costo
+                                                                                dell'attività. Premi conferma per
+                                                                                continuare.
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                {!!Form::open(['action' =>['ActivityEnrollmentsController@update', $plan->planningId],'method' => 'POST','class'  => 'pull-right'])!!}
+                                                                                {{Form::submit('Conferma',['class' => 'btn btn-primary' ])}}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                                {{Form::hidden('_method','PUT')}}
+                                                                {!!form::close()!!}
 
-                                                            {!!form::close()!!}
+                                                            @endif
+
+
 
                                                         @endif
-
-
-
-                                                    @endif
+                                                    @endauth
 
 
                                                 </div>
@@ -212,69 +221,70 @@
 
 
                     </div>
-
-                    @php
-                        $found = false;
-                    @endphp
-                    <div class="invisible">
-                        PLAN: {{$plan= \App\activity_plannings::where('activity_id',$attivita->ActivityId)->where('stopDate','<',Carbon\Carbon::now())->pluck('planningId')}}</div>
-                    @foreach($plan as $p)
+                    @auth
+                        @php
+                            $found = false;
+                        @endphp
                         <div class="invisible">
-                            ENROLL: {{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$p)->first() }}</div>
-                        @if(!is_null($enroll))
-                            @php
-                                $found = true;
-                            @endphp
-                        @endif
-                    @endforeach
-                    <div class="invisible">
-                        EVALUATION: {{$evaluation =\App\Evaluations::where('User',Auth::user()->id)->where('Activity',$attivita->ActivityId)->get() }}</div>
+                            PLAN: {{$plan= \App\activity_plannings::where('activity_id',$attivita->ActivityId)->where('stopDate','<',Carbon\Carbon::now())->pluck('planningId')}}</div>
+                        @foreach($plan as $p)
+                            <div class="invisible">
+                                ENROLL: {{$enroll =\App\Activity_Enrollments::where('User',Auth::user()->id)->where('PlanningId',$p)->first() }}</div>
+                            @if(!is_null($enroll))
+                                @php
+                                    $found = true;
+                                @endphp
+                            @endif
+                        @endforeach
+                        <div class="invisible">
+                            EVALUATION: {{$evaluation =\App\Evaluations::where('User',Auth::user()->id)->where('Activity',$attivita->ActivityId)->get() }}</div>
 
 
-                    @if(($found == true) && ($evaluation == '[]'))
+                        @if(($found == true) && ($evaluation == '[]'))
 
 
-                        <div class="card mb-4">
-                            <div class="form-group row col-md-12">
-                                <div class="col-md-12 my-3">
-                                    {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
-                        'class'
-                        => 'pull-right'])!!}
+                            <div class="card mb-4">
+                                <div class="form-group row col-md-12">
+                                    <div class="col-md-12 my-3">
+                                        {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
+                            'class'
+                            => 'pull-right'])!!}
 
-                                    <div class="row text-center">
-                                        <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
-                                        <div class="m-2">
-
-
-                                            {{Form::radio('rating', '1', false,['id' => 'like',"required" => 'required'])}}
-                                            <label for="like"
-                                                   title="Sucks big time"><img
-                                                    class="w-25 h-25" src="/img/thumbsUp.png"></label>
-                                            {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label
-                                                for="dislike"
-                                                title="Sucks big tim"><img
-                                                    class="w-25 h-25" src="/img/thumbsDown.png"></label>
+                                        <div class="row text-center">
+                                            <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
+                                            <div class="m-2">
 
 
+                                                {{Form::radio('rating', '1', false,['id' => 'like',"required" => 'required'])}}
+                                                <label for="like"
+                                                       title="Sucks big time"><img
+                                                        class="w-25 h-25" src="/img/thumbsUp.png"></label>
+                                                {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label
+                                                    for="dislike"
+                                                    title="Sucks big tim"><img
+                                                        class="w-25 h-25" src="/img/thumbsDown.png"></label>
+
+
+                                            </div>
                                         </div>
+
+
+                                        <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
+                                        {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
+
                                     </div>
-
-
-                                    <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
-                                    {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
-
+                                </div>
+                                <div class="form-group row col-md-12 text-right">
+                                    {{Form::hidden('_method','PUT')}}
+                                    {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
+                                    {!!form::close()!!}
                                 </div>
                             </div>
-                            <div class="form-group row col-md-12 text-right">
-                                {{Form::hidden('_method','PUT')}}
-                                {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
-                                {!!form::close()!!}
-                            </div>
-                        </div>
-                    @elseif($found==false)
+                        @elseif($found==false)
 
 
-                    @endif
+                        @endif
+                    @endauth
                 </div>
 
 
@@ -313,33 +323,103 @@
                                 attività.
                             </div>
                             <div class="card-body">
-                                <form>
-                                    <label for="email" class="grey-text">E-mail</label>
-                                    <input type="email" id="email" class="form-control">
-                                    <br>
-                                    <label for="password" class="grey-text">Password</label>
-                                    <input type="text" id="password" class="form-control">
-                                    <div class="text-center mt-4">
-                                        <button class="btn btn-info btn-md" type="submit">Sign up
-                                        </button>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <div class="form-group row col-md-15">
+                                        <label for="email" id="loginEmailLabel"
+                                               class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+
+                                        <div class="col-md-8">
+                                            <input id="email" placeholder="E-Mail" type="email"
+                                                   class="form-control @error('email') is-invalid @enderror"
+                                                   name="email"
+                                                   value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row col-md-15">
+                                        <label for="password" id="psswLoginLabel"
+                                               class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                        <div class="col-md-8">
+                                            <input id="password" placeholder="Password" type="password"
+                                                   class="form-control @error('password') is-invalid @enderror"
+                                                   name="password"
+                                                   required autocomplete="current-password">
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 offset-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remember"
+                                                       id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                <label class="form-check-label" for="remember" id="rememberLabel">
+                                                    {{ __('Remember Me') }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-12 offset-md-4">
+                                            <button type="submit" name="button" class="btn btn-info btn-md">
+                                                {{ __('Accedi') }}
+                                            </button>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-md-12">
+                                                @if (Route::has('password.request'))
+                                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                        {{ __('Password dimenticata?') }}
+                                                    </a>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-12">
+                                                @if (Route::has('register'))
+                                                    <a id="noAccountText" class="btn btn-link"
+                                                       href="{{route('register')}}">
+                                                        {{__('Non hai un account?')}}
+                                                    </a>
+                                                @endif
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
+
+
                             </div>
                         @endif
+                        @auth
+                            @if(Auth::user()->id == $attivita->user_id)
+                                <div class="card-header">Pannello di controllo attività
+                                </div>
+                                <div class="card-body">
+                                    <a class="btn btn-primary btn-lg btn-block"
+                                       href="/attivita/{{$attivita->ActivityId}}/edit">Modifica attività</a>
+                                    <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                        Elimina attività
+                                    </button>
+                                </div>
 
-                        @if(Auth::user()->id == $attivita->user_id)
-                            <div class="card-header">Pannello di controllo attività
-                            </div>
-                            <div class="card-body">
-                                <a class="btn btn-primary btn-lg btn-block"
-                                   href="/attivita/{{$attivita->ActivityId}}/edit">Modifica attività</a>
-                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                    Elimina attività
-                                </button>
-                            </div>
-
-                        @endif
+                            @endif
+                        @endauth
                     </div>
 
 

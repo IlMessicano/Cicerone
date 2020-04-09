@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity_Enrollments;
 use App\activity_plannings;
 use App\Attivita;
 use Illuminate\Http\Request;
@@ -32,8 +33,12 @@ class AttivitaController extends Controller
      */
     public function create()
     {
-        $attivita = new Attivita;
-        return view('attivita.index')->with('attivita', $attivita);
+        if(!Auth::guest()) {
+            $attivita = new Attivita;
+            return view('attivita.index')->with('attivita', $attivita);
+        }
+        else
+            return redirect('home')->withErrors('Devi effettuare l\'accesso per poter prenotare un\'attività');
     }
 
     /**
@@ -117,6 +122,8 @@ class AttivitaController extends Controller
     public function edit($id)
     {
         $attivita = Attivita::find($id);
+        if($attivita->user_id != Auth::user()->id)
+            return redirect('/home')->withErrors('Non puoi modificare le attività che non ti appartengono');
         return view('attivita.edit')->with('attivita',$attivita);
     }
 
@@ -181,7 +188,7 @@ class AttivitaController extends Controller
 
         $attivita->user_id = auth()->user()->id;
         $attivita->save();
-        return redirect()->route('attivita.show', $id)->withSuccess('S-a modificat cu success!');
+        return redirect()->route('attivita.show', $id)->withSuccess('Attività modificata');
 
 
     }
@@ -194,11 +201,21 @@ class AttivitaController extends Controller
      */
     public function destroy($ActivityId)
     {
-        $attivita = User::find($ActivityId);
+        $attivita = Attivita::find($ActivityId);
+        $plans = activity_plannings::where('activity_id',$ActivityId)->get();
+
+        foreach ($plans as $plan){
+            $enroll = Activity_Enrollments::where('PlanningId',$plan->planningId)->value('User');
+          $user = User::find($enroll);
+
+            $user->balance = $user->balance + $plan->cost;
+            $user->save();
+        }
+
         Storage::delete('public/activityImg/' . $attivita->imgActivity);
 
         Attivita::where('ActivityId', $ActivityId)->delete();
-        return redirect('/home')->with('success', "Attività cancellata");
+        return redirect('/home')->with('success', "Attività cancellata e rimborso effettuato a tutti i Globetrotter iscritti alle sue pianificiazioni");
     }
 
     /**
@@ -222,19 +239,32 @@ class AttivitaController extends Controller
 
         ]);
         $paese = $request->input('paese');
+
         $start = $request->input('start'). " 00:00";
 
-        $stop = $request->input('stop') ;
+        $stop = $request->input('stop'). " 00:00" ;
         $costo = $request->input('costo');
-        if(is_null($costo))
-            $costo = 0;
-        $attivita = DB::table('Activity')
-            ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
-            ->where('City','=',$paese)
-            ->whereDate('startDate', '>=', $start)
-            ->whereDate('stopDate', '<=', $stop)
-            ->where('Cost','<=',$costo)
-            ->get();
+
+        if(is_null($costo)){
+            $attivita = DB::table('Activity')
+                ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
+                ->where('Activity.City','=',$paese)
+                ->whereDate('activity_plannings.startDate', '>=', $start)
+                ->whereDate('activity_plannings.stopDate', '<=', $stop)
+
+                ->get();
+        }
+        else{
+            $attivita = DB::table('Activity')
+                ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
+                ->where('Activity.City','=',$paese)
+                ->whereDate('activity_plannings.startDate', '>=', $start)
+                ->whereDate('activity_plannings.stopDate', '<=', $stop)
+                ->where('activity_plannings.Cost','<=',$costo)
+                ->get();
+        }
+
+
 
 
         return view('attivita.search')->with('attivita', $attivita);

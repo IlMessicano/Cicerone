@@ -6,6 +6,7 @@ use App\activity_plannings;
 use App\Attivita;
 use Illuminate\Http\Request;
 use View;
+use Auth;
 class ActivityPlanningsController extends Controller
 {
     /**
@@ -58,6 +59,8 @@ class ActivityPlanningsController extends Controller
     public function edit(Request $request, $id)
     {
         $plan = activity_plannings::find($id);
+        if($plan->activity->user_id != Auth::user()->user_id)
+            return redirect('/home')->withErrors('Non puoi modificare le pianificazioni di attività che non ti appartengono');
         return view('plannings.edit')->with('plan',$plan);
     }
     /**
@@ -104,6 +107,8 @@ class ActivityPlanningsController extends Controller
         $act_id = $request->route('activitum');
         $plans = activity_plannings::all();
         $attivita = Attivita::find($act_id);
+        if($attivita->user_id != Auth::user()->id)
+            return redirect('/home')->withErrors('Non puoi modificare le pianificazioni delle attività che non ti appartengono');
 
         return view('plannings.index')->with('plans', $plans)->with('attivita',$attivita);
     }
