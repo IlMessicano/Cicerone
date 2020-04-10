@@ -31,7 +31,7 @@ class ActivityPlanningsController extends Controller
         activity_plannings::create([
             'activity_id' => $activityID,
         ]);
-        return redirect('mieattivita')->with('Success','Pianificazione creata');
+        return redirect('attivita/'.$activityID.'/showplans')->withSuccess('Pianificazione creata');
     }
 
     /**

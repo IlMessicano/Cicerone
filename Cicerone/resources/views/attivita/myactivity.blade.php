@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="shadow p-4 m-4 bg-white">
-            <h1 class="display-4">Attività da Cicerone</h1>
+            <h1 class="display-4">Cicerone: attività create da te</h1>
 
             @if(count($attivita)>0)
                 @foreach($attivita as $act)
@@ -79,6 +79,7 @@
 
 
                             <h4 class="ml-3">Dettagli attività:</h4>
+
                             <div class="row text-center">
                                 <div class="col-md-2">
                                     Country: {{$act->Country}}

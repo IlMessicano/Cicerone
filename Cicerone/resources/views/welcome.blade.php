@@ -3,6 +3,9 @@
 @section('content')
 
 <style>
+    body{
+        background-color: #FAF8CC;
+    }
     .vertical-center {
         min-height: 75%;
         min-height: 75vh;
@@ -10,7 +13,7 @@
         align-items: center;
     }
 </style>
-<div class="vertical-center">
+<div class="vertical-center" >
 
             <div class="jumbotron w-100 bg-black" id="welcome">
                 <div class="container ">

@@ -87,12 +87,13 @@
                         </div>
                     </div>
 
-                    <div class="card mb-4">
+
 
 
                         @foreach($attivita->planning as $plan)
                             @if(!is_null($plan->startDate))
                                 @if($plan->stopDate > Carbon\Carbon::now())
+                                <div class="card mb-4">
                                     <div class="card bg-light text-dark m-3">
                                         <div class="card-body">
                                             <div class="form-group row col-md-12 text-center">
@@ -215,12 +216,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 @endif
                             @endif
                         @endforeach
 
 
-                    </div>
+
                     @auth
                         @php
                             $found = false;
@@ -417,7 +419,10 @@
                                         Elimina attività
                                     </button>
 
-                                   
+                                    <a class="btn btn-primary btn-lg btn-block"
+                                       href="http://127.0.0.1:8000/attivita/{{$attivita->ActivityId}}/showplans">Gestisci pianificazioni</a>
+
+
                                 </div>
 
                             @endif
@@ -445,38 +450,14 @@
                                 @endforeach
                             @else
                                 <div class="text-center">
-                                    Nessuna descrizione per questa attività
+                                    Nessuna commento per questa attività
                                 </div>
                             @endif
 
                         </div>
                     </div>
 
-                    <div class="card mb-4">
 
-                        <div class="card-header">Attività simili in {{$attivita->City}}</div>
-
-
-                        <div class="card-body">
-
-                            <ul class="list-unstyled">
-                                <li class="media">
-                                    <img class="d-flex mr-3"
-                                         src="/img/thumbsDown.png"
-                                         alt="Generic placeholder image" height="100">
-                                    <div class="media-body">
-                                        <a href="">
-                                            <h5 class="mt-0 mb-1 font-weight-bold">TITOLO</h5>
-                                        </a>
-                                        Descrizione
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
 
                 </div>
 

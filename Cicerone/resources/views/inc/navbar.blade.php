@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-collapse navbar-light shadow-sm">
+<nav class="navbar navbar-expand-md navbar-collapse navbar-light shadow-sm" style="background-color: #ffc107;">
 <div class="container">
-        <a
+        <a style="color: white"
             @if(Auth::user())
                 href="{{route('home')}}"
             @else
