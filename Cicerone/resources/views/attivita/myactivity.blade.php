@@ -7,7 +7,7 @@
         <div class="shadow p-4 m-4 bg-white">
             <h1 class="display-4">Cicerone: attività create da te</h1>
 
-            @if(count($attivita)>0)
+            @if(count($user->activity)>0)
                 @foreach($attivita as $act)
                     @if($act->user_id == auth()->user()->id)
 
@@ -123,7 +123,7 @@
             @else
                 <div class="card bg-light text-dark m-3">
                     <div class="card-body text-center">
-                        <h4>No activity found</h4>
+                        <h4>Non hai creato nessuna attività</h4>
                     </div>
                 </div>
             @endif
@@ -207,9 +207,12 @@
 
                 @endforeach
             @else
+                <div class="card bg-light text-dark m-3">
                 <div class="h4 text-center m-4">
+
                     Non sei iscritto a nessuna attività
                 </div>
+            </div>
 
             @endif
         </div>
