@@ -33,10 +33,12 @@
                                                    href="/attivita/{{$act->ActivityId}}/edit">Modifica attività</a>
                                             </div>
                                         <div class="mt-3 text-center">
+
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#exampleModal{{$act->ActivityId}}">
                                             Elimina attività
                                         </button>
+
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal{{$act->ActivityId}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -203,12 +205,19 @@
                             </div>
                             <div class="row text-right">
                                 <div class="col my-2">
-                                    {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll->id],'method' => 'POST',
+                                    @php($endDate = \Carbon\Carbon::parse($enroll->plan->stopDate))
+
+                                    @if( $endDate->isPast()&& !is_null($enroll->plan->stopDate))
+
+                                        <a class="btn btn-danger disabled">Attività conclusa, non puoi annullare la prenotazione</a>
+                                        @else
+                                        {!!Form::open(['action' =>['ActivityEnrollmentsController@destroy', $enroll->id],'method' => 'POST',
     'class'
     => 'pull-right'])!!}
-                                    {{Form::hidden('_method','DELETE')}}
-                                    {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
-                                    {!!form::close()!!}
+                                        {{Form::hidden('_method','DELETE')}}
+                                        {{Form::submit('Annulla prenotazione',['class' => 'btn btn-danger'])}}
+                                        {!!form::close()!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>

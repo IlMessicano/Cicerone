@@ -279,10 +279,12 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group row col-md-12 text-right">
+                                <div class="form-group row text-right">
+                                    <div class="form-group col-md-12">
                                     {{Form::hidden('_method','PUT')}}
-                                    {{Form::submit('Invia',['class' => 'btn btn-primary'])}}
+                                    {{Form::submit('Invia',['class' => 'btn btn-primary  mr-5'])}}
                                     {!!form::close()!!}
+                                    </div>
                                 </div>
                             </div>
                         @elseif($found==false)
