@@ -59,7 +59,7 @@ class ActivityPlanningsController extends Controller
     public function edit(Request $request, $id)
     {
         $plan = activity_plannings::find($id);
-        if($plan->activity->user_id != Auth::user()->user_id)
+        if($plan->activity->user_id !== Auth::user()->id)
             return redirect('/home')->withErrors('Non puoi modificare le pianificazioni di attività che non ti appartengono');
         return view('plannings.edit')->with('plan',$plan);
     }

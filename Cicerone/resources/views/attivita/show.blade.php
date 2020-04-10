@@ -416,6 +416,8 @@
                                             data-target="#exampleModal">
                                         Elimina attività
                                     </button>
+
+                                   
                                 </div>
 
                             @endif

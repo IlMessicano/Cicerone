@@ -33,11 +33,10 @@ class AttivitaController extends Controller
      */
     public function create()
     {
-        if(!Auth::guest()) {
+        if (!Auth::guest()) {
             $attivita = new Attivita;
             return view('attivita.index')->with('attivita', $attivita);
-        }
-        else
+        } else
             return redirect('home')->withErrors('Devi effettuare l\'accesso per poter prenotare un\'attività');
     }
 
@@ -50,7 +49,7 @@ class AttivitaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6000',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:6000',
             'Country' => 'required',
             'State' => 'required',
             'Road' => 'required',
@@ -60,7 +59,7 @@ class AttivitaController extends Controller
             'postCode' => 'required',
         ]);
 
-
+        $attivita = new Attivita;
         //Upload del file
         if ($request->hasFile('img')) {
             //Acquisisco il nome del file
@@ -75,15 +74,22 @@ class AttivitaController extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             //Upload
             $path = $request->file('img')->storeAs('public/activityImg', $fileNameToStore);
+
+            //Se avevo caricato un immagine, la elimino per caricare la nuova
+            if (!is_null($attivita->imgActivity))
+                Storage::delete('public/profileImg/' . $attivita->imgAttivita);
+            $attivita->imgActivity = $fileNameToStore;
         }
 
+        $user_activity = Attivita::where('user_id', Auth::user()->id)->get();
 
-        $attivita = new Attivita;
         $attivita->nameActivity = $request->input('nomeAttivita');
-        //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if (!is_null($attivita->imgActivity))
-            Storage::delete('public/profileImg/' . $attivita->imgAttivita);
-        $attivita->imgActivity = $fileNameToStore;
+        foreach ($user_activity as $oldact) {
+            if ($oldact->nameActivity == $request->input('nomeAttivita'))
+                return redirect('attivita/create')->withErrors('Hai già creato un \'attività con questo nome');
+        }
+
+        $attivita->imgActivity = '';
         $attivita->description = $request->input('descrizione');
         $attivita->Country = $request->input('Country');
         $attivita->State = $request->input('State');
@@ -104,27 +110,27 @@ class AttivitaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($ActivityId)
     {
         $attivita = Attivita::find($ActivityId);
-        return view('attivita.show')->with('attivita',$attivita);
+        return view('attivita.show')->with('attivita', $attivita);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
     {
         $attivita = Attivita::find($id);
-        if($attivita->user_id != Auth::user()->id)
+        if ($attivita->user_id != Auth::user()->id)
             return redirect('/home')->withErrors('Non puoi modificare le attività che non ti appartengono');
-        return view('attivita.edit')->with('attivita',$attivita);
+        return view('attivita.edit')->with('attivita', $attivita);
     }
 
     /**
@@ -173,10 +179,13 @@ class AttivitaController extends Controller
             $attivita->imgActivity = $fileNameToStore;
         }
 
-
+        $user_activity = Attivita::where('user_id', Auth::user()->id)->get();
 
         $attivita->nameActivity = $request->input('nomeAttivita');
-
+        foreach ($user_activity as $oldact) {
+            if ($oldact->nameActivity == $request->input('nomeAttivita'))
+                return redirect('attivita/create')->withErrors('Hai già creato un \'attività con questo nome');
+        }
         $attivita->description = $request->input('descrizione');
         $attivita->Country = $request->input('Country');
         $attivita->State = $request->input('State');
@@ -202,33 +211,36 @@ class AttivitaController extends Controller
     public function destroy($ActivityId)
     {
         $attivita = Attivita::find($ActivityId);
-        $plans = activity_plannings::where('activity_id',$ActivityId)->get();
+        $plans = activity_plannings::where('activity_id', $ActivityId)->get();
 
-        foreach ($plans as $plan){
-            $enroll = Activity_Enrollments::where('PlanningId',$plan->planningId)->value('User');
-          $user = User::find($enroll);
 
-            $user->balance = $user->balance + $plan->cost;
-            $user->save();
+        foreach ($plans as $plan) {
+            $enroll = Activity_Enrollments::where('PlanningId', $plan->planningId)->value('User');
+            if (!is_null($enroll)) {
+                $user = User::find($enroll);
+
+                $user->balance = $user->balance + $plan->cost;
+                $user->save();
+            }
         }
 
         Storage::delete('public/activityImg/' . $attivita->imgActivity);
 
         Attivita::where('ActivityId', $ActivityId)->delete();
-        return redirect('/home')->with('success', "Attività cancellata e rimborso effettuato a tutti i Globetrotter iscritti alle sue pianificiazioni");
+        return redirect('/home')->with('success', "Attività cancellata ed eventuali rimborsi sono stati effettuati a tutti i Globetrotter iscritti alle pianificiazioni");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function myactivity()
     {
         $attivita = Attivita::all();
         $user = User::find(Auth::user()->id);
-        return view('attivita.myactivity')->with('attivita', $attivita)->with('user',$user);
+        return view('attivita.myactivity')->with('attivita', $attivita)->with('user', $user);
 
     }
 
@@ -240,31 +252,27 @@ class AttivitaController extends Controller
         ]);
         $paese = $request->input('paese');
 
-        $start = $request->input('start'). " 00:00";
+        $start = $request->input('start') . " 00:00";
 
-        $stop = $request->input('stop'). " 00:00" ;
+        $stop = $request->input('stop') . " 00:00";
         $costo = $request->input('costo');
 
-        if(is_null($costo)){
+        if (is_null($costo)) {
             $attivita = DB::table('Activity')
                 ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
-                ->where('Activity.City','=',$paese)
+                ->where('Activity.City', '=', $paese)
                 ->whereDate('activity_plannings.startDate', '>=', $start)
                 ->whereDate('activity_plannings.stopDate', '<=', $stop)
-
                 ->get();
-        }
-        else{
+        } else {
             $attivita = DB::table('Activity')
                 ->join('activity_plannings', 'Activity.ActivityId', '=', 'activity_plannings.activity_id')
-                ->where('Activity.City','=',$paese)
+                ->where('Activity.City', '=', $paese)
                 ->whereDate('activity_plannings.startDate', '>=', $start)
                 ->whereDate('activity_plannings.stopDate', '<=', $stop)
-                ->where('activity_plannings.Cost','<=',$costo)
+                ->where('activity_plannings.Cost', '<=', $costo)
                 ->get();
         }
-
-
 
 
         return view('attivita.search')->with('attivita', $attivita);

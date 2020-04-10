@@ -28,14 +28,57 @@
                                     <div class="col-md-4 mb-3 text-right">
                                         <img src="storage/activityImg/{{$act->imgActivity}}" height="150">
 
-                                    </div>
+                                            <div class="mt-3 text-center">
+                                                <a class="btn btn-primary"
+                                                   href="/attivita/{{$act->ActivityId}}/edit">Modifica attività</a>
+                                            </div>
+                                        <div class="mt-3 text-center">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                            Elimina attività
+                                        </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler cancellare questa attività?</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ATTENZIONE! L'operazione sarà irreversibile <br>
+                                                            Se vuoi cancellare questa attività clicca su Elimina.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                            {!!Form::open(['action' =>['AttivitaController@destroy', $act->ActivityId],'method' => 'POST',
+                                                        'class'
+                                                        => 'pull-right'])!!}
+                                                            {{Form::hidden('_method','DELETE')}}
+                                                            {{Form::submit('Elimina',['class' => 'btn btn-danger'])}}
+                                                            {!!form::close()!!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
                                     </div>
                                 </div>
-                                <hr class="featurette-divider">
+                            </div>
+                            <hr class="featurette-divider">
 
 
-
-                                <h4 class="ml-3">Dettagli attività:</h4>
+                            <h4 class="ml-3">Dettagli attività:</h4>
                             <div class="row text-center">
                                 <div class="col-md-2">
                                     Country: {{$act->Country}}
@@ -54,24 +97,22 @@
                                 </div>
 
 
-
                             </div>
-
 
 
                             <hr class="featurette-divider">
-                                <div class="row text-center">
-                                    <div class="col-md-6 my-3">
-                                        <a class="btn btn-primary "
-                                           href="attivita/{{$act->ActivityId}}/showplans">Gestisci pianificazioni</a>
-                                    </div>
-                                    <div class="col-md-6 my-3">
-                                        <a class="btn btn-primary "
-                                           href="activityplannings/create/{{$act->ActivityId}}">Crea una nuova
-                                            pianificazione</a>
-                                    </div>
+                            <div class="row text-center">
+                                <div class="col-md-6 my-3">
+                                    <a class="btn btn-primary "
+                                       href="attivita/{{$act->ActivityId}}/showplans">Gestisci pianificazioni</a>
+                                </div>
+                                <div class="col-md-6 my-3">
+                                    <a class="btn btn-primary "
+                                       href="activityplannings/create/{{$act->ActivityId}}">Crea una nuova
+                                        pianificazione</a>
                                 </div>
                             </div>
+                        </div>
 
 
 
