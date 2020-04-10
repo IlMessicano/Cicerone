@@ -20,4 +20,6 @@ class ActivityLanguages extends Model
 
         return $this->hasOne('App\Attivita','ActivityId','Activity');
     }
+
+
 }

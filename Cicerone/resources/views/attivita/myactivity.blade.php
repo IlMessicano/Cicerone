@@ -34,12 +34,12 @@
                                             </div>
                                         <div class="mt-3 text-center">
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal">
+                                                data-target="#exampleModal{{$act->ActivityId}}">
                                             Elimina attività
                                         </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            <div class="modal fade" id="exampleModal{{$act->ActivityId}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -82,19 +82,24 @@
 
                             <div class="row text-center">
                                 <div class="col-md-2">
-                                    Country: {{$act->Country}}
+                                    Stato: {{$act->Country}}
                                 </div>
                                 <div class="col-md-2">
-                                    State: {{$act->State}}
+                                    Regione: {{$act->State}}
                                 </div>
                                 <div class="col-md-2">
-                                    City: {{$act->City}}
+                                    Città: {{$act->City}}
                                 </div>
                                 <div class="col-md-2">
-                                    Post Code: {{$act->postCode}}
+                                    CAP: {{$act->postCode}}
                                 </div>
                                 <div class="col-md-2">
-                                    Road: {{$act->Road}}
+                                    Via: {{$act->Road}}
+                                </div>
+                                <div class="col-md-2">
+                                    Lingue parlate: @foreach($act->languages as $lang)
+                                    {{$lang->Language}}
+                                    @endforeach
                                 </div>
 
 

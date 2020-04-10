@@ -78,7 +78,10 @@
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-
+                                    <label for="state">Lingue parlate:</label><br>
+                                    <label class="">@foreach($attivita->languages as $lang)
+                                    {{$lang->Language}},
+                                        @endforeach</label>
                                 </div>
 
 

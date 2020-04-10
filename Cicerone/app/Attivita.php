@@ -25,6 +25,9 @@ class Attivita extends Model
         return $this->hasMany('App\Evaluations','Activity','ActivityId');
     }
 
+    public function languages(){
+        return $this->hasMany('App\ActivityLanguages','Activity','ActivityId');
+    }
 
 
 }
