@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity_Enrollments;
 use App\activity_plannings;
+use App\ActivityLanguages;
 use App\Attivita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,6 +58,8 @@ class AttivitaController extends Controller
             'lat' => 'required',
             'long' => 'required',
             'postCode' => 'required',
+            'languages' => ['required', 'array', 'min:1'],
+            'languages.*' => ['required', 'min:1'],
         ]);
 
         $attivita = new Attivita;
@@ -80,6 +83,9 @@ class AttivitaController extends Controller
                 Storage::delete('public/profileImg/' . $attivita->imgAttivita);
             $attivita->imgActivity = $fileNameToStore;
         }
+        else{
+            $attivita->imgActivity = '';
+        }
 
         $user_activity = Attivita::where('user_id', Auth::user()->id)->get();
 
@@ -89,7 +95,7 @@ class AttivitaController extends Controller
                 return redirect('attivita/create')->withErrors('Hai già creato un \'attività con questo nome');
         }
 
-        $attivita->imgActivity = '';
+
         $attivita->description = $request->input('descrizione');
         $attivita->Country = $request->input('Country');
         $attivita->State = $request->input('State');
@@ -98,13 +104,22 @@ class AttivitaController extends Controller
         $attivita->postCode = $request->input('postCode');
         $attivita->latCoord = $request->input('lat');
         $attivita->longCoord = $request->input('long');
+        $new_languages = $request->input('languages');
+
 
         $attivita->user_id = auth()->user()->id;
         $attivita->save();
+        ActivityLanguages::where('Activity', $attivita->ActivityId)->delete();
+        foreach ($new_languages as $new_lang) {
+            ActivityLanguages::create([
+                'Activity' => $attivita->ActivityId,
+                'Language' => $new_lang,
+            ]);
+        }
         activity_plannings::create([
             'activity_id' => $attivita->ActivityId,
         ]);
-        return redirect()->route('home');
+        return redirect('/mieattivita')->withSuccess('Attività creata');
     }
 
     /**
@@ -153,6 +168,8 @@ class AttivitaController extends Controller
             'lat' => 'required',
             'long' => 'required',
             'postCode' => 'required',
+            'languages' => ['required', 'array', 'min:1'],
+            'languages.*' => ['required', 'min:1'],
         ]);
 
         $attivita = Attivita::find($id);
@@ -183,8 +200,8 @@ class AttivitaController extends Controller
 
         $attivita->nameActivity = $request->input('nomeAttivita');
         foreach ($user_activity as $oldact) {
-            if ($oldact->nameActivity == $request->input('nomeAttivita'))
-                return redirect('attivita/create')->withErrors('Hai già creato un \'attività con questo nome');
+            if (($oldact->nameActivity == $request->input('nomeAttivita')) && $oldact->ActivityId != $attivita->ActivityId)
+                return redirect('attivita/'.$attivita->ActivityId.'/edit')->withErrors('Hai già creato un \'attività con questo nome');
         }
         $attivita->description = $request->input('descrizione');
         $attivita->Country = $request->input('Country');
@@ -194,7 +211,14 @@ class AttivitaController extends Controller
         $attivita->postCode = $request->input('postCode');
         $attivita->latCoord = $request->input('lat');
         $attivita->longCoord = $request->input('long');
-
+        $new_languages = $request->input('languages');
+        ActivityLanguages::where('Activity', $attivita->ActivityId)->delete();
+        foreach ($new_languages as $new_lang) {
+            ActivityLanguages::create([
+                'Activity' => $attivita->ActivityId,
+                'Language' => $new_lang,
+            ]);
+        }
         $attivita->user_id = auth()->user()->id;
         $attivita->save();
         return redirect()->route('attivita.show', $id)->withSuccess('Attività modificata');
@@ -227,7 +251,7 @@ class AttivitaController extends Controller
         Storage::delete('public/activityImg/' . $attivita->imgActivity);
 
         Attivita::where('ActivityId', $ActivityId)->delete();
-        return redirect('/home')->with('success', "Attività cancellata ed eventuali rimborsi sono stati effettuati a tutti i Globetrotter iscritti alle pianificiazioni");
+        return redirect('/mieattivita')->with('success', "Attività cancellata ed eventuali rimborsi sono stati effettuati a tutti i Globetrotter iscritti alle pianificiazioni");
     }
 
     /**
@@ -238,7 +262,7 @@ class AttivitaController extends Controller
      */
     public function myactivity()
     {
-        $attivita = Attivita::orderBy('ActivityId','DESC')->paginate(2);
+        $attivita = Attivita::where('user_id',auth::user()->id)->orderBy('ActivityId','DESC')->paginate(2);
         $user = User::find(Auth::user()->id);
         return view('attivita.myactivity')->with('attivita', $attivita)->with('user', $user);
 

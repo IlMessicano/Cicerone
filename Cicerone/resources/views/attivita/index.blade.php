@@ -109,6 +109,17 @@
 
                 </div>
                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="invisible">{{$spokenLanguages = \App\SpokenLanguage::where('User', Auth::user()->id)->get()}}</div>
+
+                        {{Form::label ('languages', 'Lingue parlate')}}
+
+                        <select class="form-control" name="languages[]" multiple required>
+                            @foreach($spokenLanguages as $lang)
+                                <option value="{{$lang->Language}}">{{ $lang->Language}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-md-12 mb-3">
 
                         <br>
@@ -141,7 +152,7 @@
 
         {!! Form::close()!!}
 
-    </div>
+
 
 
 

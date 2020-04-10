@@ -80,7 +80,7 @@ class ActivityPlanningsController extends Controller
         $plan->maxPartecipants = $request->input('maxpart');
         $plan->notes = $request->input('note');
         $plan->save();
-        return redirect('/mieattivita')->with('Success','Pianificazione salvata');
+        return redirect('attivita/'.$plan->activity->ActivityId.'/showplans')->withSuccess('Pianificazione salvata');
     }
     /**
      * Remove the specified resource from storage.
@@ -105,7 +105,7 @@ class ActivityPlanningsController extends Controller
     public function controlplans(Request $request, $id)
     {
         $act_id = $request->route('activitum');
-        $plans = activity_plannings::orderBy('planningId','DESC')->paginate(5);
+        $plans = activity_plannings::where('activity_id',$act_id)->orderBy('planningId','DESC')->paginate(5);
         $attivita = Attivita::find($act_id);
         if($attivita->user_id != Auth::user()->id)
             return redirect('/home')->withErrors('Non puoi modificare le pianificazioni delle attività che non ti appartengono');
