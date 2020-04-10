@@ -1,160 +1,144 @@
 @extends('layouts.app')
 
 @section('content')
+
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Hind:300,400');
+        @import url(https://fonts.googleapis.com/css?family=Lato);
+        @import url(https://fonts.googleapis.com/css?family=Open Sans);
 
-        *, *:before, *:after {
-            -webkit-box-sizing: inherit;
-            box-sizing: inherit;
-        }
-
-        .container {
-            margin: 0 auto;
-            padding: 4rem;
-            width: 48rem;
-        }
-
-        h3 {
-            font-size: 1.75rem;
-            color: #373d51;
-            padding: 1.3rem;
-            margin: 0;
-        }
-
-        .accordion a {
-            position: relative;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            width: 100%;
-            padding: 1rem 3rem 1rem 1rem;
-            color: #7288a2;
-            font-size: 1.15rem;
+        .faq-heading {
+            font-family: Lato;
             font-weight: 400;
-            border-bottom: 1px solid #e5e5e5;
+            font-size: 19px;
+            -webkit-transition: text-indent 0.2s;
+            text-indent: 20px;
+            color: dodgerblue;
+            background-color: ghostwhite;
         }
 
-        .accordion a:hover,
-        .accordion a:hover::after {
-            cursor: pointer;
-            color: #03b5d2;
+        .faq-text {
+            font-weight: 400;
+            color: #919191;
+            width:95%;
+            padding-left:20px;
+            margin-bottom:30px;
+            background-color: ghostwhite;
         }
 
-        .accordion a:hover::after {
-            border: 1px solid #03b5d2;
+        .faq {
+            width: 1000px;
+            margin: 0 auto;
+            background: ghostwhite;
+            border-radius: 4px;
+            position: relative;
+            border: 1px solid #E1E1E1;
         }
-
-        .accordion a.active {
-            color: #03b5d2;
-            border-bottom: 1px solid #03b5d2;
-        }
-
-        .accordion a::after {
-            font-family: 'Ionicons';
-            content: '\f218';
-            position: absolute;
-            float: right;
-            right: 1rem;
-            font-size: 1rem;
-            color: #7288a2;
-            padding: 5px;
-            width: 30px;
-            height: 30px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            border: 1px solid #7288a2;
-            text-align: center;
-        }
-
-        .accordion a.active::after {
-            font-family: 'Ionicons';
-            content: '\f209';
-            color: #03b5d2;
-            border: 1px solid #03b5d2;
-        }
-
-        .accordion .content {
-            opacity: 0;
-            padding: 0 1rem;
-            max-height: 0;
-            border-bottom: 1px solid #e5e5e5;
+        .faq label {
+            display: block;
+            position: relative;
             overflow: hidden;
-            clear: both;
-            -webkit-transition: all 0.2s ease 0.15s;
-            -o-transition: all 0.2s ease 0.15s;
-            transition: all 0.2s ease 0.15s;
+            cursor: pointer;
+            height: 56px;
+            padding-top:1px;
+
+            background-color: ghostwhite;
+            border-bottom: 1px solid lightblue;
         }
 
-        .accordion .content p {
-            font-size: 1rem;
-            font-weight: 300;
+        .faq input[type="checkbox"] {
+            display: none;
         }
 
-        .accordion .content.active {
-            opacity: 1;
-            padding: 1rem;
-            max-height: 100%;
-            -webkit-transition: all 0.35s ease 0.15s;
-            -o-transition: all 0.35s ease 0.15s;
-            transition: all 0.35s ease 0.15s;
+        .faq .faq-arrow {
+            width: 5px;
+            height: 5px;
+            transition: -webkit-transform 0.8s;
+            transition: transform 0.8s;
+            transition: transform 0.8s, -webkit-transform 0.8s;
+            -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-top: 2px solid rgba(0, 0, 0, 0.33);
+            border-right: 2px solid rgba(0, 0, 0, 0.33);
+            float: right;
+            position: relative;
+            top: -30px;
+            right: 27px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
+
+        .faq input[type="checkbox"]:checked + label > .faq-arrow {
+            transition: -webkit-transform 0.8s;
+            transition: transform 0.8s;
+            transition: transform 0.8s, -webkit-transform 0.8s;
+            -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+        .faq input[type="checkbox"]:checked + label {
+            display: block;
+            background: ghostwhite !important;
+            color: #4f7351;
+            height: 225px;
+            transition: height 0.8s;
+            -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        }
+
+        .faq input[type='checkbox']:not(:checked) + label {
+            display: block;
+            transition: height 0.8s;
+            height: 60px;
+            -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+            background: ghostwhite;
+        }
+
     </style>
 
-    <script>
-        const items = document.querySelectorAll(".accordion a");
+    <br>
 
-        function toggleAccordion(){
-            this.classList.toggle('active');
-            this.nextElementSibling.classList.toggle('active');
-        }
-
-        items.forEach(item => item.addEventListener('click', toggleAccordion));
-    </script>
-
-    <div class="container">
-
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="accordion">
-            <div class="accordion-item">
-                <a>Why is the moon sometimes out during the day?</a>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <a>Why is the sky blue?</a>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <a>Will we ever discover aliens?</a>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <a>How much does the Earth weigh?</a>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <a>How do airplanes stay up?</a>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                </div>
-            </div>
-        </div>
-
+    <div class='faq'>
+        <input id='faq-a' type='checkbox'>
+        <label for='faq-a'>
+            <p class="faq-heading">Cosa è Cicerone?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br>Cicerone è una piattaforma online </p>
+        </label>
+        <input id='faq-b' type='checkbox'>
+        <label for='faq-b'>
+            <p class="faq-heading">Cosa è un cicerone?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br></p>
+        </label>
+        <input id='faq-c' type='checkbox'>
+        <label for='faq-c'>
+            <p class="faq-heading">Cosa è un Globetrotter?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br></p>
+        </label>
+        <input id='faq-d' type='checkbox'>
+        <label for='faq-d'>
+            <p class="faq-heading">Cosa sono le attività?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br></p>
+        </label>
+        <input id='faq-e' type='checkbox'>
+        <label for='faq-e'>
+            <p class="faq-heading">Cosa sono le pianificazioni delle attività?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br></p>
+        </label>
+        <input id='settings' type='checkbox'>
+        <input id='faq-f' type='checkbox'>
+        <label for='faq-f'>
+            <p class="faq-heading">Come posso iscrivermi ad un'attività?</p>
+            <div class='faq-arrow'></div>
+            <p class="faq-text"><br></p>
+        </label>
     </div>
+
+
 @endsection
