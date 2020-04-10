@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <div class="shadow p-4 m-4 bg-white">
+        <div class="shadow p-4 m-4 bg-white"  >
             <h1 class="display-4">Cicerone: attività create da te</h1>
 
             @if(count($user->activity)>0)
@@ -127,11 +127,15 @@
                     </div>
                 </div>
             @endif
+            <div class="text-center">
+
+            {{$attivita->links()}}
+                </div>
 
         </div>
 
 
-        <div class="shadow p-4 m-4 bg-white">
+        <div class="shadow p-4 m-4 bg-white"  >
             <h1 class="display-4">Globetrotter: attività a cui sei iscritto</h1>
 
             @if(count($user->enrollments) > 0)

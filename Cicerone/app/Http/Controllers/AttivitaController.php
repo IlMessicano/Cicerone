@@ -238,7 +238,7 @@ class AttivitaController extends Controller
      */
     public function myactivity()
     {
-        $attivita = Attivita::all();
+        $attivita = Attivita::orderBy('ActivityId','DESC')->paginate(2);
         $user = User::find(Auth::user()->id);
         return view('attivita.myactivity')->with('attivita', $attivita)->with('user', $user);
 
