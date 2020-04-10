@@ -41,7 +41,7 @@
     <body>
     <div id="wrap">
 
-        <div id="main" class="clear-top">
+        <div >
 
             @include('inc.navbar')
             @include('inc.error')
