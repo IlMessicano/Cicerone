@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-collapse navbar-light shadow-sm" style="background-color: #ffc107;">
+<link href="public/css/basicStyle.css" ref="stylesheet">
+
+<nav id="navbar" class="navbar navbar-expand-md navbar-collapse navbar-light shadow-sm">
 <div class="container">
         <a style="color: white"
             @if(Auth::user())
@@ -6,7 +8,7 @@
             @else
                 href="{{route('welcome')}}"
             @endif >
-            <img src="" class="img-fluid" width="37" height="35"> {{ config('app.name', 'Cicerone') }}
+            <img src="img/Cicerone_Logo_def.png" class="img-fluid" width="256" height="128" style="position: relative; right: 15px; bottom: 5px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

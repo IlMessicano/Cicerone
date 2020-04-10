@@ -4,7 +4,7 @@
 
 <style>
     body{
-        background-color: #FAF8CC;
+        background-color: whitesmoke;
     }
     .vertical-center {
         min-height: 75%;
@@ -119,12 +119,11 @@
                             </div>
                         </div>
                     </section>
-
                 </div>
-
             </div>
 
 </div>
+    <h1 class="display-4 text-center">Trova interessanti attività create da Ciceroni provenienti da tutto il mondo</h1>
 
 
 

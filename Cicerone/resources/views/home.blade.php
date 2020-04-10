@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
     <style>
         body{
-            background-color: #FAF8CC;
+            background-color: whitesmoke;
         }
         .vertical-center {
             min-height: 75%;
@@ -12,11 +13,11 @@
             align-items: center;
         }
     </style>
-    <div class="vertical-center" >
+
+    <div class="vertical-center">
 
         <div class="jumbotron w-100 bg-black" id="welcome">
             <div class="container ">
-
 
                 <section class="search-banner text-white py-1" id="search-banner">
                     <div class="container">
@@ -32,7 +33,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="font-weight-light text-dark">Scegli il paese</p>
+                                        <p class="font-weight-light text-dark">Dove</p>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group ">
@@ -119,16 +120,15 @@
                     </div>
                 </section>
 
-                <div class="text-center mt-4">
+                <div class="text-center mt-4" align="center">
                     <h3 style="color: white">Oppure crea una tua attività</h3>
-                    <a class="btn btn-info btn-lg btn-block text-white my-2" href="/attivita/create">Crea attività</a>
+                    <a class="btn btn-warning btn-lg  w-25 text-white" href="/attivita/create">Crea attività</a>
                 </div>
             </div>
 
         </div>
-
-
     </div>
+    <h1 class="display-4 text-center">Trova interessanti attività create da Ciceroni provenienti da tutto il mondo</h1>
 
 
 

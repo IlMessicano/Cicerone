@@ -10,6 +10,7 @@
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
     <script src="https://unpkg.com/ol-geocoder"></script>
     <style>
+
         #map {
             width: 100%;
             height: 700px;

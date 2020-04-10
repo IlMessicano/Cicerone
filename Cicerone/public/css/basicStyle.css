@@ -33,7 +33,9 @@
 }
 
 html, body {
+
     height: 100%;
+    background-color: ghostwhite;
 }
 
 #wrap {
@@ -45,13 +47,17 @@ html, body {
     padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
+#navbar, .footer{
+
+    background-color: #FFBF18;
+}
+
 .footer {
     position: relative;
     margin-top: -100px; /* negative value of footer height */
     height: 100px;
     clear:both;
     padding-top:20px;
-    background-color: #FDD017;
 }
 
 

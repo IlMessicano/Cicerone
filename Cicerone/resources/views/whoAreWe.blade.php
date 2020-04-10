@@ -3,7 +3,7 @@
 @section('content')
     <style>
         body {
-            background-color: #FAF8CC;
+            background-color: white;
         }
 
 
@@ -43,50 +43,47 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <br>
     <div class="d-flex align-self-stretch">
         <div class="card p-4">
-            <img src="img.jpg" alt="John" style="width:100%">
-            <h1>Erik Vergine</h1>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
+            <img src="/img/ErikVergine.jpeg" style="width: 100%">
+            <h2>Erik Vergine</h2>
+            <p class="title">Project Manager & Programmer</p>
+            <p>Università degli studi di Bari - Aldo Moro</p>
+            <a herf="#"><i class="fa fa-instagram"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button>Contact</button></p>
+            <p><button class="btn btn-info">Contact</button></p>
+        </div>
+        <div class="card p-3">
+            <img src="/img/DavideCarone.jpeg" style="width:100%;">
+            <h2>Davide Carone</h2>
+            <p class="title">Project Manager & Programmer</p>
+            <p>Università degli studi di Bari - Aldo Moro</p>
+            <a herf="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <p><button class="btn btn-info">Contact</button></p>
+        </div>
+        <div class="card p-3">
+            <img src="/img/EmidioSchirano.png" style="width:100%">
+            <h2>Emidio Schirano</h2>
+            <p class="title">Project Manager & Programmer</p>
+            <p>Università degli studi di Bari - Aldo Moro</p>
+            <a herf="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <p><button class="btn btn-info">Contact</button></p>
         </div>
         <div class="card p-4">
-            <img src="img.jpg" alt="John" style="width:100%">
-            <h1>Davide Carone</h1>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button>Contact</button></p>
-        </div>
-        <div class="card p-4">
-            <img src="img.jpg" alt="John" style="width:100%">
-            <h1>Emidio Schirano</h1>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button>Contact</button></p>
-        </div>
-        <div class="card p-4">
-            <img src="img.jpg" alt="John" style="width:100%">
-            <h1>Andrea nisio</h1>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button>Contact</button></p>
+            <img src="/img/AndreaNisio.jpg" style="width:100%">
+            <h2>Andrea Nisio</h2>
+            <p class="title">Project Manager & Programmer</p>
+            <p>Università degli studi di Bari - Aldo Moro</p>
+            <a herf="https://www.instagram.com/andrea_nisio.blade.php"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/andrea-nisio-bb4820191/"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/andrea.nisio"><i class="fa fa-facebook"></i></a>
+            <p><button href="https://andreanisio97@gmail.com" class="btn btn-info ">Contact</button></p>
         </div>
 
     </div>
