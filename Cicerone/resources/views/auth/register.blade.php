@@ -72,7 +72,7 @@
                                         class="form-control @error('nationality') is-invalid @enderror"
                                         name="nationality" value="{{ old('nationality') }}" required
                                         autocomplete="nationality">
-                                    <option value="">-- Seleziona nazionalità --</option>
+                                    <option value="">-- Seleziona nazionalità--</option>
                                     <option value="Afghan">Afghan</option>
                                     <option value="Albanian">Albanian</option>
                                     <option value="Algerian">Algerian</option>
@@ -632,7 +632,7 @@
                                     class="form-control @error('languages') is-invalid @enderror"
                                     name="languages[]" value="{{ old('languages') }}" required
                                     autocomplete="languages" multiple>
-                                <option value="" disabled>-- Seleziona nazionalità --</option>
+                                <option value="" disabled>-- Seleziona (CTRL + click) --</option>
                                 <option value="AF">Afrikanns</option>
                                 <option value="SQ">Albanian</option>
                                 <option value="AR">Arabic</option>
@@ -707,7 +707,7 @@
                             </select>
 
                             <script>
-                                
+
                             </script>
 
                             @error('nationality')
