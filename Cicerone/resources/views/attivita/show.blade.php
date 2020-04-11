@@ -248,43 +248,38 @@
                         @if(($found == true) && ($evaluation == '[]'))
 
 
-                            <div class="card mb-4">
-                                <div class="form-group row col-md-12">
-                                    <div class="col-md-12 my-3">
-                                        {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
-                            'class'
-                            => 'pull-right'])!!}
-
-                                        <div class="row text-center">
-                                            <label for="rating" class="h4 ml-3 mb-3">Valuta questa attività:</label>
-                                            <div class="m-2">
-
-
-                                                {{Form::radio('rating', '1', false,['id' => 'like',"required" => 'required'])}}
-                                                <label for="like"
-                                                       title="Sucks big time"><img
-                                                        class="w-25 h-25" src="/img/thumbsUp.png"></label>
-                                                {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label
-                                                    for="dislike"
-                                                    title="Sucks big tim"><img
-                                                        class="w-25 h-25" src="/img/thumbsDown.png"></label>
-
-
-                                            </div>
-                                        </div>
-
-
-                                        <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
-                                        {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
-
-                                    </div>
+                            <div class="card mb-4 ">
+                                <div class="card-header"><h4>Valuta questa attività</h4>
                                 </div>
-                                <div class="form-group row text-right">
-                                    <div class="form-group col-md-12">
-                                    {{Form::hidden('_method','PUT')}}
-                                    {{Form::submit('Invia',['class' => 'btn btn-primary  mr-5'])}}
-                                    {!!form::close()!!}
+                                <div class="card-body">
+
+                                    {!!Form::open(['action' =>['EvaluationsController@update', $attivita->ActivityId],'method' => 'POST',
+                                  'class'
+                                  => 'pull-right'])!!}
+                                    <div class="form-group row text-center">
+                                        <div class="form-group col-md-12">
+                                    {{Form::radio('rating', '1', false,['id' => 'like',"required" => 'required'])}}
+                                    <label for="like"
+                                           title="Sucks big time"><img
+                                            class="w-25 h-25" src="/img/thumbsUp.png"></label>
+                                    {{Form::radio('rating', '-1', false,['id' => 'dislike'])}}<label
+                                        for="dislike"
+                                        title="Sucks big tim"><img
+                                            class="w-25 h-25" src="/img/thumbsDown.png"></label>
+                                        </div>
                                     </div>
+
+                                    <label for="comment" class="h4 mb-3">Scrivi un commento:</label>
+                                    {{Form::textarea ('comment','', ['class' => 'form-control', 'placeholder' => 'Scrivi un commento...','rows'=> '3'])}}
+
+                                    <div class="form-group row text-right">
+                                        <div class="form-group col-md-12">
+                                    {{Form::hidden('_method','PUT')}}
+                                    {{Form::submit('Invia',['class' => 'btn btn-primary  mt-3'])}}
+                                    {!!form::close()!!}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         @elseif($found==false)
