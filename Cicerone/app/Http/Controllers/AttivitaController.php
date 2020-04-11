@@ -272,6 +272,7 @@ class AttivitaController extends Controller
     {
         $this->validate($request, [
             'paese' => 'required',
+            'stop' => 'after:start'
 
         ]);
         $paese = $request->input('paese');

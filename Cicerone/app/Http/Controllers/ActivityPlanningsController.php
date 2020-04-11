@@ -72,7 +72,11 @@ class ActivityPlanningsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'start' => 'after:now',
+            'stop' => 'after:start'
 
+        ]);
         $plan = activity_plannings::find($id);
         $plan->startDate = $request->input('start');
         $plan->stopDate = $request->input('stop');

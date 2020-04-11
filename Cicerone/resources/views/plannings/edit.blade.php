@@ -12,7 +12,7 @@
                     <div class="col-md-6 mb-3">
                         {{Form::label ('start', 'Data inizio')}}
 
-                        <input class="form-control" type="datetime-local" name="start" id="start" value="{{$plan->startDate}}"   required>
+                        <input class="form-control" type="datetime-local" name="start" id="start" value="{{$plan->startDate}}"  required>
 
                     </div>
 
@@ -35,10 +35,10 @@
                                     mm = '0' + mm
                                 }
 
-                                today = yyyy + '-' + mm + '-' + dd + " 00:00";
+                                today = yyyy + '-' + mm + '-' + dd + "T00:00Z";
                                 document.getElementById("start").setAttribute("min", today);
                                 document.getElementById("stop").setAttribute("min", today);
-                           
+
                         </script>
                     </div>
                 </div>
