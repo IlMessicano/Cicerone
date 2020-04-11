@@ -23,8 +23,15 @@
 
                         </h4>
                         <div class="card p-2">
-                            <img src="/storage/profileImg/{{$user->imgProfile}}"
-                                 class="rounded-circle my-5" id="profileImg">
+                            @if($user->imgProfile == 'defaultProfile.jpeg')
+                                <img src="/img/defaultProfile.jpeg"
+                                     class="rounded-circle my-5" id="profileImg">
+                            @else
+                                <img src="/storage/profileImg/{{$user->imgProfile}}"
+                                     class="rounded-circle my-5" id="profileImg">
+                                @endif
+
+
                             @if(Auth::user()->id == $user->id)
                             {!! Form::open(['action'=>'ProfileController@store','method' => 'POST','enctype' =>
                             'multipart/form-data'])!!}

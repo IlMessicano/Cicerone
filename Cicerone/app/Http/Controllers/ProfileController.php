@@ -190,7 +190,8 @@ class ProfileController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         Storage::delete('public/profileImg/' . $user->imgProfile);
-
+        $user->imgProfile='defaultProfile.jpeg';
+        $user->save();
 
         return redirect('/profile')->with('success', "Immagine cancellata");
     }

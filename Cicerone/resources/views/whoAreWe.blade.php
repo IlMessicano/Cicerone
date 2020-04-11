@@ -63,7 +63,7 @@
             <a herf="#"><i class="fa fa-instagram"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button class="btn btn-info">Contact</button></p>
+
         </div>
         <div class="card p-3">
             <img src="/img/EmidioSchirano.png" style="width:100%">
@@ -73,7 +73,7 @@
             <a herf="#"><i class="fa fa-instagram"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button class="btn btn-info">Contact</button></p>
+
         </div>
         <div class="card p-4">
             <img src="/img/AndreaNisio.jpg" style="width:100%">
@@ -83,7 +83,7 @@
             <a herf="https://www.instagram.com/andrea_nisio.blade.php"><i class="fa fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/andrea-nisio-bb4820191/"><i class="fa fa-linkedin"></i></a>
             <a href="https://www.facebook.com/andrea.nisio"><i class="fa fa-facebook"></i></a>
-            <p><button href="https://andreanisio97@gmail.com" class="btn btn-info ">Contact</button></p>
+
         </div>
 
     </div>

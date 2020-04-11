@@ -27,7 +27,7 @@
                         <div class="card-body">
 
                             <p class="h2 mt-4 mb-0">{{$attivita->nameActivity}} </p>
-                            <small class="mt-0">Creata da {{$attivita->user->name}} il {{$attivita->created_at}}</small>
+                            <small class="mt-0">Creata da <a href="http://127.0.0.1:8000/profile/{{$attivita->user->id}}">{{$attivita->user->name}}</a> il {{$attivita->created_at}}</small>
                             <hr class="featurette-divider">
                             <blockquote class="blockquote text-center">
                                 <div class="row">
@@ -309,7 +309,7 @@
                         <div class="card-body">
 
 
-                            <label class="grey-text">{{$attivita->user->name}}  {{$attivita->user->surname}}</label>
+                            <label class="grey-text"><a href="http://127.0.0.1:8000/profile/{{$attivita->user->id}}">{{$attivita->user->name}}  {{$attivita->user->surname}}</a></label>
 
                             <br>
 
