@@ -11,8 +11,12 @@
 
 
                     <div class="card mb-4">
+@if($attivita->imgActivity == 'defaultActivity.jpeg')
+                            <img src="/img/defaultActivity.jpeg" class="img-fluid" alt="">
+    @else
+                            <img src="/storage/activityImg/{{$attivita->imgActivity}}" class="img-fluid" alt="">
+    @endif
 
-                        <img src="/storage/activityImg/{{$attivita->imgActivity}}" class="img-fluid" alt="">
 
                     </div>
 
@@ -295,9 +299,13 @@
 
                         <div class="card-header">Dettagli Cicerone
                         </div>
-
+                        @if($attivita->user->imgProfile == 'defaultProfile.jpeg')
+                            <img src="/img/defaultProfile.jpeg"
+                                 class="rounded-circle my-5" id="profileImg">
+                            @else
                         <img src="/storage/profileImg/{{$attivita->user->imgProfile}}"
                              class="rounded-circle my-5" id="profileImg">
+                        @endif
                         <div class="card-body">
 
 

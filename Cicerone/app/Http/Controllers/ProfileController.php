@@ -46,7 +46,8 @@ class ProfileController extends Controller
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6000',
         ]);
 
-
+        $id = auth()->user()->id;
+        $user = User::find($id);
         //Upload del file
         if ($request->hasFile('img')) {
             //Acquisisco il nome del file
@@ -61,14 +62,17 @@ class ProfileController extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             //Upload
             $path = $request->file('img')->storeAs('public/profileImg', $fileNameToStore);
+
+            //Se avevo caricato un immagine, la elimino per caricare la nuova
+            if (!is_null($user->imgProfile))
+                Storage::delete('public/profileImg/' . $user->imgProfile);
+            $user->imgProfile = $fileNameToStore;
+        }else{
+            $user->imgProfile = 'defaultProfile.jpeg';
         }
 
-        $id = auth()->user()->id;
-        $user = User::find($id);
-        //Se avevo caricato un immagine, la elimino per caricare la nuova
-        if (!is_null($user->imgProfile))
-            Storage::delete('public/profileImg/' . $user->imgProfile);
-        $user->imgProfile = $fileNameToStore;
+
+
         $user->save();
         $request->session()->flash('success', 'Upload riuscito');
 

@@ -128,6 +128,7 @@ class RegisterController extends Controller
                 'nationality' => $data['nationality'],
                 'phone' => $data['prefix'] . '' . $data['phone'],
                 'password' => Hash::make($data['password']),
+                'imgProfile' => 'defaultProfile.jpeg',
                 'biography' => $data['biography'],
             ]);
 

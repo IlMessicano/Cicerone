@@ -26,7 +26,12 @@
 
 
                                     <div class="col-md-4 mb-3 text-right">
-                                        <img src="storage/activityImg/{{$act->imgActivity}}" height="150">
+                                        @if($act->imgActivity == 'defaultActivity.jpeg')
+                                            <img src="img/defaultActivity.jpeg" height="150">
+                                            @else
+                                            <img src="storage/activityImg/{{$act->imgActivity}}" height="150">
+                                            @endif
+
 
                                             <div class="mt-3 text-center">
                                                 <a class="btn btn-primary"

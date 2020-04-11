@@ -84,7 +84,7 @@ class AttivitaController extends Controller
             $attivita->imgActivity = $fileNameToStore;
         }
         else{
-            $attivita->imgActivity = '';
+            $attivita->imgActivity = 'defaultActivity.jpeg';
         }
 
         $user_activity = Attivita::where('user_id', Auth::user()->id)->get();
