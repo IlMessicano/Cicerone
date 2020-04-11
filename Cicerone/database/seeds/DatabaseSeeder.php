@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             ActivityPlanningSeeder::class,
             ActivityEnrollmentsSeeder::class,
+            ActivityLanguages::class,
         ]);
     }
 }
