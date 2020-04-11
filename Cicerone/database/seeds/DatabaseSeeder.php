@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             LanguageSeeder::class,
             SpokenLanguageSeeder::class,
+            ActivitySeeder::class,
+            ActivityPlanningSeeder::class,
+            ActivityEnrollmentsSeeder::class,
         ]);
     }
 }

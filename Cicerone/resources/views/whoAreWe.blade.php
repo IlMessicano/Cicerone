@@ -53,7 +53,7 @@
             <a herf="#"><i class="fa fa-instagram"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button class="btn btn-info">Contact</button></p>
+
         </div>
         <div class="card p-3">
             <img src="/img/DavideCarone.jpeg" style="width:100%;">
