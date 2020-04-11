@@ -16,7 +16,7 @@
                                 <div class="row">
                                     <div class="col-md-8 mb-3">
                                         <h3><a href="/attivita/{{$act->ActivityId}}">{{$act->nameActivity}}</a></h3>
-                                        <small>Written on {{$act->created_at}} by {{$act->user->name}}</small>
+                                        <small>Scritto il {{$act->created_at}} da {{$act->user->name}} {{$act->user->surname}}</small>
                                         <div class="row">
                                             <div class="col-md-12 mt-3">
                                                 {{$act->description}}

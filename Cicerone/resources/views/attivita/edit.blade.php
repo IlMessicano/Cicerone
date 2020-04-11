@@ -24,7 +24,7 @@
                     <div class="col-md-12 mb-3">
                         {{Form::label ('nomeAttivita', 'Nome Attività')}}
                         {{Form::text ('nomeAttivita', $attivita->nameActivity, ['class' => 'form-control', 'placeholder' => 'Nome Attività'])}}
-                        <p><br>Seleziona il luogo dell'attività</p>
+                        <p><br>Seleziona il luogo dell'attività<br>(Click sulla icona di ricerca)</p>
 
                     </div>
 
@@ -88,6 +88,7 @@
                         {{Form::label ('languages', 'Lingue parlate')}}
 
                         <select class="form-control" name="languages[]" multiple required>
+                            <option value="" disabled>-- Seleziona (CTRL + click) --</option>
                             @foreach($spokenLanguages as $lang)
                                 <option value="{{$lang->Language}}">{{ $lang->Language}}</option>
                             @endforeach

@@ -55,7 +55,7 @@
                         <div class="card p-2 my-2 text-center">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <small>Registrato da {{$user->created_at}}</small>
+                                    <small>Registrato il {{$user->created_at}}</small>
                                 </div>
                             </div>
                             <div class="row">

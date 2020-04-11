@@ -136,7 +136,7 @@
         <label for='faq-f'>
             <p class="faq-heading">Come posso iscrivermi ad un'attività?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br>Iscriversi ad un'attività è semplice, basta ricercare il luogo dove voler svolgere l'attività, selezionare la pianificazione e iscriversi con un semplice clisk! </p>
+            <p class="faq-text"><br>Iscriversi ad un'attività è semplice, basta ricercare il luogo dove voler svolgere l'attività, selezionare la pianificazione e iscriversi con un semplice click! </p>
         </label>
     </div>
 

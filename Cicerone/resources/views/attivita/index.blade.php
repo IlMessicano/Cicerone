@@ -52,7 +52,7 @@
                         {{Form::label ('nomeAttivita', 'Nome Attività')}}
                         {{Form::text ('nomeAttivita', $attivita->nameActivity, ['class' => 'form-control', 'placeholder' => 'Nome Attività'])}}
 
-                        <p><br>Seleziona il luogo dell'attività</p>
+                        <p><br>Seleziona il luogo dell'attività<br>(Click sull'icona di ricerca)</p>
                     </div>
 
                     <div id="map" class="map container" style="height: 50%; width: 70%"></div>
