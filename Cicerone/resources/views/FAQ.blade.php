@@ -105,38 +105,38 @@
         <label for='faq-a'>
             <p class="faq-heading">Cosa è Cicerone?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br>Cicerone è una piattaforma online </p>
+            <p class="faq-text"><br>Cicerone è una piattaforma online che consente di organizzare viaggi, visite guidate ed eventi con pochi e semplici passaggi </p>
         </label>
         <input id='faq-b' type='checkbox'>
         <label for='faq-b'>
             <p class="faq-heading">Cosa è un cicerone?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br></p>
+            <p class="faq-text"><br>Il cicerone è colui che organizza e crea le attività a cui gli utenti possono partecipare</p>
         </label>
         <input id='faq-c' type='checkbox'>
         <label for='faq-c'>
             <p class="faq-heading">Cosa è un Globetrotter?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br></p>
+            <p class="faq-text"><br>Il globetrotter è colui che si iscrive alle attività organizzare dal Cicerone</p>
         </label>
         <input id='faq-d' type='checkbox'>
         <label for='faq-d'>
             <p class="faq-heading">Cosa sono le attività?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br></p>
+            <p class="faq-text"><br>Le attività rappresentano i viaggi, le gite, le visite guidate che il cicerone organizza e propone agli utenti della piattaforma</p>
         </label>
         <input id='faq-e' type='checkbox'>
         <label for='faq-e'>
             <p class="faq-heading">Cosa sono le pianificazioni delle attività?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br></p>
+            <p class="faq-text"><br>Le pianificazioni rappresentano i diversi giorni e orari in cui un'attività sarà svolta.</p>
         </label>
         <input id='settings' type='checkbox'>
         <input id='faq-f' type='checkbox'>
         <label for='faq-f'>
             <p class="faq-heading">Come posso iscrivermi ad un'attività?</p>
             <div class='faq-arrow'></div>
-            <p class="faq-text"><br></p>
+            <p class="faq-text"><br>Iscriversi ad un'attività è semplice, basta ricercare il luogo dove voler svolgere l'attività, selezionare la pianificazione e iscriversi con un semplice clisk! </p>
         </label>
     </div>
 
