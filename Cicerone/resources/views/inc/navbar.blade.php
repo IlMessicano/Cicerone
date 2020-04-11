@@ -8,7 +8,7 @@
             @else
                 href="{{route('welcome')}}"
             @endif >
-            <img src="img/Cicerone_Logo_def.png" class="img-fluid" width="256" height="128" style="position: relative; right: 15px; bottom: 5px;">
+            <img src="/img/Cicerone_Logo_def.png" class="img-fluid" width="256" height="128" style="position: relative; right: 15px; bottom: 5px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
